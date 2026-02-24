@@ -29,32 +29,10 @@
     color: var(--text);
     font-family: var(--font-body);
     overflow-x: hidden;
-    cursor: none;
+    cursor: auto;
   }
 
-  /* Custom cursor */
-  .cursor {
-    width: 12px; height: 12px;
-    background: var(--accent);
-    border-radius: 50%;
-    position: fixed;
-    top: 0; left: 0;
-    pointer-events: none;
-    z-index: 9999;
-    transition: transform 0.1s ease, background 0.2s;
-    mix-blend-mode: exclusion;
-  }
-  .cursor-ring {
-    width: 36px; height: 36px;
-    border: 1px solid rgba(255,59,48,0.5);
-    border-radius: 50%;
-    position: fixed;
-    top: 0; left: 0;
-    pointer-events: none;
-    z-index: 9998;
-    transition: all 0.15s ease;
-  }
-
+ 
   /* Noise overlay */
   body::before {
     content: '';
@@ -821,27 +799,6 @@
 </div>
 
 <script>
-// Cursor
-const cursor = document.getElementById('cursor');
-const cursorRing = document.getElementById('cursorRing');
-document.addEventListener('mousemove', e => {
-  cursor.style.left = e.clientX - 6 + 'px';
-  cursor.style.top = e.clientY - 6 + 'px';
-  setTimeout(() => {
-    cursorRing.style.left = e.clientX - 18 + 'px';
-    cursorRing.style.top = e.clientY - 18 + 'px';
-  }, 80);
-});
-document.querySelectorAll('button, a, .cat-card, .event-card').forEach(el => {
-  el.addEventListener('mouseenter', () => {
-    cursor.style.transform = 'scale(2)';
-    cursorRing.style.transform = 'scale(1.5)';
-  });
-  el.addEventListener('mouseleave', () => {
-    cursor.style.transform = 'scale(1)';
-    cursorRing.style.transform = 'scale(1)';
-  });
-});
 
 // Events Data
 const events = [
