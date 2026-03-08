@@ -3,35 +3,203 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>احجز - EHGZ</title>
-  <link rel="stylesheet" href="prototype.css">
+  <title>احجزلي — EHGZLY</title>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Outfit:wght@300;400;500;600&family=Noto+Kufi+Arabic:wght@400;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="prototype.css">
 </head>
 <body>
 
-<!-- NAV -->
-<nav>
-  <div class="logo">
-    <div class="logo-mark">T</div>
-    <div>
-      <div class="logo-text">EHGZ</div>
-      <div class="logo-arabic">احجز</div>
+<!-- SEARCH OVERLAY -->
+<div class="search-overlay" id="searchOverlay">
+  <div class="search-overlay-inner">
+    <div class="search-overlay-bar">
+      <span class="search-overlay-icon">🔍</span>
+      <input id="overlayInput" type="text" placeholder="Search events, venues, artists, cities…" />
+      <button class="search-overlay-close" onclick="toggleSearch()">✕</button>
+    </div>
+    <div class="search-suggestions">
+      <div class="suggestion-group">
+        <div class="suggestion-label">Trending</div>
+        <div class="suggestion-pills">
+          <span class="suggestion-pill">⚽ Al Ahly vs Zamalek</span>
+          <span class="suggestion-pill">🎵 Amr Diab</span>
+          <span class="suggestion-pill">🍽️ Sequoia Cairo</span>
+          <span class="suggestion-pill">🎭 Cairo Opera</span>
+          <span class="suggestion-pill">🏀 EBA Finals</span>
+        </div>
+      </div>
+      <div class="suggestion-group">
+        <div class="suggestion-label">Popular Cities</div>
+        <div class="suggestion-pills">
+          <span class="suggestion-pill">🌆 Cairo</span>
+          <span class="suggestion-pill">🌊 Alexandria</span>
+          <span class="suggestion-pill">☀️ Hurghada</span>
+          <span class="suggestion-pill">🏛️ Luxor</span>
+        </div>
+      </div>
     </div>
   </div>
-  <ul class="nav-links">
-    <li><a href="#">Football</a></li>
-    <li><a href="#">Concerts</a></li>
-    <li><a href="#">Dining</a></li>
-    <li><a href="#">Theatre</a></li>
-    <li><a href="#">More</a></li>
+</div>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <div class="mobile-menu-header">
+    <div class="logo">
+      <div class="logo-mark">E</div>
+      <div><div class="logo-text">EHGZLY</div><div class="logo-arabic">احجزلي</div></div>
+    </div>
+    <button class="hamburger active" onclick="toggleMobile()" style="display:flex;">✕</button>
+  </div>
+  <ul class="mobile-nav-links">
+    <li><a href="#">⚽ Football</a></li>
+    <li><a href="#">🎵 Concerts</a></li>
+    <li><a href="#">🍽️ Fine Dining</a></li>
+    <li><a href="#">🎭 Theatre & Opera</a></li>
+    <li><a href="#">🏀 Other Sports</a></li>
+    <li><a href="#">📅 All Events</a></li>
   </ul>
-  <button class="nav-cta">Sign In</button>
+  <div class="mobile-menu-footer">
+    <button class="btn-primary" style="width:100%;text-align:center;"><span>Sign In</span></button>
+    <a href="#" style="display:block;text-align:center;margin-top:14px;font-size:13px;color:var(--text-dim);">Create Account</a>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav id="mainNav">
+  <div class="logo">
+    <div class="logo-mark">E</div>
+    <div><div class="logo-text">EHGZLY</div><div class="logo-arabic">احجزلي</div></div>
+  </div>
+
+  <ul class="nav-links">
+    <li class="nav-item has-dropdown">
+      <a href="#" class="nav-link-with-arrow">Football <span class="nav-arrow">▾</span></a>
+      <div class="nav-dropdown">
+        <div class="dropdown-col">
+          <div class="dropdown-heading">Leagues</div>
+          <a href="#">🏆 Egyptian Premier League</a>
+          <a href="#">🌍 CAF Champions League</a>
+          <a href="#">🇪🇬 Egypt Cup</a>
+          <a href="#">🌐 International Friendlies</a>
+        </div>
+        <div class="dropdown-col">
+          <div class="dropdown-heading">Top Clubs</div>
+          <a href="#">🔴 Al Ahly</a>
+          <a href="#">⚪ Zamalek</a>
+          <a href="#">🟡 Ismaily</a>
+          <a href="#">🔵 Al Masry</a>
+        </div>
+        <div class="dropdown-featured">
+          <div class="dropdown-heading">Next Derby</div>
+          <div class="dropdown-event-card">
+            <div class="dec-emoji">⚽</div>
+            <div><div class="dec-title">Al Ahly vs Zamalek</div><div class="dec-meta">Mar 15 · Cairo Stadium</div><div class="dec-price">From 250 EGP</div></div>
+          </div>
+        </div>
+      </div>
+    </li>
+    <li class="nav-item has-dropdown">
+      <a href="#" class="nav-link-with-arrow">Concerts <span class="nav-arrow">▾</span></a>
+      <div class="nav-dropdown">
+        <div class="dropdown-col">
+          <div class="dropdown-heading">Genre</div>
+          <a href="#">🎤 Arabic Pop</a>
+          <a href="#">🎸 Rock & Alternative</a>
+          <a href="#">🎻 Classical & Opera</a>
+          <a href="#">🥁 Electronic & DJ</a>
+        </div>
+        <div class="dropdown-col">
+          <div class="dropdown-heading">Artists</div>
+          <a href="#">⭐ Amr Diab</a>
+          <a href="#">⭐ Mohamed Ramadan</a>
+          <a href="#">⭐ Angham</a>
+          <a href="#">⭐ Cairokee</a>
+        </div>
+        <div class="dropdown-featured">
+          <div class="dropdown-heading">Hot This Week</div>
+          <div class="dropdown-event-card">
+            <div class="dec-emoji">🎵</div>
+            <div><div class="dec-title">Amr Diab — Nile Nights</div><div class="dec-meta">Mar 20 · Alexandria</div><div class="dec-price">From 600 EGP</div></div>
+          </div>
+        </div>
+      </div>
+    </li>
+    <li class="nav-item has-dropdown">
+      <a href="#" class="nav-link-with-arrow">Dining <span class="nav-arrow">▾</span></a>
+      <div class="nav-dropdown">
+        <div class="dropdown-col">
+          <div class="dropdown-heading">Cuisine</div>
+          <a href="#">🍖 Egyptian</a>
+          <a href="#">🍣 Japanese</a>
+          <a href="#">🍝 Italian</a>
+          <a href="#">🥩 Steakhouse</a>
+        </div>
+        <div class="dropdown-col">
+          <div class="dropdown-heading">Experience</div>
+          <a href="#">🌊 Nile View</a>
+          <a href="#">🌃 Rooftop Dining</a>
+          <a href="#">🕯️ Private Rooms</a>
+          <a href="#">👨‍🍳 Chef's Table</a>
+        </div>
+        <div class="dropdown-featured">
+          <div class="dropdown-heading">Editor's Pick</div>
+          <div class="dropdown-event-card">
+            <div class="dec-emoji">🍽️</div>
+            <div><div class="dec-title">Sequoia Nile</div><div class="dec-meta">Zamalek · Open Daily</div><div class="dec-price">From 450 EGP/person</div></div>
+          </div>
+        </div>
+      </div>
+    </li>
+    <li class="nav-item has-dropdown">
+      <a href="#" class="nav-link-with-arrow">More <span class="nav-arrow">▾</span></a>
+      <div class="nav-dropdown nav-dropdown-sm">
+        <div class="dropdown-col">
+          <div class="dropdown-heading">Categories</div>
+          <a href="#">🎭 Theatre & Opera</a>
+          <a href="#">🏀 Basketball</a>
+          <a href="#">🎾 Tennis</a>
+          <a href="#">🏊 Swimming</a>
+          <a href="#">🎪 Family Events</a>
+          <a href="#">🎨 Art & Culture</a>
+        </div>
+      </div>
+    </li>
+  </ul>
+
+  <div class="nav-actions">
+    <button class="nav-icon-btn" onclick="toggleSearch()" title="Search">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+    </button>
+    <button class="nav-icon-btn nav-notif-btn" title="Notifications">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+      <span class="notif-badge">3</span>
+    </button>
+    <button class="nav-lang-btn" onclick="toggleLang(this)">EN</button>
+    <div class="nav-profile-wrap">
+      <button class="nav-cta" onclick="toggleProfile()">Sign In ▾</button>
+      <div class="profile-dropdown" id="profileDropdown">
+        <div class="profile-dd-header">
+          <div class="profile-avatar">👤</div>
+          <div><div class="profile-name">Welcome back!</div><div class="profile-sub">Sign in to manage tickets</div></div>
+        </div>
+        <div class="profile-dd-divider"></div>
+        <a href="#" class="profile-dd-item">🎟️ My Tickets</a>
+        <a href="#" class="profile-dd-item">❤️ Saved Events</a>
+        <a href="#" class="profile-dd-item">⚙️ Settings</a>
+        <div class="profile-dd-divider"></div>
+        <a href="#" class="profile-dd-item">🔑 Sign In</a>
+        <a href="#" class="profile-dd-item profile-dd-register">✨ Create Account</a>
+      </div>
+    </div>
+    <button class="hamburger" id="hamburger" onclick="toggleMobile()">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
 </nav>
 
 <!-- HERO -->
 <section class="hero">
   <div class="hero-bg"></div>
-
   <svg class="pyramid-deco" viewBox="0 0 400 340" fill="none" xmlns="http://www.w3.org/2000/svg">
     <polygon points="200,0 400,340 0,340" fill="#C9A84C"/>
     <line x1="200" y1="0" x2="133" y2="113" stroke="#C9A84C" stroke-width="0.5" opacity="0.5"/>
@@ -40,22 +208,16 @@
     <line x1="33" y1="284" x2="367" y2="284" stroke="#C9A84C" stroke-width="0.5" opacity="0.5"/>
     <line x1="67" y1="113" x2="333" y2="113" stroke="#C9A84C" stroke-width="0.5" opacity="0.5"/>
   </svg>
-
   <div class="hero-content">
     <div class="hero-tag animate-in">Egypt's Premier Ticketing Platform</div>
     <h1 class="animate-in delay-1">
       <span class="arabic-h1">احجز تجربتك الآن</span>
       <span class="italic">Book</span> the <span class="gold">Moments</span><br>That Matter
     </h1>
-    <p class="hero-desc animate-in delay-2">
-      From Cairo Stadium roars to Nile-side fine dining — discover, reserve, and experience Egypt's finest events in one elegant platform.
-    </p>
+    <p class="hero-desc animate-in delay-2">From Cairo Stadium roars to Nile-side fine dining — discover, reserve, and experience Egypt's finest events in one elegant platform.</p>
     <div class="hero-actions animate-in delay-3">
       <button class="btn-primary"><span>Explore Events</span></button>
-      <button class="btn-ghost">
-        <span class="play-icon">▶</span>
-        See How It Works
-      </button>
+      <button class="btn-ghost"><span class="play-icon">▶</span>See How It Works</button>
     </div>
   </div>
 </section>
@@ -75,26 +237,14 @@
 
 <!-- STATS -->
 <div class="stats">
-  <div class="stat animate-in">
-    <h3>340K+</h3>
-    <p>Tickets Sold</p>
-  </div>
-  <div class="stat animate-in delay-1">
-    <h3>1,200+</h3>
-    <p>Events Listed</p>
-  </div>
-  <div class="stat animate-in delay-2">
-    <h3>27</h3>
-    <p>Egyptian Cities</p>
-  </div>
-  <div class="stat animate-in delay-3">
-    <h3>4.9★</h3>
-    <p>User Rating</p>
-  </div>
+  <div class="stat animate-in"><h3>340K+</h3><p>Tickets Sold</p></div>
+  <div class="stat animate-in delay-1"><h3>1,200+</h3><p>Events Listed</p></div>
+  <div class="stat animate-in delay-2"><h3>27</h3><p>Egyptian Cities</p></div>
+  <div class="stat animate-in delay-3"><h3>4.9★</h3><p>User Rating</p></div>
 </div>
 
 <!-- MARQUEE -->
-<div class="marquee-wrap" style="margin-top: 60px;">
+<div class="marquee-wrap">
   <div class="marquee-track">
     <span class="marquee-item"><span class="marquee-dot"></span> Al Ahly vs Zamalek — Cairo</span>
     <span class="marquee-item"><span class="marquee-dot"></span> Amr Diab Live — Alexandria</span>
@@ -114,74 +264,22 @@
 <!-- CATEGORIES -->
 <section class="section">
   <div class="section-header">
-    <div>
-      <div class="section-tag">Browse by Category</div>
-      <div class="section-title">What Are You<br><em>Looking For?</em></div>
-    </div>
+    <div><div class="section-tag">Browse by Category</div><div class="section-title">What Are You<br><em>Looking For?</em></div></div>
     <div class="see-all">View All Categories</div>
   </div>
-
   <div class="categories">
-    <div class="cat-card">
-      <div class="cat-bg football"></div>
-      <div class="cat-pattern"></div>
-      <div class="cat-icon">⚽</div>
-      <div class="cat-arrow">↗</div>
-      <div class="cat-info">
-        <div class="cat-name">Football</div>
-        <div class="cat-count">128 Upcoming Matches</div>
-      </div>
-    </div>
-    <div class="cat-card">
-      <div class="cat-bg concerts"></div>
-      <div class="cat-pattern"></div>
-      <div class="cat-icon">🎵</div>
-      <div class="cat-arrow">↗</div>
-      <div class="cat-info">
-        <div class="cat-name">Concerts</div>
-        <div class="cat-count">54 Shows This Month</div>
-      </div>
-    </div>
-    <div class="cat-card">
-      <div class="cat-bg dining"></div>
-      <div class="cat-pattern"></div>
-      <div class="cat-icon">🍽️</div>
-      <div class="cat-arrow">↗</div>
-      <div class="cat-info">
-        <div class="cat-name">Fine Dining</div>
-        <div class="cat-count">89 Restaurants</div>
-      </div>
-    </div>
-    <div class="cat-card">
-      <div class="cat-bg theatre"></div>
-      <div class="cat-pattern"></div>
-      <div class="cat-icon">🎭</div>
-      <div class="cat-arrow">↗</div>
-      <div class="cat-info">
-        <div class="cat-name">Theatre & Opera</div>
-        <div class="cat-count">32 Performances</div>
-      </div>
-    </div>
-    <div class="cat-card">
-      <div class="cat-bg sports"></div>
-      <div class="cat-pattern"></div>
-      <div class="cat-icon">🏀</div>
-      <div class="cat-arrow">↗</div>
-      <div class="cat-info">
-        <div class="cat-name">Other Sports</div>
-        <div class="cat-count">67 Events</div>
-      </div>
-    </div>
+    <div class="cat-card"><div class="cat-bg football"></div><div class="cat-pattern"></div><div class="cat-icon">⚽</div><div class="cat-arrow">↗</div><div class="cat-info"><div class="cat-name">Football</div><div class="cat-count">128 Upcoming Matches</div></div></div>
+    <div class="cat-card"><div class="cat-bg concerts"></div><div class="cat-pattern"></div><div class="cat-icon">🎵</div><div class="cat-arrow">↗</div><div class="cat-info"><div class="cat-name">Concerts</div><div class="cat-count">54 Shows This Month</div></div></div>
+    <div class="cat-card"><div class="cat-bg dining"></div><div class="cat-pattern"></div><div class="cat-icon">🍽️</div><div class="cat-arrow">↗</div><div class="cat-info"><div class="cat-name">Fine Dining</div><div class="cat-count">89 Restaurants</div></div></div>
+    <div class="cat-card"><div class="cat-bg theatre"></div><div class="cat-pattern"></div><div class="cat-icon">🎭</div><div class="cat-arrow">↗</div><div class="cat-info"><div class="cat-name">Theatre & Opera</div><div class="cat-count">32 Performances</div></div></div>
+    <div class="cat-card"><div class="cat-bg sports"></div><div class="cat-pattern"></div><div class="cat-icon">🏀</div><div class="cat-arrow">↗</div><div class="cat-info"><div class="cat-name">Other Sports</div><div class="cat-count">67 Events</div></div></div>
   </div>
 </section>
 
 <!-- FEATURED EVENTS -->
-<section class="section" style="padding-top: 0;">
+<section class="section" style="padding-top:0;">
   <div class="section-header">
-    <div>
-      <div class="section-tag">Don't Miss Out</div>
-      <div class="section-title">Featured <em>Events</em></div>
-    </div>
+    <div><div class="section-tag">Don't Miss Out</div><div class="section-title">Featured <em>Events</em></div></div>
     <div style="display:flex;align-items:center;gap:16px;">
       <div class="cities">
         <div class="city-pill active" onclick="setCity(this)">🏙️ All Egypt</div>
@@ -191,139 +289,68 @@
       </div>
     </div>
   </div>
-
   <div class="events-grid">
-
-    <!-- Featured Big Card -->
     <div class="event-card">
-      <div class="event-img" style="background: linear-gradient(135deg, #0D3B1A, #1A5C30);">
+      <div class="event-img" style="background:linear-gradient(135deg,#0D3B1A,#1A5C30);">
         <div class="event-img-bg">⚽</div>
         <div class="event-date-badge">Mar 15, 2025</div>
         <div class="event-cat-badge">Football</div>
       </div>
       <div class="event-body">
         <div class="event-title">Al Ahly vs Zamalek — Cairo Derby</div>
-        <div class="event-meta">
-          <span>📍 Cairo International Stadium</span>
-          <span>🕖 18:00</span>
-          <span>⭐ 4.9</span>
-        </div>
-        <div class="event-footer">
-          <div class="event-price">
-            <small>Starting from</small>
-            250 EGP
-          </div>
-          <button class="btn-book">Reserve Now</button>
-        </div>
+        <div class="event-meta"><span>📍 Cairo International Stadium</span><span>🕖 18:00</span><span>⭐ 4.9</span></div>
+        <div class="event-footer"><div class="event-price"><small>Starting from</small>250 EGP</div><button class="btn-book">Reserve Now</button></div>
       </div>
     </div>
-
-    <!-- Card 2 -->
     <div class="event-card">
-      <div class="event-img" style="background: linear-gradient(135deg, #2D0A3A, #5A1A6B);">
+      <div class="event-img" style="background:linear-gradient(135deg,#2D0A3A,#5A1A6B);">
         <div class="event-img-bg">🎵</div>
         <div class="event-date-badge">Mar 20, 2025</div>
         <div class="event-cat-badge">Concert</div>
       </div>
       <div class="event-body">
         <div class="event-title">Amr Diab — Nile Nights</div>
-        <div class="event-meta">
-          <span>📍 Salam City, Alexandria</span>
-          <span>🕗 21:00</span>
-        </div>
-        <div class="event-footer">
-          <div class="event-price">
-            <small>Starting from</small>
-            600 EGP
-          </div>
-          <button class="btn-book">Reserve Now</button>
-        </div>
+        <div class="event-meta"><span>📍 Salam City, Alexandria</span><span>🕗 21:00</span></div>
+        <div class="event-footer"><div class="event-price"><small>Starting from</small>600 EGP</div><button class="btn-book">Reserve Now</button></div>
       </div>
     </div>
-
-    <!-- Card 3 -->
     <div class="event-card">
-      <div class="event-img" style="background: linear-gradient(135deg, #3A1A0A, #6B3010);">
+      <div class="event-img" style="background:linear-gradient(135deg,#3A1A0A,#6B3010);">
         <div class="event-img-bg">🍽️</div>
         <div class="event-date-badge">Open Daily</div>
         <div class="event-cat-badge">Fine Dining</div>
       </div>
       <div class="event-body">
         <div class="event-title">Sequoia Nile Restaurant</div>
-        <div class="event-meta">
-          <span>📍 Zamalek, Cairo</span>
-          <span>🕐 Lunch & Dinner</span>
-        </div>
-        <div class="event-footer">
-          <div class="event-price">
-            <small>Per person</small>
-            450 EGP
-          </div>
-          <button class="btn-book">Reserve Table</button>
-        </div>
+        <div class="event-meta"><span>📍 Zamalek, Cairo</span><span>🕐 Lunch & Dinner</span></div>
+        <div class="event-footer"><div class="event-price"><small>Per person</small>450 EGP</div><button class="btn-book">Reserve Table</button></div>
       </div>
     </div>
-
-    <!-- Card 4 -->
     <div class="event-card">
-      <div class="event-img" style="background: linear-gradient(135deg, #0A1A3A, #1A3060);">
+      <div class="event-img" style="background:linear-gradient(135deg,#0A1A3A,#1A3060);">
         <div class="event-img-bg">🎭</div>
         <div class="event-date-badge">Apr 2, 2025</div>
         <div class="event-cat-badge">Theatre</div>
       </div>
       <div class="event-body">
         <div class="event-title">Cairo Opera — Swan Lake</div>
-        <div class="event-meta">
-          <span>📍 Cairo Opera House</span>
-          <span>🕗 20:00</span>
-        </div>
-        <div class="event-footer">
-          <div class="event-price">
-            <small>Starting from</small>
-            380 EGP
-          </div>
-          <button class="btn-book">Reserve Now</button>
-        </div>
+        <div class="event-meta"><span>📍 Cairo Opera House</span><span>🕗 20:00</span></div>
+        <div class="event-footer"><div class="event-price"><small>Starting from</small>380 EGP</div><button class="btn-book">Reserve Now</button></div>
       </div>
     </div>
-
   </div>
 </section>
 
 <!-- HOW IT WORKS -->
-<section class="section" style="background: var(--bg2); border-top: 1px solid rgba(255,255,255,0.04);">
-  <div class="section-header" style="margin-bottom: 60px;">
-    <div>
-      <div class="section-tag">Simple & Fast</div>
-      <div class="section-title">How <em>Tazkara</em> Works</div>
-    </div>
+<section class="section" style="background:var(--bg2);border-top:1px solid rgba(255,255,255,0.04);">
+  <div class="section-header" style="margin-bottom:60px;">
+    <div><div class="section-tag">Simple & Fast</div><div class="section-title">How <em>Ehgzly</em> Works</div></div>
   </div>
-
   <div class="steps">
-    <div class="step">
-      <div class="step-num">01</div>
-      <div class="step-icon">🔍</div>
-      <h4>Browse & Discover</h4>
-      <p>Search by category, city, or date. Filter exactly what you're looking for across Egypt.</p>
-    </div>
-    <div class="step">
-      <div class="step-num">02</div>
-      <div class="step-icon">🎯</div>
-      <h4>Choose Your Seats</h4>
-      <p>Interactive seat maps let you pick the perfect spot — from VIP to general admission.</p>
-    </div>
-    <div class="step">
-      <div class="step-num">03</div>
-      <div class="step-icon">💳</div>
-      <h4>Secure Payment</h4>
-      <p>Pay via Vodafone Cash, Fawry, credit card, or Instapay. 100% secure checkout.</p>
-    </div>
-    <div class="step">
-      <div class="step-num">04</div>
-      <div class="step-icon">📲</div>
-      <h4>Get Your Ticket</h4>
-      <p>Instant QR code delivered to your phone. Scan and enjoy. No printing needed.</p>
-    </div>
+    <div class="step"><div class="step-num">01</div><div class="step-icon">🔍</div><h4>Browse & Discover</h4><p>Search by category, city, or date. Filter exactly what you're looking for across Egypt.</p></div>
+    <div class="step"><div class="step-num">02</div><div class="step-icon">🎯</div><h4>Choose Your Seats</h4><p>Interactive seat maps let you pick the perfect spot — from VIP to general admission.</p></div>
+    <div class="step"><div class="step-num">03</div><div class="step-icon">💳</div><h4>Secure Payment</h4><p>Pay via Vodafone Cash, Fawry, credit card, or Instapay. 100% secure checkout.</p></div>
+    <div class="step"><div class="step-num">04</div><div class="step-icon">📲</div><h4>Get Your Ticket</h4><p>Instant QR code delivered to your phone. Scan and enjoy. No printing needed.</p></div>
   </div>
 </section>
 
@@ -331,53 +358,17 @@
 <footer>
   <div class="footer-top">
     <div class="footer-brand">
-      <div class="logo">
-        <div class="logo-mark">T</div>
-        <div>
-          <div class="logo-text">TAZKARA</div>
-          <div class="logo-arabic">تذكرة</div>
-        </div>
-      </div>
+      <div class="logo"><div class="logo-mark">E</div><div><div class="logo-text">EHGZLY</div><div class="logo-arabic">احجزلي</div></div></div>
       <p>Egypt's most elegant event reservation platform. From the stadiums of Cairo to the restaurants of Alexandria — we connect you to every unforgettable moment.</p>
     </div>
-    <div class="footer-col">
-      <h5>Explore</h5>
-      <ul>
-        <li>Football Matches</li>
-        <li>Concerts & Shows</li>
-        <li>Fine Dining</li>
-        <li>Theatre & Opera</li>
-        <li>Other Sports</li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h5>Company</h5>
-      <ul>
-        <li>About Us</li>
-        <li>Careers</li>
-        <li>Partner With Us</li>
-        <li>Press</li>
-        <li>Blog</li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h5>Support</h5>
-      <ul>
-        <li>Help Center</li>
-        <li>Refund Policy</li>
-        <li>Contact Us</li>
-        <li>Terms of Service</li>
-        <li>Privacy Policy</li>
-      </ul>
-    </div>
+    <div class="footer-col"><h5>Explore</h5><ul><li>Football Matches</li><li>Concerts & Shows</li><li>Fine Dining</li><li>Theatre & Opera</li><li>Other Sports</li></ul></div>
+    <div class="footer-col"><h5>Company</h5><ul><li>About Us</li><li>Careers</li><li>Partner With Us</li><li>Press</li><li>Blog</li></ul></div>
+    <div class="footer-col"><h5>Support</h5><ul><li>Help Center</li><li>Refund Policy</li><li>Contact Us</li><li>Terms of Service</li><li>Privacy Policy</li></ul></div>
   </div>
   <div class="footer-bottom">
-    <p>© 2025 <span>TAZKARA تذكرة</span>. All rights reserved. Made with ❤️ in Egypt.</p>
+    <p>© 2025 <span>EHGZLY احجزلي</span>. All rights reserved. Made with ❤️ in Egypt.</p>
     <div class="social-links">
-      <a class="social-link">𝕏</a>
-      <a class="social-link">in</a>
-      <a class="social-link">f</a>
-      <a class="social-link">📸</a>
+      <a class="social-link">𝕏</a><a class="social-link">in</a><a class="social-link">f</a><a class="social-link">📸</a>
     </div>
   </div>
 </footer>
@@ -387,22 +378,52 @@
     document.querySelectorAll('.search-tab').forEach(t => t.classList.remove('active'));
     el.classList.add('active');
   }
-
   function setCity(el) {
     document.querySelectorAll('.city-pill').forEach(c => c.classList.remove('active'));
     el.classList.add('active');
   }
-
-  // Intersection Observer for scroll animations
+  window.addEventListener('scroll', () => {
+    document.getElementById('mainNav').classList.toggle('nav-solid', window.scrollY > 60);
+  });
+  function toggleSearch() {
+    const overlay = document.getElementById('searchOverlay');
+    overlay.classList.toggle('active');
+    if (overlay.classList.contains('active')) setTimeout(() => document.getElementById('overlayInput').focus(), 100);
+  }
+  document.getElementById('searchOverlay').addEventListener('click', function(e) {
+    if (e.target === this) toggleSearch();
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') {
+      document.getElementById('searchOverlay').classList.remove('active');
+      document.getElementById('profileDropdown').classList.remove('active');
+      document.getElementById('mobileMenu').classList.remove('active');
+    }
+  });
+  function toggleProfile() {
+    document.getElementById('profileDropdown').classList.toggle('active');
+  }
+  document.addEventListener('click', e => {
+    const wrap = document.querySelector('.nav-profile-wrap');
+    if (wrap && !wrap.contains(e.target)) document.getElementById('profileDropdown').classList.remove('active');
+  });
+  function toggleMobile() {
+    document.getElementById('mobileMenu').classList.toggle('active');
+  }
+  function toggleLang(btn) {
+    if (btn.textContent === 'EN') {
+      btn.textContent = 'ع';
+      document.documentElement.setAttribute('dir', 'rtl');
+    } else {
+      btn.textContent = 'EN';
+      document.documentElement.setAttribute('dir', 'ltr');
+    }
+  }
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.style.opacity = '1';
-        e.target.style.transform = 'translateY(0)';
-      }
+      if (e.isIntersecting) { e.target.style.opacity = '1'; e.target.style.transform = 'translateY(0)'; }
     });
   }, { threshold: 0.1 });
-
   document.querySelectorAll('.event-card, .cat-card, .step, .stat').forEach(el => {
     el.style.opacity = '0';
     el.style.transform = 'translateY(20px)';
@@ -410,7 +431,5 @@
     observer.observe(el);
   });
 </script>
-
 </body>
-
 </html>
