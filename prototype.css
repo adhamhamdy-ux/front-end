@@ -50,7 +50,10 @@
       padding: 14px 48px;
     }
 
-    .logo { display: flex; align-items: center; gap: 10px; cursor: pointer; }
+    .logo { display: flex;
+       align-items: center;
+      gap: 10px; 
+      cursor: pointer; }
     .logo-mark {
       width: 36px; height: 36px;
       background: var(--gold);
