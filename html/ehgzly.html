@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="../css/ehgzly.css">
 </head>
 <body>
+
 <!-- AUTH MODAL -->
 <div class="auth-overlay" id="authOverlay">
   <div class="auth-modal">
@@ -30,7 +31,7 @@
     <form class="auth-form active" id="signin-form" onsubmit="handleAuth(event,'signin')">
       <div class="auth-input-group">
         <label class="auth-label">Email Address</label>
-        <input class="auth-input" type="email" placeholder="ahmed@gmail.com" required/>
+        <input class="auth-input" type="email" placeholder="OMAR@gmail.com" required/>
       </div>
       <div class="auth-input-group">
         <label class="auth-label">Password</label>
@@ -121,26 +122,6 @@
   </div>
 </div>
 
-<!-- MOBILE MENU -->
-<div class="mobile-menu" id="mobileMenu">
-  <div class="mobile-menu-header">
-    <div class="logo">
-      <div class="logo-mark">E</div>
-      <div><div class="logo-text">EHGZLY</div><div class="logo-arabic">احجزلي</div></div>
-    </div>
-    <button class="hamburger active" onclick="toggleMobile()" style="display:flex;">✕</button>
-  </div>
-  <ul class="mobile-nav-links">
-    <li><a href="#">⚽ Football</a></li>
-    <li><a href="#">🎵 Concerts</a></li>
-    <li><a href="#">🍽️ Fine Dining</a></li>
-    <li><a href="#">📅 All Events</a></li>
-  </ul>
-  <div class="mobile-menu-footer">
-    <button class="btn-primary" style="width:100%;text-align:center;" onclick="openAuth('signin')"><span>Sign In</span></button>
-    <a href="#" style="display:block;text-align:center;margin-top:14px;font-size:13px;color:var(--muted);" onclick="openAuth('signup')">Create Account</a>
-  </div>
-</div>
 
 <!-- NAV -->
 <nav id="mainNav">
@@ -188,9 +169,10 @@
         <div class="dropdown-col">
           <div class="dropdown-heading">Artists</div>
           <a href="#">⭐ Amr Diab</a>
-          <a href="#">⭐ Mohamed Ramadan</a>
+          <a href="#">⭐ wegz</a>
           <a href="#">⭐ Angham</a>
           <a href="#">⭐ Cairokee</a>
+          <a href="#">⭐ lege-cy</a>
         </div>
         <div class="dropdown-featured">
           <div class="dropdown-heading">Hot This Week</div>
@@ -254,9 +236,6 @@
         <a href="#" class="profile-dd-item profile-dd-register" onclick="openAuth('signup')">✨ Create Account</a>
       </div>
     </div>
-    <button class="hamburger" id="hamburger" onclick="toggleMobile()">
-      <span></span><span></span><span></span>
-    </button>
   </div>
 </nav>
 
@@ -433,7 +412,7 @@
   // ── Auth Modal ───────────────────────────────────────
   function openAuth(tab) {
     document.getElementById('profileDropdown').classList.remove('active');
-    document.getElementById('mobileMenu').classList.remove('active');
+    
     switchTab(tab);
     document.getElementById('authOverlay').classList.add('active');
     document.body.style.overflow = 'hidden';
@@ -479,7 +458,7 @@
     if (e.key === 'Escape') {
       document.getElementById('searchOverlay').classList.remove('active');
       document.getElementById('profileDropdown').classList.remove('active');
-      document.getElementById('mobileMenu').classList.remove('active');
+      
       closeAuth();
     }
   });
@@ -490,9 +469,6 @@
     const wrap = document.querySelector('.nav-profile-wrap');
     if (wrap && !wrap.contains(e.target)) document.getElementById('profileDropdown').classList.remove('active');
   });
-  function toggleMobile() {
-    document.getElementById('mobileMenu').classList.toggle('active');
-  }
   function toggleLang(btn) {
     if (btn.textContent === 'EN') {
       btn.textContent = 'ع';
