@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>احجزلي — EHGZLY</title>
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&family=Space+Mono:wght@400;700&family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Noto+Kufi+Arabic:wght@400;700&display=swap" rel="stylesheet"/>
-  <link rel="stylesheet" href="../css/ehgzly.css">
+  <link rel="stylesheet" href="/css/ehgzly.css">
 </head>
 <body>
 
@@ -31,7 +31,7 @@
     <form class="auth-form active" id="signin-form" onsubmit="handleAuth(event,'signin')">
       <div class="auth-input-group">
         <label class="auth-label">Email Address</label>
-        <input class="auth-input" type="email" placeholder="OMAR@gmail.com" required/>
+        <input class="auth-input" type="email" placeholder="ahmed@gmail.com" required/>
       </div>
       <div class="auth-input-group">
         <label class="auth-label">Password</label>
@@ -169,10 +169,9 @@
         <div class="dropdown-col">
           <div class="dropdown-heading">Artists</div>
           <a href="#">⭐ Amr Diab</a>
-          <a href="#">⭐ wegz</a>
+          <a href="#">⭐ Mohamed Ramadan</a>
           <a href="#">⭐ Angham</a>
           <a href="#">⭐ Cairokee</a>
-          <a href="#">⭐ lege-cy</a>
         </div>
         <div class="dropdown-featured">
           <div class="dropdown-heading">Hot This Week</div>
@@ -326,7 +325,9 @@
     </div>
   </div>
   <div class="events-grid">
-    <div class="event-card">
+
+    <!-- ⚽ FOOTBALL 1 -->
+    <div class="event-card" data-city="cairo" data-cat="football">
       <div class="event-img" style="background:linear-gradient(135deg,#0D3B1A,#1A5C30);">
         <div class="event-img-bg">⚽</div>
         <div class="event-date-badge">Mar 15, 2025</div>
@@ -338,7 +339,51 @@
         <div class="event-footer"><div class="event-price"><small>Starting from</small>250 EGP</div><button class="btn-book" onclick="window.location='ehgzly-checkout.html?title=Al Ahly vs Zamalek — Cairo Derby&venue=Cairo International Stadium&date=Mar 15, 2025&price=250&emoji=⚽&category=Football'">Reserve Now</button></div>
       </div>
     </div>
-    <div class="event-card">
+
+    <!-- ⚽ FOOTBALL 2 -->
+    <div class="event-card" data-city="cairo" data-cat="football">
+      <div class="event-img" style="background:linear-gradient(135deg,#0A2A3A,#1A4A6B);">
+        <div class="event-img-bg">⚽</div>
+        <div class="event-date-badge">Mar 22, 2025</div>
+        <div class="event-cat-badge">Football</div>
+      </div>
+      <div class="event-body">
+        <div class="event-title">Egypt vs Nigeria — AFCON Qualifier</div>
+        <div class="event-meta"><span>📍 Cairo International Stadium</span><span>🕗 20:00</span><span>⭐ 4.8</span></div>
+        <div class="event-footer"><div class="event-price"><small>Starting from</small>300 EGP</div><button class="btn-book" onclick="window.location='ehgzly-checkout.html?title=Egypt vs Nigeria — AFCON Qualifier&venue=Cairo International Stadium&date=Mar 22, 2025&price=300&emoji=⚽&category=Football'">Reserve Now</button></div>
+      </div>
+    </div>
+
+    <!-- ⚽ FOOTBALL 3 -->
+    <div class="event-card" data-city="alexandria" data-cat="football">
+      <div class="event-img" style="background:linear-gradient(135deg,#1A0A3A,#3A1A6B);">
+        <div class="event-img-bg">⚽</div>
+        <div class="event-date-badge">Apr 5, 2025</div>
+        <div class="event-cat-badge">Football</div>
+      </div>
+      <div class="event-body">
+        <div class="event-title">Al Masry vs Ismaily — League Clash</div>
+        <div class="event-meta"><span>📍 Borg El Arab Stadium, Alexandria</span><span>🕔 16:00</span><span>⭐ 4.5</span></div>
+        <div class="event-footer"><div class="event-price"><small>Starting from</small>150 EGP</div><button class="btn-book" onclick="window.location='ehgzly-checkout.html?title=Al Masry vs Ismaily — League Clash&venue=Borg El Arab Stadium, Alexandria&date=Apr 5, 2025&price=150&emoji=⚽&category=Football'">Reserve Now</button></div>
+      </div>
+    </div>
+
+    <!-- ⚽ FOOTBALL 4 -->
+    <div class="event-card" data-city="cairo" data-cat="football">
+      <div class="event-img" style="background:linear-gradient(135deg,#3A1A0A,#6B3A10);">
+        <div class="event-img-bg">⚽</div>
+        <div class="event-date-badge">Apr 12, 2025</div>
+        <div class="event-cat-badge">Football</div>
+      </div>
+      <div class="event-body">
+        <div class="event-title">Zamalek vs Pyramids FC — Cup Final</div>
+        <div class="event-meta"><span>📍 Cairo International Stadium</span><span>🕗 20:00</span><span>⭐ 4.7</span></div>
+        <div class="event-footer"><div class="event-price"><small>Starting from</small>200 EGP</div><button class="btn-book" onclick="window.location='ehgzly-checkout.html?title=Zamalek vs Pyramids FC — Cup Final&venue=Cairo International Stadium&date=Apr 12, 2025&price=200&emoji=⚽&category=Football'">Reserve Now</button></div>
+      </div>
+    </div>
+
+    <!-- 🎵 CONCERT 1 -->
+    <div class="event-card" data-city="alexandria" data-cat="concert">
       <div class="event-img" style="background:linear-gradient(135deg,#2D0A3A,#5A1A6B);">
         <div class="event-img-bg">🎵</div>
         <div class="event-date-badge">Mar 20, 2025</div>
@@ -346,11 +391,55 @@
       </div>
       <div class="event-body">
         <div class="event-title">Amr Diab — Nile Nights</div>
-        <div class="event-meta"><span>📍 Salam City, Alexandria</span><span>🕗 21:00</span></div>
+        <div class="event-meta"><span>📍 Salam City, Alexandria</span><span>🕗 21:00</span><span>⭐ 5.0</span></div>
         <div class="event-footer"><div class="event-price"><small>Starting from</small>600 EGP</div><button class="btn-book" onclick="window.location='ehgzly-checkout.html?title=Amr Diab — Nile Nights&venue=Salam City, Alexandria&date=Mar 20, 2025&price=600&emoji=🎵&category=Concert'">Reserve Now</button></div>
       </div>
     </div>
-    <div class="event-card">
+
+    <!-- 🎵 CONCERT 2 -->
+    <div class="event-card" data-city="hurghada" data-cat="concert">
+      <div class="event-img" style="background:linear-gradient(135deg,#0A1A3A,#102A5A);">
+        <div class="event-img-bg">🎵</div>
+        <div class="event-date-badge">Mar 28, 2025</div>
+        <div class="event-cat-badge">Concert</div>
+      </div>
+      <div class="event-body">
+        <div class="event-title">Mohamed Ramadan — Red Sea Show</div>
+        <div class="event-meta"><span>📍 Sahl Hasheesh Arena, Hurghada</span><span>🕙 22:00</span><span>⭐ 4.8</span></div>
+        <div class="event-footer"><div class="event-price"><small>Starting from</small>500 EGP</div><button class="btn-book" onclick="window.location='ehgzly-checkout.html?title=Mohamed Ramadan — Red Sea Show&venue=Sahl Hasheesh Arena, Hurghada&date=Mar 28, 2025&price=500&emoji=🎵&category=Concert'">Reserve Now</button></div>
+      </div>
+    </div>
+
+    <!-- 🎵 CONCERT 3 -->
+    <div class="event-card" data-city="cairo" data-cat="concert">
+      <div class="event-img" style="background:linear-gradient(135deg,#1A0A2A,#3A1055);">
+        <div class="event-img-bg">🎵</div>
+        <div class="event-date-badge">Apr 3, 2025</div>
+        <div class="event-cat-badge">Concert</div>
+      </div>
+      <div class="event-body">
+        <div class="event-title">Cairokee — Live in Cairo</div>
+        <div class="event-meta"><span>📍 El Sawy Culturewheel, Cairo</span><span>🕗 20:00</span><span>⭐ 4.7</span></div>
+        <div class="event-footer"><div class="event-price"><small>Starting from</small>350 EGP</div><button class="btn-book" onclick="window.location='ehgzly-checkout.html?title=Cairokee — Live in Cairo&venue=El Sawy Culturewheel, Cairo&date=Apr 3, 2025&price=350&emoji=🎵&category=Concert'">Reserve Now</button></div>
+      </div>
+    </div>
+
+    <!-- 🎵 CONCERT 4 -->
+    <div class="event-card" data-city="cairo" data-cat="concert">
+      <div class="event-img" style="background:linear-gradient(135deg,#2A0A1A,#551030);">
+        <div class="event-img-bg">🎵</div>
+        <div class="event-date-badge">Apr 18, 2025</div>
+        <div class="event-cat-badge">Concert</div>
+      </div>
+      <div class="event-body">
+        <div class="event-title">Angham — An Evening of Arabic Soul</div>
+        <div class="event-meta"><span>📍 Cairo Opera House</span><span>🕗 21:00</span><span>⭐ 4.9</span></div>
+        <div class="event-footer"><div class="event-price"><small>Starting from</small>700 EGP</div><button class="btn-book" onclick="window.location='ehgzly-checkout.html?title=Angham — An Evening of Arabic Soul&venue=Cairo Opera House&date=Apr 18, 2025&price=700&emoji=🎵&category=Concert'">Reserve Now</button></div>
+      </div>
+    </div>
+
+    <!-- 🍽️ DINING 1 -->
+    <div class="event-card" data-city="cairo" data-cat="dining">
       <div class="event-img" style="background:linear-gradient(135deg,#3A1A0A,#6B3010);">
         <div class="event-img-bg">🍽️</div>
         <div class="event-date-badge">Open Daily</div>
@@ -358,10 +447,305 @@
       </div>
       <div class="event-body">
         <div class="event-title">Sequoia Nile Restaurant</div>
-        <div class="event-meta"><span>📍 Zamalek, Cairo</span><span>🕐 Lunch & Dinner</span></div>
+        <div class="event-meta"><span>📍 Zamalek, Cairo</span><span>🕐 Lunch & Dinner</span><span>⭐ 4.8</span></div>
         <div class="event-footer"><div class="event-price"><small>Per person</small>450 EGP</div><button class="btn-book" onclick="window.location='ehgzly-checkout.html?title=Sequoia Nile Restaurant&venue=Zamalek, Cairo&date=Open Daily&price=450&emoji=🍽️&category=Fine Dining'">Reserve Table</button></div>
       </div>
     </div>
+
+    <!-- 🍽️ DINING 2 -->
+    <div class="event-card" data-city="cairo" data-cat="dining">
+      <div class="event-img" style="background:linear-gradient(135deg,#1A1A0A,#3A3A10);">
+        <div class="event-img-bg">🍽️</div>
+        <div class="event-date-badge">Open Daily</div>
+        <div class="event-cat-badge">Fine Dining</div>
+      </div>
+      <div class="event-body">
+        <div class="event-title">Pier 88 — Rooftop Dining</div>
+        <div class="event-meta"><span>📍 Four Seasons, Cairo</span><span>🕖 Dinner Only</span><span>⭐ 4.9</span></div>
+        <div class="event-footer"><div class="event-price"><small>Per person</small>800 EGP</div><button class="btn-book" onclick="window.location='ehgzly-checkout.html?title=Pier 88 — Rooftop Dining&venue=Four Seasons, Cairo&date=Open Daily&price=800&emoji=🍽️&category=Fine Dining'">Reserve Table</button></div>
+      </div>
+    </div>
+
+    <!-- 🍽️ DINING 3 -->
+    <div class="event-card" data-city="alexandria" data-cat="dining">
+      <div class="event-img" style="background:linear-gradient(135deg,#0A2A2A,#106B6B);">
+        <div class="event-img-bg">🍽️</div>
+        <div class="event-date-badge">Open Daily</div>
+        <div class="event-cat-badge">Fine Dining</div>
+      </div>
+      <div class="event-body">
+        <div class="event-title">Fish Market — Mediterranean Feast</div>
+        <div class="event-meta"><span>📍 Corniche, Alexandria</span><span>🕐 Lunch & Dinner</span><span>⭐ 4.7</span></div>
+        <div class="event-footer"><div class="event-price"><small>Per person</small>320 EGP</div><button class="btn-book" onclick="window.location='ehgzly-checkout.html?title=Fish Market — Mediterranean Feast&venue=Corniche, Alexandria&date=Open Daily&price=320&emoji=🍽️&category=Fine Dining'">Reserve Table</button></div>
+      </div>
+    </div>
+
+    <!-- 🍽️ DINING 4 -->
+    <div class="event-card" data-city="hurghada" data-cat="dining">
+      <div class="event-img" style="background:linear-gradient(135deg,#0A1A2A,#104060);">
+        <div class="event-img-bg">🍽️</div>
+        <div class="event-date-badge">Open Daily</div>
+        <div class="event-cat-badge">Fine Dining</div>
+      </div>
+      <div class="event-body">
+        <div class="event-title">Little Buddha — Red Sea Terrace</div>
+        <div class="event-meta"><span>📍 Hurghada Marina</span><span>🕖 Dinner Only</span><span>⭐ 4.6</span></div>
+        <div class="event-footer"><div class="event-price"><small>Per person</small>550 EGP</div><button class="btn-book" onclick="window.location='ehgzly-checkout.html?title=Little Buddha — Red Sea Terrace&venue=Hurghada Marina&date=Open Daily&price=550&emoji=🍽️&category=Fine Dining'">Reserve Table</button></div>
+      </div>
+    </div>
+
+    <!-- ⚽ FOOTBALL 5 -->
+    <div class="event-card" data-city="cairo" data-cat="football">
+      <div class="event-img" style="background:linear-gradient(135deg,#0A2A1A,#0F4A2A);">
+        <div class="event-img-bg">⚽</div>
+        <div class="event-date-badge">Apr 20, 2025</div>
+        <div class="event-cat-badge">Football</div>
+      </div>
+      <div class="event-body">
+        <div class="event-title">Al Ahly vs Wydad — CAF Champions League</div>
+        <div class="event-meta"><span>📍 Cairo International Stadium</span><span>🕗 20:00</span><span>⭐ 4.9</span></div>
+        <div class="event-footer"><div class="event-price"><small>Starting from</small>350 EGP</div><button class="btn-book" onclick="window.location='ehgzly-checkout.html?title=Al Ahly vs Wydad — CAF Champions League&venue=Cairo International Stadium&date=Apr 20, 2025&price=350&emoji=⚽&category=Football'">Reserve Now</button></div>
+      </div>
+    </div>
+
+    <!-- ⚽ FOOTBALL 6 -->
+    <div class="event-card" data-city="cairo" data-cat="football">
+      <div class="event-img" style="background:linear-gradient(135deg,#1A2A0A,#2A4A10);">
+        <div class="event-img-bg">⚽</div>
+        <div class="event-date-badge">May 3, 2025</div>
+        <div class="event-cat-badge">Football</div>
+      </div>
+      <div class="event-body">
+        <div class="event-title">Pyramids FC vs Zamalek — Premier League</div>
+        <div class="event-meta"><span>📍 Air Defense Stadium, Cairo</span><span>🕔 17:00</span><span>⭐ 4.6</span></div>
+        <div class="event-footer"><div class="event-price"><small>Starting from</small>180 EGP</div><button class="btn-book" onclick="window.location='ehgzly-checkout.html?title=Pyramids FC vs Zamalek — Premier League&venue=Air Defense Stadium, Cairo&date=May 3, 2025&price=180&emoji=⚽&category=Football'">Reserve Now</button></div>
+      </div>
+    </div>
+
+    <!-- ⚽ FOOTBALL 7 -->
+    <div class="event-card" data-city="hurghada" data-cat="football">
+      <div class="event-img" style="background:linear-gradient(135deg,#2A1A0A,#4A2A10);">
+        <div class="event-img-bg">⚽</div>
+        <div class="event-date-badge">May 10, 2025</div>
+        <div class="event-cat-badge">Football</div>
+      </div>
+      <div class="event-body">
+        <div class="event-title">Egypt vs Ghana — International Friendly</div>
+        <div class="event-meta"><span>📍 Hurghada Stadium</span><span>🕗 20:00</span><span>⭐ 4.7</span></div>
+        <div class="event-footer"><div class="event-price"><small>Starting from</small>220 EGP</div><button class="btn-book" onclick="window.location='ehgzly-checkout.html?title=Egypt vs Ghana — International Friendly&venue=Hurghada Stadium&date=May 10, 2025&price=220&emoji=⚽&category=Football'">Reserve Now</button></div>
+      </div>
+    </div>
+
+    <!-- 🎵 CONCERT 5 -->
+    <div class="event-card" data-city="cairo" data-cat="concert">
+      <div class="event-img" style="background:linear-gradient(135deg,#0A0A2A,#15154A);">
+        <div class="event-img-bg">🎵</div>
+        <div class="event-date-badge">Apr 25, 2025</div>
+        <div class="event-cat-badge">Concert</div>
+      </div>
+      <div class="event-body">
+        <div class="event-title">Tamer Hosny — Greatest Hits Tour</div>
+        <div class="event-meta"><span>📍 Cairo Stadium Open Air</span><span>🕙 21:00</span><span>⭐ 4.8</span></div>
+        <div class="event-footer"><div class="event-price"><small>Starting from</small>550 EGP</div><button class="btn-book" onclick="window.location='ehgzly-checkout.html?title=Tamer Hosny — Greatest Hits Tour&venue=Cairo Stadium Open Air&date=Apr 25, 2025&price=550&emoji=🎵&category=Concert'">Reserve Now</button></div>
+      </div>
+    </div>
+
+    <!-- 🎵 CONCERT 6 -->
+    <div class="event-card" data-city="alexandria" data-cat="concert">
+      <div class="event-img" style="background:linear-gradient(135deg,#1A0A2A,#30104A);">
+        <div class="event-img-bg">🎵</div>
+        <div class="event-date-badge">May 2, 2025</div>
+        <div class="event-cat-badge">Concert</div>
+      </div>
+      <div class="event-body">
+        <div class="event-title">Nancy Ajram — Mediterranean Night</div>
+        <div class="event-meta"><span>📍 Alexandria Opera House</span><span>🕗 21:00</span><span>⭐ 4.9</span></div>
+        <div class="event-footer"><div class="event-price"><small>Starting from</small>650 EGP</div><button class="btn-book" onclick="window.location='ehgzly-checkout.html?title=Nancy Ajram — Mediterranean Night&venue=Alexandria Opera House&date=May 2, 2025&price=650&emoji=🎵&category=Concert'">Reserve Now</button></div>
+      </div>
+    </div>
+
+    <!-- 🎵 CONCERT 7 -->
+    <div class="event-card" data-city="hurghada" data-cat="concert">
+      <div class="event-img" style="background:linear-gradient(135deg,#0A1A2A,#10305A);">
+        <div class="event-img-bg">🎵</div>
+        <div class="event-date-badge">May 16, 2025</div>
+        <div class="event-cat-badge">Concert</div>
+      </div>
+      <div class="event-body">
+        <div class="event-title">Hamza Namira — Acoustic Sessions</div>
+        <div class="event-meta"><span>📍 RIXOS Hotel, Hurghada</span><span>🕗 20:30</span><span>⭐ 4.7</span></div>
+        <div class="event-footer"><div class="event-price"><small>Starting from</small>480 EGP</div><button class="btn-book" onclick="window.location='ehgzly-checkout.html?title=Hamza Namira — Acoustic Sessions&venue=RIXOS Hotel, Hurghada&date=May 16, 2025&price=480&emoji=🎵&category=Concert'">Reserve Now</button></div>
+      </div>
+    </div>
+
+    <!-- 🍽️ DINING 5 -->
+    <div class="event-card" data-city="cairo" data-cat="dining">
+      <div class="event-img" style="background:linear-gradient(135deg,#2A1A0A,#503010);">
+        <div class="event-img-bg">🍽️</div>
+        <div class="event-date-badge">Open Daily</div>
+        <div class="event-cat-badge">Fine Dining</div>
+      </div>
+      <div class="event-body">
+        <div class="event-title">Taboula — Lebanese Garden Dining</div>
+        <div class="event-meta"><span>📍 Garden City, Cairo</span><span>🕐 Lunch & Dinner</span><span>⭐ 4.8</span></div>
+        <div class="event-footer"><div class="event-price"><small>Per person</small>380 EGP</div><button class="btn-book" onclick="window.location='ehgzly-checkout.html?title=Taboula — Lebanese Garden Dining&venue=Garden City, Cairo&date=Open Daily&price=380&emoji=🍽️&category=Fine Dining'">Reserve Table</button></div>
+      </div>
+    </div>
+
+    <!-- 🍽️ DINING 6 -->
+    <div class="event-card" data-city="cairo" data-cat="dining">
+      <div class="event-img" style="background:linear-gradient(135deg,#0A2A1A,#105030);">
+        <div class="event-img-bg">🍽️</div>
+        <div class="event-date-badge">Open Daily</div>
+        <div class="event-cat-badge">Fine Dining</div>
+      </div>
+      <div class="event-body">
+        <div class="event-title">Crimson — Sky Lounge Restaurant</div>
+        <div class="event-meta"><span>📍 Kempinski Nile Hotel, Cairo</span><span>🕖 Dinner Only</span><span>⭐ 4.9</span></div>
+        <div class="event-footer"><div class="event-price"><small>Per person</small>950 EGP</div><button class="btn-book" onclick="window.location='ehgzly-checkout.html?title=Crimson — Sky Lounge Restaurant&venue=Kempinski Nile Hotel, Cairo&date=Open Daily&price=950&emoji=🍽️&category=Fine Dining'">Reserve Table</button></div>
+      </div>
+    </div>
+
+    <!-- 🍽️ DINING 7 -->
+    <div class="event-card" data-city="alexandria" data-cat="dining">
+      <div class="event-img" style="background:linear-gradient(135deg,#0A1A2A,#103040);">
+        <div class="event-img-bg">🍽️</div>
+        <div class="event-date-badge">Open Daily</div>
+        <div class="event-cat-badge">Fine Dining</div>
+      </div>
+      <div class="event-body">
+        <div class="event-title">Byblos — Seafront Lebanese</div>
+        <div class="event-meta"><span>📍 Stanley, Alexandria</span><span>🕐 Lunch & Dinner</span><span>⭐ 4.7</span></div>
+        <div class="event-footer"><div class="event-price"><small>Per person</small>290 EGP</div><button class="btn-book" onclick="window.location='ehgzly-checkout.html?title=Byblos — Seafront Lebanese&venue=Stanley, Alexandria&date=Open Daily&price=290&emoji=🍽️&category=Fine Dining'">Reserve Table</button></div>
+      </div>
+    </div>
+
+    <!-- ⚽ FOOTBALL 8 -->
+    <div class="event-card" data-city="cairo" data-cat="football">
+      <div class="event-img" style="background:linear-gradient(135deg,#0A1A0A,#143A14);">
+        <div class="event-img-bg">⚽</div>
+        <div class="event-date-badge">May 18, 2025</div>
+        <div class="event-cat-badge">Football</div>
+      </div>
+      <div class="event-body">
+        <div class="event-title">Al Ahly vs ES Tunis — CAF Super Cup</div>
+        <div class="event-meta"><span>📍 Cairo International Stadium</span><span>🕗 20:00</span><span>⭐ 4.9</span></div>
+        <div class="event-footer"><div class="event-price"><small>Starting from</small>400 EGP</div><button class="btn-book" onclick="window.location='ehgzly-checkout.html?title=Al Ahly vs ES Tunis — CAF Super Cup&venue=Cairo International Stadium&date=May 18, 2025&price=400&emoji=⚽&category=Football'">Reserve Now</button></div>
+      </div>
+    </div>
+
+    <!-- ⚽ FOOTBALL 9 -->
+    <div class="event-card" data-city="alexandria" data-cat="football">
+      <div class="event-img" style="background:linear-gradient(135deg,#1A0A0A,#3A1010);">
+        <div class="event-img-bg">⚽</div>
+        <div class="event-date-badge">May 25, 2025</div>
+        <div class="event-cat-badge">Football</div>
+      </div>
+      <div class="event-body">
+        <div class="event-title">Ittihad Alexandria vs Smouha — Derby</div>
+        <div class="event-meta"><span>📍 Borg El Arab Stadium</span><span>🕔 17:00</span><span>⭐ 4.5</span></div>
+        <div class="event-footer"><div class="event-price"><small>Starting from</small>120 EGP</div><button class="btn-book" onclick="window.location='ehgzly-checkout.html?title=Ittihad Alexandria vs Smouha — Derby&venue=Borg El Arab Stadium&date=May 25, 2025&price=120&emoji=⚽&category=Football'">Reserve Now</button></div>
+      </div>
+    </div>
+
+    <!-- ⚽ FOOTBALL 10 -->
+    <div class="event-card" data-city="cairo" data-cat="football">
+      <div class="event-img" style="background:linear-gradient(135deg,#0A0A1A,#10103A);">
+        <div class="event-img-bg">⚽</div>
+        <div class="event-date-badge">Jun 1, 2025</div>
+        <div class="event-cat-badge">Football</div>
+      </div>
+      <div class="event-body">
+        <div class="event-title">Egypt U23 vs Morocco — Olympic Qualifier</div>
+        <div class="event-meta"><span>📍 Military Academy Stadium, Cairo</span><span>🕗 19:00</span><span>⭐ 4.6</span></div>
+        <div class="event-footer"><div class="event-price"><small>Starting from</small>150 EGP</div><button class="btn-book" onclick="window.location='ehgzly-checkout.html?title=Egypt U23 vs Morocco — Olympic Qualifier&venue=Military Academy Stadium, Cairo&date=Jun 1, 2025&price=150&emoji=⚽&category=Football'">Reserve Now</button></div>
+      </div>
+    </div>
+
+    <!-- 🎵 CONCERT 8 -->
+    <div class="event-card" data-city="cairo" data-cat="concert">
+      <div class="event-img" style="background:linear-gradient(135deg,#1A0A1A,#3A1040);">
+        <div class="event-img-bg">🎵</div>
+        <div class="event-date-badge">May 22, 2025</div>
+        <div class="event-cat-badge">Concert</div>
+      </div>
+      <div class="event-body">
+        <div class="event-title">Sherine — Nostalgia Night</div>
+        <div class="event-meta"><span>📍 Cairo Opera House</span><span>🕗 21:00</span><span>⭐ 4.8</span></div>
+        <div class="event-footer"><div class="event-price"><small>Starting from</small>580 EGP</div><button class="btn-book" onclick="window.location='ehgzly-checkout.html?title=Sherine — Nostalgia Night&venue=Cairo Opera House&date=May 22, 2025&price=580&emoji=🎵&category=Concert'">Reserve Now</button></div>
+      </div>
+    </div>
+
+    <!-- 🎵 CONCERT 9 -->
+    <div class="event-card" data-city="hurghada" data-cat="concert">
+      <div class="event-img" style="background:linear-gradient(135deg,#0A1A0A,#104020);">
+        <div class="event-img-bg">🎵</div>
+        <div class="event-date-badge">Jun 6, 2025</div>
+        <div class="event-cat-badge">Concert</div>
+      </div>
+      <div class="event-body">
+        <div class="event-title">Wust El Balad — Open Air Red Sea</div>
+        <div class="event-meta"><span>📍 Steigenberger Resort, Hurghada</span><span>🕗 20:00</span><span>⭐ 4.7</span></div>
+        <div class="event-footer"><div class="event-price"><small>Starting from</small>420 EGP</div><button class="btn-book" onclick="window.location='ehgzly-checkout.html?title=Wust El Balad — Open Air Red Sea&venue=Steigenberger Resort, Hurghada&date=Jun 6, 2025&price=420&emoji=🎵&category=Concert'">Reserve Now</button></div>
+      </div>
+    </div>
+
+    <!-- 🎵 CONCERT 10 -->
+    <div class="event-card" data-city="cairo" data-cat="concert">
+      <div class="event-img" style="background:linear-gradient(135deg,#1A1A0A,#35350A);">
+        <div class="event-img-bg">🎵</div>
+        <div class="event-date-badge">Jun 14, 2025</div>
+        <div class="event-cat-badge">Concert</div>
+      </div>
+      <div class="event-body">
+        <div class="event-title">Mohamed Mounir — The King's Stage</div>
+        <div class="event-meta"><span>📍 El Sawy Culturewheel, Cairo</span><span>🕙 21:30</span><span>⭐ 5.0</span></div>
+        <div class="event-footer"><div class="event-price"><small>Starting from</small>750 EGP</div><button class="btn-book" onclick="window.location='ehgzly-checkout.html?title=Mohamed Mounir — The Kings Stage&venue=El Sawy Culturewheel, Cairo&date=Jun 14, 2025&price=750&emoji=🎵&category=Concert'">Reserve Now</button></div>
+      </div>
+    </div>
+
+    <!-- 🍽️ DINING 8 -->
+    <div class="event-card" data-city="cairo" data-cat="dining">
+      <div class="event-img" style="background:linear-gradient(135deg,#1A0A0A,#3A1515);">
+        <div class="event-img-bg">🍽️</div>
+        <div class="event-date-badge">Open Daily</div>
+        <div class="event-cat-badge">Fine Dining</div>
+      </div>
+      <div class="event-body">
+        <div class="event-title">Zööba — Modern Egyptian Street Food</div>
+        <div class="event-meta"><span>📍 Zamalek, Cairo</span><span>🕐 Lunch & Dinner</span><span>⭐ 4.8</span></div>
+        <div class="event-footer"><div class="event-price"><small>Per person</small>220 EGP</div><button class="btn-book" onclick="window.location='ehgzly-checkout.html?title=Zööba — Modern Egyptian Street Food&venue=Zamalek, Cairo&date=Open Daily&price=220&emoji=🍽️&category=Fine Dining'">Reserve Table</button></div>
+      </div>
+    </div>
+
+    <!-- 🍽️ DINING 9 -->
+    <div class="event-card" data-city="hurghada" data-cat="dining">
+      <div class="event-img" style="background:linear-gradient(135deg,#0A1A1A,#0A3535);">
+        <div class="event-img-bg">🍽️</div>
+        <div class="event-date-badge">Open Daily</div>
+        <div class="event-cat-badge">Fine Dining</div>
+      </div>
+      <div class="event-body">
+        <div class="event-title">Aqua Blue — Underwater Terrace</div>
+        <div class="event-meta"><span>📍 Makadi Bay, Hurghada</span><span>🕖 Dinner Only</span><span>⭐ 4.9</span></div>
+        <div class="event-footer"><div class="event-price"><small>Per person</small>680 EGP</div><button class="btn-book" onclick="window.location='ehgzly-checkout.html?title=Aqua Blue — Underwater Terrace&venue=Makadi Bay, Hurghada&date=Open Daily&price=680&emoji=🍽️&category=Fine Dining'">Reserve Table</button></div>
+      </div>
+    </div>
+
+    <!-- 🍽️ DINING 10 -->
+    <div class="event-card" data-city="cairo" data-cat="dining">
+      <div class="event-img" style="background:linear-gradient(135deg,#1A1A0A,#302A10);">
+        <div class="event-img-bg">🍽️</div>
+        <div class="event-date-badge">Open Daily</div>
+        <div class="event-cat-badge">Fine Dining</div>
+      </div>
+      <div class="event-body">
+        <div class="event-title">Sofra — Authentic Egyptian Cuisine</div>
+        <div class="event-meta"><span>📍 Dokki, Cairo</span><span>🕐 Lunch & Dinner</span><span>⭐ 4.8</span></div>
+        <div class="event-footer"><div class="event-price"><small>Per person</small>310 EGP</div><button class="btn-book" onclick="window.location='ehgzly-checkout.html?title=Sofra — Authentic Egyptian Cuisine&venue=Dokki, Cairo&date=Open Daily&price=310&emoji=🍽️&category=Fine Dining'">Reserve Table</button></div>
+      </div>
+    </div>
+
   </div>
 </section>
 
@@ -390,7 +774,7 @@
     <div class="footer-col"><h5>Support</h5><ul><li>Help Center</li><li>Refund Policy</li><li>Contact Us</li><li>Terms of Service</li><li>Privacy Policy</li></ul></div>
   </div>
   <div class="footer-bottom">
-    <p>© 2025 <span>EHGZLY احجزلي</span>. All rights reserved.</p>
+    <p>© 2025 <span>EHGZLY احجزلي</span>. All rights reserved. Made with ❤️ in Egypt.</p>
     <div class="social-links">
       <a class="social-link">𝕏</a><a class="social-link">in</a><a class="social-link">f</a><a class="social-link">📸</a>
     </div>
