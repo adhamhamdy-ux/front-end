@@ -789,6 +789,19 @@
   function setCity(el) {
     document.querySelectorAll('.city-pill').forEach(c => c.classList.remove('active'));
     el.classList.add('active');
+
+    const label = el.textContent.trim().replace(/[^\w\s]/g, '').trim().toLowerCase();
+    const isAll = label.includes('all') || label.includes('egypt');
+
+    document.querySelectorAll('.event-card').forEach(card => {
+      const match = isAll || card.dataset.city === label;
+      card.style.display = match ? '' : 'none';
+    });
+
+    // Reset span, then make the first visible card span 2 columns
+    document.querySelectorAll('.event-card').forEach(c => c.style.gridColumn = '');
+    const firstVisible = [...document.querySelectorAll('.event-card')].find(c => c.style.display !== 'none');
+    if (firstVisible) firstVisible.style.gridColumn = 'span 2';
   }
   window.addEventListener('scroll', () => {
     document.getElementById('mainNav').classList.toggle('nav-solid', window.scrollY > 60);
