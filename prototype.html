@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>احجزلي — EHGZLY</title>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Outfit:wght@300;400;500;600&family=Noto+Kufi+Arabic:wght@400;700&display=swap" rel="stylesheet"/>
-  <link rel="stylesheet" href="prototype.css">
+
 </head>
 <body>
 
@@ -24,8 +24,6 @@
           <span class="suggestion-pill">⚽ Al Ahly vs Zamalek</span>
           <span class="suggestion-pill">🎵 Amr Diab</span>
           <span class="suggestion-pill">🍽️ Sequoia Cairo</span>
-          <span class="suggestion-pill">🎭 Cairo Opera</span>
-          <span class="suggestion-pill">🏀 EBA Finals</span>
         </div>
       </div>
       <div class="suggestion-group">
@@ -54,8 +52,6 @@
     <li><a href="#">⚽ Football</a></li>
     <li><a href="#">🎵 Concerts</a></li>
     <li><a href="#">🍽️ Fine Dining</a></li>
-    <li><a href="#">🎭 Theatre & Opera</a></li>
-    <li><a href="#">🏀 Other Sports</a></li>
     <li><a href="#">📅 All Events</a></li>
   </ul>
   <div class="mobile-menu-footer">
@@ -105,7 +101,6 @@
           <div class="dropdown-heading">Genre</div>
           <a href="#">🎤 Arabic Pop</a>
           <a href="#">🎸 Rock & Alternative</a>
-          <a href="#">🎻 Classical & Opera</a>
           <a href="#">🥁 Electronic & DJ</a>
         </div>
         <div class="dropdown-col">
@@ -147,20 +142,6 @@
             <div class="dec-emoji">🍽️</div>
             <div><div class="dec-title">Sequoia Nile</div><div class="dec-meta">Zamalek · Open Daily</div><div class="dec-price">From 450 EGP/person</div></div>
           </div>
-        </div>
-      </div>
-    </li>
-    <li class="nav-item has-dropdown">
-      <a href="#" class="nav-link-with-arrow">More <span class="nav-arrow">▾</span></a>
-      <div class="nav-dropdown nav-dropdown-sm">
-        <div class="dropdown-col">
-          <div class="dropdown-heading">Categories</div>
-          <a href="#">🎭 Theatre & Opera</a>
-          <a href="#">🏀 Basketball</a>
-          <a href="#">🎾 Tennis</a>
-          <a href="#">🏊 Swimming</a>
-          <a href="#">🎪 Family Events</a>
-          <a href="#">🎨 Art & Culture</a>
         </div>
       </div>
     </li>
@@ -228,8 +209,6 @@
     <div class="search-tab active" onclick="setTab(this)">⚽ Football</div>
     <div class="search-tab" onclick="setTab(this)">🎵 Concerts</div>
     <div class="search-tab" onclick="setTab(this)">🍽️ Dining</div>
-    <div class="search-tab" onclick="setTab(this)">🎭 Theatre</div>
-    <div class="search-tab" onclick="setTab(this)">🏀 Sports</div>
     <input class="search-input" type="text" placeholder="Search events, venues, cities..."/>
     <button class="search-btn">Search →</button>
   </div>
@@ -248,13 +227,11 @@
   <div class="marquee-track">
     <span class="marquee-item"><span class="marquee-dot"></span> Al Ahly vs Zamalek — Cairo</span>
     <span class="marquee-item"><span class="marquee-dot"></span> Amr Diab Live — Alexandria</span>
-    <span class="marquee-item"><span class="marquee-dot"></span> Opera House Gala — Cairo</span>
     <span class="marquee-item"><span class="marquee-dot"></span> Nile Cruise Dining — Luxor</span>
     <span class="marquee-item"><span class="marquee-dot"></span> Egypt vs Senegal — Cairo</span>
     <span class="marquee-item"><span class="marquee-dot"></span> Mohamed Ramadan Show — Hurghada</span>
     <span class="marquee-item"><span class="marquee-dot"></span> Al Ahly vs Zamalek — Cairo</span>
     <span class="marquee-item"><span class="marquee-dot"></span> Amr Diab Live — Alexandria</span>
-    <span class="marquee-item"><span class="marquee-dot"></span> Opera House Gala — Cairo</span>
     <span class="marquee-item"><span class="marquee-dot"></span> Nile Cruise Dining — Luxor</span>
     <span class="marquee-item"><span class="marquee-dot"></span> Egypt vs Senegal — Cairo</span>
     <span class="marquee-item"><span class="marquee-dot"></span> Mohamed Ramadan Show — Hurghada</span>
@@ -271,8 +248,6 @@
     <div class="cat-card"><div class="cat-bg football"></div><div class="cat-pattern"></div><div class="cat-icon">⚽</div><div class="cat-arrow">↗</div><div class="cat-info"><div class="cat-name">Football</div><div class="cat-count">128 Upcoming Matches</div></div></div>
     <div class="cat-card"><div class="cat-bg concerts"></div><div class="cat-pattern"></div><div class="cat-icon">🎵</div><div class="cat-arrow">↗</div><div class="cat-info"><div class="cat-name">Concerts</div><div class="cat-count">54 Shows This Month</div></div></div>
     <div class="cat-card"><div class="cat-bg dining"></div><div class="cat-pattern"></div><div class="cat-icon">🍽️</div><div class="cat-arrow">↗</div><div class="cat-info"><div class="cat-name">Fine Dining</div><div class="cat-count">89 Restaurants</div></div></div>
-    <div class="cat-card"><div class="cat-bg theatre"></div><div class="cat-pattern"></div><div class="cat-icon">🎭</div><div class="cat-arrow">↗</div><div class="cat-info"><div class="cat-name">Theatre & Opera</div><div class="cat-count">32 Performances</div></div></div>
-    <div class="cat-card"><div class="cat-bg sports"></div><div class="cat-pattern"></div><div class="cat-icon">🏀</div><div class="cat-arrow">↗</div><div class="cat-info"><div class="cat-name">Other Sports</div><div class="cat-count">67 Events</div></div></div>
   </div>
 </section>
 
@@ -299,7 +274,7 @@
       <div class="event-body">
         <div class="event-title">Al Ahly vs Zamalek — Cairo Derby</div>
         <div class="event-meta"><span>📍 Cairo International Stadium</span><span>🕖 18:00</span><span>⭐ 4.9</span></div>
-        <div class="event-footer"><div class="event-price"><small>Starting from</small>250 EGP</div><button class="btn-book">Reserve Now</button></div>
+        <div class="event-footer"><div class="event-price"><small>Starting from</small>250 EGP</div><button class="btn-book" onclick="window.location='ehgzly-checkout.html?title=Al Ahly vs Zamalek — Cairo Derby&venue=Cairo International Stadium&date=Mar 15, 2025&price=250&emoji=⚽&category=Football'">Reserve Now</button></div>
       </div>
     </div>
     <div class="event-card">
@@ -311,7 +286,7 @@
       <div class="event-body">
         <div class="event-title">Amr Diab — Nile Nights</div>
         <div class="event-meta"><span>📍 Salam City, Alexandria</span><span>🕗 21:00</span></div>
-        <div class="event-footer"><div class="event-price"><small>Starting from</small>600 EGP</div><button class="btn-book">Reserve Now</button></div>
+        <div class="event-footer"><div class="event-price"><small>Starting from</small>600 EGP</div><button class="btn-book" onclick="window.location='ehgzly-checkout.html?title=Amr Diab — Nile Nights&venue=Salam City, Alexandria&date=Mar 20, 2025&price=600&emoji=🎵&category=Concert'">Reserve Now</button></div>
       </div>
     </div>
     <div class="event-card">
@@ -323,19 +298,7 @@
       <div class="event-body">
         <div class="event-title">Sequoia Nile Restaurant</div>
         <div class="event-meta"><span>📍 Zamalek, Cairo</span><span>🕐 Lunch & Dinner</span></div>
-        <div class="event-footer"><div class="event-price"><small>Per person</small>450 EGP</div><button class="btn-book">Reserve Table</button></div>
-      </div>
-    </div>
-    <div class="event-card">
-      <div class="event-img" style="background:linear-gradient(135deg,#0A1A3A,#1A3060);">
-        <div class="event-img-bg">🎭</div>
-        <div class="event-date-badge">Apr 2, 2025</div>
-        <div class="event-cat-badge">Theatre</div>
-      </div>
-      <div class="event-body">
-        <div class="event-title">Cairo Opera — Swan Lake</div>
-        <div class="event-meta"><span>📍 Cairo Opera House</span><span>🕗 20:00</span></div>
-        <div class="event-footer"><div class="event-price"><small>Starting from</small>380 EGP</div><button class="btn-book">Reserve Now</button></div>
+        <div class="event-footer"><div class="event-price"><small>Per person</small>450 EGP</div><button class="btn-book" onclick="window.location='ehgzly-checkout.html?title=Sequoia Nile Restaurant&venue=Zamalek, Cairo&date=Open Daily&price=450&emoji=🍽️&category=Fine Dining'">Reserve Table</button></div>
       </div>
     </div>
   </div>
@@ -361,7 +324,7 @@
       <div class="logo"><div class="logo-mark">E</div><div><div class="logo-text">EHGZLY</div><div class="logo-arabic">احجزلي</div></div></div>
       <p>Egypt's most elegant event reservation platform. From the stadiums of Cairo to the restaurants of Alexandria — we connect you to every unforgettable moment.</p>
     </div>
-    <div class="footer-col"><h5>Explore</h5><ul><li>Football Matches</li><li>Concerts & Shows</li><li>Fine Dining</li><li>Theatre & Opera</li><li>Other Sports</li></ul></div>
+    <div class="footer-col"><h5>Explore</h5><ul><li>Football Matches</li><li>Concerts & Shows</li><li>Fine Dining</li></ul></div>
     <div class="footer-col"><h5>Company</h5><ul><li>About Us</li><li>Careers</li><li>Partner With Us</li><li>Press</li><li>Blog</li></ul></div>
     <div class="footer-col"><h5>Support</h5><ul><li>Help Center</li><li>Refund Policy</li><li>Contact Us</li><li>Terms of Service</li><li>Privacy Policy</li></ul></div>
   </div>
