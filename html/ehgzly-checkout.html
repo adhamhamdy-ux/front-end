@@ -4,8 +4,8 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>احجزلي — EHGZLY · Checkout</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Outfit:wght@300;400;500;600&family=Noto+Kufi+Arabic:wght@400;700&display=swap" rel="stylesheet"/>
-  <link rel="stylesheet" href="../css/ehgzly-checkout.css">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&family=Space+Mono:wght@400;700&family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Noto+Kufi+Arabic:wght@400;700&display=swap" rel="stylesheet"/>
+
 </head>
 <body>
 
@@ -18,7 +18,7 @@
       <div class="logo-arabic">احجزلي</div>
     </div>
   </a>
-  <a class="nav-back" href="prototype.html">← Back to Events</a>
+  <a class="nav-back" href="ehgzly.html">← Back to Events</a>
 </nav>
 
 <!-- PROGRESS -->
@@ -73,11 +73,12 @@
       </div>
       <div class="panel-body">
         <!-- Tickets (Football / Concerts) -->
-        <div class="ticket-types" id="ticket-section">
+        <!-- ⚽ FOOTBALL TICKETS -->
+        <div class="ticket-types" id="football-section" style="display:none;">
           <div class="ticket-row">
             <div class="ticket-info">
-              <div class="ticket-type">General Admission</div>
-              <div class="ticket-desc">Ground floor standing · Gate C</div>
+              <div class="ticket-type">General Standing</div>
+              <div class="ticket-desc">Ground floor · Open terrace · Gate C</div>
             </div>
             <div class="ticket-price" id="price-general">250 EGP</div>
             <div class="qty-control">
@@ -89,7 +90,7 @@
           <div class="ticket-row">
             <div class="ticket-info">
               <div class="ticket-type">VIP Seated</div>
-              <div class="ticket-desc">Premium seats · Covered stand · Gate A</div>
+              <div class="ticket-desc">Covered stand · Numbered seat · Gate A</div>
             </div>
             <div class="ticket-price" id="price-vip">550 EGP</div>
             <div class="qty-control">
@@ -101,9 +102,49 @@
           <div class="ticket-row">
             <div class="ticket-info">
               <div class="ticket-type">Royal Box</div>
-              <div class="ticket-desc">Private box · Catering included · Gate B</div>
+              <div class="ticket-desc">Private box · Catering · Premium view · Gate B</div>
             </div>
             <div class="ticket-price" id="price-royal">1,200 EGP</div>
+            <div class="qty-control">
+              <button class="qty-btn" onclick="changeQty('royal', -1)">−</button>
+              <span class="qty-val" id="qty-royal">0</span>
+              <button class="qty-btn" onclick="changeQty('royal', 1)">+</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 🎵 CONCERT TICKETS -->
+        <div class="ticket-types" id="concert-section" style="display:none;">
+          <div class="ticket-row">
+            <div class="ticket-info">
+              <div class="ticket-type">Floor Standing</div>
+              <div class="ticket-desc">Closest to stage · General access · Zone A</div>
+            </div>
+            <div class="ticket-price" id="price-general">600 EGP</div>
+            <div class="qty-control">
+              <button class="qty-btn" onclick="changeQty('general', -1)">−</button>
+              <span class="qty-val" id="qty-general">0</span>
+              <button class="qty-btn" onclick="changeQty('general', 1)">+</button>
+            </div>
+          </div>
+          <div class="ticket-row">
+            <div class="ticket-info">
+              <div class="ticket-type">Seated Balcony</div>
+              <div class="ticket-desc">Elevated view · Numbered seat · Zone B</div>
+            </div>
+            <div class="ticket-price" id="price-vip">1,000 EGP</div>
+            <div class="qty-control">
+              <button class="qty-btn" onclick="changeQty('vip', -1)">−</button>
+              <span class="qty-val" id="qty-vip">0</span>
+              <button class="qty-btn" onclick="changeQty('vip', 1)">+</button>
+            </div>
+          </div>
+          <div class="ticket-row">
+            <div class="ticket-info">
+              <div class="ticket-type">VIP Backstage Pass</div>
+              <div class="ticket-desc">Meet & greet · Front row · Exclusive lounge access</div>
+            </div>
+            <div class="ticket-price" id="price-royal">2,500 EGP</div>
             <div class="qty-control">
               <button class="qty-btn" onclick="changeQty('royal', -1)">−</button>
               <span class="qty-val" id="qty-royal">0</span>
@@ -295,7 +336,7 @@
         <!-- Vodafone / Instapay / Etisalat -->
         <div class="pay-alt" id="pay-vodafone">
           <div class="fawry-info">
-            <div style="font-size:13px;color:var(--text-dim);margin-bottom:8px;">Send payment to Vodafone Cash number</div>
+            <div style="font-size:13px;color:var(--muted);margin-bottom:8px;">Send payment to Vodafone Cash number</div>
             <div class="fawry-code">010-XXXX-XXXX</div>
             <div class="fawry-note">Send the exact amount and enter your phone number below to confirm. You'll receive an SMS once verified.</div>
             <div class="form-group" style="margin-top:16px;text-align:left;">
@@ -307,7 +348,7 @@
 
         <div class="pay-alt" id="pay-fawry">
           <div class="fawry-info">
-            <div style="font-size:13px;color:var(--text-dim);margin-bottom:8px;">Your Fawry Reference Code</div>
+            <div style="font-size:13px;color:var(--muted);margin-bottom:8px;">Your Fawry Reference Code</div>
             <div class="fawry-code">7 8 4 2 1 9</div>
             <div class="fawry-note">Use this code at any Fawry outlet or via the Fawry app within 48 hours. Your ticket will be issued once payment is confirmed.</div>
           </div>
@@ -315,7 +356,7 @@
 
         <div class="pay-alt" id="pay-instapay">
           <div class="fawry-info">
-            <div style="font-size:13px;color:var(--text-dim);margin-bottom:8px;">InstaPay to</div>
+            <div style="font-size:13px;color:var(--muted);margin-bottom:8px;">InstaPay to</div>
             <div class="fawry-code" style="font-size:22px;letter-spacing:2px;">ehgzly@instapay</div>
             <div class="fawry-note">Transfer the exact amount and use your booking ID as the note. Confirmation within 15 minutes.</div>
           </div>
@@ -339,7 +380,7 @@
 
         <div class="pay-alt" id="pay-etisalat">
           <div class="fawry-info">
-            <div style="font-size:13px;color:var(--text-dim);margin-bottom:8px;">Send to Etisalat Cash wallet</div>
+            <div style="font-size:13px;color:var(--muted);margin-bottom:8px;">Send to Etisalat Cash wallet</div>
             <div class="fawry-code">011-XXXX-XXXX</div>
             <div class="fawry-note">Transfer exact amount. Enter your Etisalat number to confirm payment.</div>
             <div class="form-group" style="margin-top:16px;text-align:left;">
@@ -371,9 +412,9 @@
 
       <div class="summary-divider"></div>
 
-      <div class="summary-line"><span class="label">General (×<span id="sl-general">0</span>)</span><span class="value" id="sv-general">0 EGP</span></div>
-      <div class="summary-line"><span class="label">VIP (×<span id="sl-vip">0</span>)</span><span class="value" id="sv-vip">0 EGP</span></div>
-      <div class="summary-line"><span class="label">Royal Box (×<span id="sl-royal">0</span>)</span><span class="value" id="sv-royal">0 EGP</span></div>
+      <div class="summary-line"><span class="label"><span id="label-general">General</span> (×<span id="sl-general">0</span>)</span><span class="value" id="sv-general">0 EGP</span></div>
+      <div class="summary-line"><span class="label"><span id="label-vip">VIP</span> (×<span id="sl-vip">0</span>)</span><span class="value" id="sv-vip">0 EGP</span></div>
+      <div class="summary-line"><span class="label"><span id="label-royal">Royal Box</span> (×<span id="sl-royal">0</span>)</span><span class="value" id="sv-royal">0 EGP</span></div>
       <div class="summary-line"><span class="label">Service Fee</span><span class="value" id="sv-fee">0 EGP</span></div>
 
       <div class="promo-wrap">
@@ -430,21 +471,52 @@
   priceEls[2].textContent = prices.royal.toLocaleString() + ' EGP';
   let discount = 0;
 
-  // ── Dining mode detection ─────────────────────────────
-  const isDining = eventCategory.toLowerCase().includes('dining') || eventCategory.toLowerCase().includes('restaurant');
+  // ── Event type detection ──────────────────────────────
+  const isDining  = eventCategory.toLowerCase().includes('dining') || eventCategory.toLowerCase().includes('restaurant');
+  const isConcert = eventCategory.toLowerCase().includes('concert') || eventCategory.toLowerCase().includes('show') || eventCategory.toLowerCase().includes('music');
+  const isFootball = !isDining && !isConcert;
+
   if (isDining) {
-    document.getElementById('ticket-section').style.display = 'none';
+    document.getElementById('football-section').style.display = 'none';
+    document.getElementById('concert-section').style.display = 'none';
     document.getElementById('dining-section').style.display = 'block';
     document.querySelector('.panel-title').innerHTML = '<span class="panel-num">1</span> Reserve a Table';
     document.getElementById('step1').querySelector('.step-label').textContent = 'Reserve Table';
     document.getElementById('summary-ticket-count').textContent = '4 Guests · 12:00 PM';
     document.getElementById('ticket-icon').textContent = '🍽️';
-    // override prices for dining
     prices.general = basePrice;
     prices.vip     = Math.round(basePrice * 1.65);
     prices.royal   = Math.round(basePrice * 4);
-    document.getElementById('price-vip').textContent  = prices.vip.toLocaleString() + ' EGP';
-    document.getElementById('price-royal').textContent = prices.royal.toLocaleString() + ' EGP';
+
+  } else if (isConcert) {
+    document.getElementById('football-section').style.display = 'none';
+    document.getElementById('concert-section').style.display = 'block';
+    document.getElementById('dining-section').style.display = 'none';
+    // Update summary labels for concert zones
+    document.getElementById('label-general').textContent = 'Floor Standing';
+    document.getElementById('label-vip').textContent = 'Seated Balcony';
+    document.getElementById('label-royal').textContent = 'VIP Backstage';
+    prices.general = basePrice;
+    prices.vip     = Math.round(basePrice * 1.65);
+    prices.royal   = Math.round(basePrice * 4.2);
+    document.getElementById('price-general').textContent = prices.general.toLocaleString() + ' EGP';
+    document.getElementById('price-vip').textContent     = prices.vip.toLocaleString() + ' EGP';
+    document.getElementById('price-royal').textContent   = prices.royal.toLocaleString() + ' EGP';
+
+  } else {
+    // Football (default)
+    document.getElementById('football-section').style.display = 'block';
+    document.getElementById('concert-section').style.display = 'none';
+    document.getElementById('dining-section').style.display = 'none';
+    document.getElementById('label-general').textContent = 'General Standing';
+    document.getElementById('label-vip').textContent = 'VIP Seated';
+    document.getElementById('label-royal').textContent = 'Royal Box';
+    prices.general = basePrice;
+    prices.vip     = Math.round(basePrice * 2.2);
+    prices.royal   = Math.round(basePrice * 4.8);
+    document.getElementById('price-general').textContent = prices.general.toLocaleString() + ' EGP';
+    document.getElementById('price-vip').textContent     = prices.vip.toLocaleString() + ' EGP';
+    document.getElementById('price-royal').textContent   = prices.royal.toLocaleString() + ' EGP';
   }
 
   function selectSlot(el) {
