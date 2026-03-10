@@ -151,6 +151,26 @@
 
     /* ══ TICKET SELECTOR ══ */
     .ticket-types { display: flex; flex-direction: column; gap: 12px; }
+
+    /* Dining-specific styles */
+    .time-slot {
+      padding: 10px 18px;
+      border: 1px solid rgba(255,255,255,0.08);
+      color: var(--text-dim); font-size: 13px; cursor: pointer;
+      transition: all 0.2s;
+    }
+    .time-slot:hover { border-color: rgba(201,168,76,0.4); color: var(--text); }
+    .time-slot.active { border-color: var(--gold); color: var(--gold); background: rgba(201,168,76,0.07); }
+
+    .guest-opt {
+      width: 44px; height: 44px;
+      border: 1px solid rgba(255,255,255,0.08);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--text-dim); font-size: 14px; font-weight: 600;
+      cursor: pointer; transition: all 0.2s;
+    }
+    .guest-opt:hover { border-color: rgba(201,168,76,0.4); color: var(--text); }
+    .guest-opt.active { border-color: var(--gold); color: var(--gold); background: rgba(201,168,76,0.07); }
     .ticket-row {
       display: flex; align-items: center; justify-content: space-between;
       padding: 16px 20px;

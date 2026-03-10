@@ -56,7 +56,7 @@
   </div>
   <div class="success-actions">
     <button class="btn-download">⬇ Download Ticket</button>
-    <button class="btn-outline" onclick="window.location='prototype.html'">Browse More Events</button>
+    <button class="btn-outline" onclick="window.location='ehgzly.html'">Browse More Events</button>
   </div>
 </div>
 
@@ -72,13 +72,14 @@
         <div class="panel-title"><span class="panel-num">1</span> Select Tickets</div>
       </div>
       <div class="panel-body">
-        <div class="ticket-types">
+        <!-- Tickets (Football / Concerts) -->
+        <div class="ticket-types" id="ticket-section">
           <div class="ticket-row">
             <div class="ticket-info">
               <div class="ticket-type">General Admission</div>
               <div class="ticket-desc">Ground floor standing · Gate C</div>
             </div>
-            <div class="ticket-price">250 EGP</div>
+            <div class="ticket-price" id="price-general">250 EGP</div>
             <div class="qty-control">
               <button class="qty-btn" onclick="changeQty('general', -1)">−</button>
               <span class="qty-val" id="qty-general">0</span>
@@ -90,7 +91,7 @@
               <div class="ticket-type">VIP Seated</div>
               <div class="ticket-desc">Premium seats · Covered stand · Gate A</div>
             </div>
-            <div class="ticket-price">550 EGP</div>
+            <div class="ticket-price" id="price-vip">550 EGP</div>
             <div class="qty-control">
               <button class="qty-btn" onclick="changeQty('vip', -1)">−</button>
               <span class="qty-val" id="qty-vip">0</span>
@@ -102,11 +103,79 @@
               <div class="ticket-type">Royal Box</div>
               <div class="ticket-desc">Private box · Catering included · Gate B</div>
             </div>
-            <div class="ticket-price">1,200 EGP</div>
+            <div class="ticket-price" id="price-royal">1,200 EGP</div>
             <div class="qty-control">
               <button class="qty-btn" onclick="changeQty('royal', -1)">−</button>
               <span class="qty-val" id="qty-royal">0</span>
               <button class="qty-btn" onclick="changeQty('royal', 1)">+</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Dining: Table & Time Slot Selection -->
+        <div id="dining-section" style="display:none;">
+          <div style="margin-bottom:20px;">
+            <div class="form-label" style="margin-bottom:10px;">Select Time Slot</div>
+            <div style="display:flex;flex-wrap:wrap;gap:10px;" id="time-slots">
+              <div class="time-slot active" onclick="selectSlot(this)">12:00 PM</div>
+              <div class="time-slot" onclick="selectSlot(this)">1:00 PM</div>
+              <div class="time-slot" onclick="selectSlot(this)">2:00 PM</div>
+              <div class="time-slot" onclick="selectSlot(this)">3:00 PM</div>
+              <div class="time-slot" onclick="selectSlot(this)">7:00 PM</div>
+              <div class="time-slot" onclick="selectSlot(this)">8:00 PM</div>
+              <div class="time-slot" onclick="selectSlot(this)">9:00 PM</div>
+              <div class="time-slot" onclick="selectSlot(this)">10:00 PM</div>
+            </div>
+          </div>
+          <div style="margin-bottom:20px;">
+            <div class="form-label" style="margin-bottom:10px;">Number of Guests</div>
+            <div style="display:flex;flex-wrap:wrap;gap:10px;" id="guest-options">
+              <div class="guest-opt" onclick="selectGuests(this, 1)">1</div>
+              <div class="guest-opt" onclick="selectGuests(this, 2)">2</div>
+              <div class="guest-opt" onclick="selectGuests(this, 3)">3</div>
+              <div class="guest-opt active" onclick="selectGuests(this, 4)">4</div>
+              <div class="guest-opt" onclick="selectGuests(this, 5)">5</div>
+              <div class="guest-opt" onclick="selectGuests(this, 6)">6</div>
+              <div class="guest-opt" onclick="selectGuests(this, 8)">8</div>
+              <div class="guest-opt" onclick="selectGuests(this, 10)">10+</div>
+            </div>
+          </div>
+          <div class="ticket-types">
+            <div class="ticket-row">
+              <div class="ticket-info">
+                <div class="ticket-type">Indoor Table</div>
+                <div class="ticket-desc">Air-conditioned · Ideal for 2–4 guests</div>
+              </div>
+              <div class="ticket-price" id="price-general">450 EGP</div>
+              <div class="qty-control">
+                <button class="qty-btn" onclick="changeQty('general', -1)">−</button>
+                <span class="qty-val" id="qty-general">0</span>
+                <button class="qty-btn" onclick="changeQty('general', 1)">+</button>
+              </div>
+            </div>
+            <div class="ticket-row">
+              <div class="ticket-info">
+                <div class="ticket-type">Nile View Terrace</div>
+                <div class="ticket-desc">Open air · Scenic view · Ideal for 2–6 guests</div>
+              </div>
+              <div class="ticket-price" id="price-vip">750 EGP</div>
+              <div class="qty-control">
+                <button class="qty-btn" onclick="changeQty('vip', -1)">−</button>
+                <span class="qty-val" id="qty-vip">0</span>
+                <button class="qty-btn" onclick="changeQty('vip', 1)">+</button>
+              </div>
+            </div>
+            <div class="ticket-row">
+              <div class="ticket-info">
+                <div class="ticket-type">Private Dining Room</div>
+                <div class="ticket-desc">Exclusive room · Butler service · Up to 10 guests</div>
+              </div>
+              <div class="ticket-price" id="price-royal">1,800 EGP</div>
+              <div class="qty-control">
+                <button class="qty-btn" onclick="changeQty('royal', -1)">−</button>
+                <span class="qty-val" id="qty-royal">0</span>
+                <button class="qty-btn" onclick="changeQty('royal', 1)">+</button>
+              </div>
             </div>
           </div>
         </div>
@@ -298,7 +367,7 @@
       <div class="summary-detail"><span>📍</span><span>Cairo International Stadium</span></div>
       <div class="summary-detail"><span>📅</span><span>Saturday, March 15, 2025</span></div>
       <div class="summary-detail"><span>🕖</span><span>Kick-off at 18:00</span></div>
-      <div class="summary-detail"><span>🎟️</span><span id="summary-ticket-count">0 Tickets Selected</span></div>
+      <div class="summary-detail"><span id="ticket-icon">🎟️</span><span id="summary-ticket-count">0 Tickets Selected</span></div>
 
       <div class="summary-divider"></div>
 
@@ -361,11 +430,46 @@
   priceEls[2].textContent = prices.royal.toLocaleString() + ' EGP';
   let discount = 0;
 
-  function changeQty(type, delta) {
+  // ── Dining mode detection ─────────────────────────────
+  const isDining = eventCategory.toLowerCase().includes('dining') || eventCategory.toLowerCase().includes('restaurant');
+  if (isDining) {
+    document.getElementById('ticket-section').style.display = 'none';
+    document.getElementById('dining-section').style.display = 'block';
+    document.querySelector('.panel-title').innerHTML = '<span class="panel-num">1</span> Reserve a Table';
+    document.getElementById('step1').querySelector('.step-label').textContent = 'Reserve Table';
+    document.getElementById('summary-ticket-count').textContent = '4 Guests · 12:00 PM';
+    document.getElementById('ticket-icon').textContent = '🍽️';
+    // override prices for dining
+    prices.general = basePrice;
+    prices.vip     = Math.round(basePrice * 1.65);
+    prices.royal   = Math.round(basePrice * 4);
+    document.getElementById('price-vip').textContent  = prices.vip.toLocaleString() + ' EGP';
+    document.getElementById('price-royal').textContent = prices.royal.toLocaleString() + ' EGP';
+  }
+
+  function selectSlot(el) {
+    document.querySelectorAll('.time-slot').forEach(s => s.classList.remove('active'));
+    el.classList.add('active');
+    updateDiningSummary();
+  }
+
+  function selectGuests(el, num) {
+    document.querySelectorAll('.guest-opt').forEach(g => g.classList.remove('active'));
+    el.classList.add('active');
+    updateDiningSummary();
+  }
+
+  function updateDiningSummary() {
+    const slot = document.querySelector('.time-slot.active');
+    const guests = document.querySelector('.guest-opt.active');
+    if (slot && guests) {
+      document.getElementById('summary-ticket-count').textContent =
+        guests.textContent + ' Guests · ' + slot.textContent;
+    }
+  }
     qty[type] = Math.max(0, Math.min(10, qty[type] + delta));
     document.getElementById('qty-' + type).textContent = qty[type];
     updateSummary();
-  }
 
   function updateSummary() {
     let subtotal = 0;
