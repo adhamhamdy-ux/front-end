@@ -4,10 +4,93 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>احجزلي — EHGZLY</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Outfit:wght@300;400;500;600&family=Noto+Kufi+Arabic:wght@400;700&display=swap" rel="stylesheet"/>
-  <link rel="stylesheet" href="../css/prototype.css">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&family=Space+Mono:wght@400;700&family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Noto+Kufi+Arabic:wght@400;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="../css/ehgzly.css">
 </head>
 <body>
+
+<!-- AUTH MODAL -->
+<div class="auth-overlay" id="authOverlay">
+  <div class="auth-modal">
+    <button class="auth-close" onclick="closeAuth()">✕</button>
+
+    <div class="auth-logo">
+      <div class="logo-mark">E</div>
+      <div>
+        <div class="logo-text">EHGZLY</div>
+        <div class="logo-arabic">احجزلي</div>
+      </div>
+    </div>
+
+    <div class="auth-tabs">
+      <div class="auth-tab active" onclick="switchTab('signin')">Sign In</div>
+      <div class="auth-tab" onclick="switchTab('signup')">Create Account</div>
+    </div>
+
+    <!-- SIGN IN FORM -->
+    <form class="auth-form active" id="signin-form" onsubmit="handleAuth(event,'signin')">
+      <div class="auth-input-group">
+        <label class="auth-label">Email Address</label>
+        <input class="auth-input" type="email" placeholder="ahmed@gmail.com" required/>
+      </div>
+      <div class="auth-input-group">
+        <label class="auth-label">Password</label>
+        <div class="password-wrap">
+          <input class="auth-input" type="password" id="signin-pass" placeholder="••••••••" required/>
+          <button type="button" class="toggle-pass" onclick="togglePass('signin-pass', this)">👁</button>
+        </div>
+      </div>
+      <div style="text-align:right;margin-top:-6px;">
+        <span style="font-size:12px;color:var(--gold);cursor:pointer;">Forgot password?</span>
+      </div>
+      <button class="auth-submit" type="submit"><span>Sign In →</span></button>
+      <div class="auth-divider">or continue with</div>
+      <div class="social-auth">
+        <button type="button" class="social-auth-btn">🇬 Google</button>
+        <button type="button" class="social-auth-btn">📘 Facebook</button>
+      </div>
+      <div class="auth-switch">Don't have an account? <span onclick="switchTab('signup')">Create one</span></div>
+    </form>
+
+    <!-- SIGN UP FORM -->
+    <form class="auth-form" id="signup-form" onsubmit="handleAuth(event,'signup')">
+      <div class="auth-input-row">
+        <div class="auth-input-group">
+          <label class="auth-label">First Name</label>
+          <input class="auth-input" type="text" placeholder="Ahmed" required/>
+        </div>
+        <div class="auth-input-group">
+          <label class="auth-label">Last Name</label>
+          <input class="auth-input" type="text" placeholder="Hassan" required/>
+        </div>
+      </div>
+      <div class="auth-input-group">
+        <label class="auth-label">Email Address</label>
+        <input class="auth-input" type="email" placeholder="ahmed@gmail.com" required/>
+      </div>
+      <div class="auth-input-group">
+        <label class="auth-label">Phone Number</label>
+        <input class="auth-input" type="tel" placeholder="+20 10X XXX XXXX" required/>
+      </div>
+      <div class="auth-input-group">
+        <label class="auth-label">Password</label>
+        <div class="password-wrap">
+          <input class="auth-input" type="password" id="signup-pass" placeholder="Min. 8 characters" required/>
+          <button type="button" class="toggle-pass" onclick="togglePass('signup-pass', this)">👁</button>
+        </div>
+      </div>
+      <button class="auth-submit" type="submit"><span>Create Account →</span></button>
+      <div class="auth-divider">or continue with</div>
+      <div class="social-auth">
+        <button type="button" class="social-auth-btn">🇬 Google</button>
+        <button type="button" class="social-auth-btn">📘 Facebook</button>
+      </div>
+      <div class="auth-terms">By signing up you agree to our <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a></div>
+      <div class="auth-switch">Already have an account? <span onclick="switchTab('signin')">Sign in</span></div>
+    </form>
+
+  </div>
+</div>
 
 <!-- SEARCH OVERLAY -->
 <div class="search-overlay" id="searchOverlay">
@@ -55,8 +138,8 @@
     <li><a href="#">📅 All Events</a></li>
   </ul>
   <div class="mobile-menu-footer">
-    <button class="btn-primary" style="width:100%;text-align:center;"><span>Sign In</span></button>
-    <a href="#" style="display:block;text-align:center;margin-top:14px;font-size:13px;color:var(--text-dim);">Create Account</a>
+    <button class="btn-primary" style="width:100%;text-align:center;" onclick="openAuth('signin')"><span>Sign In</span></button>
+    <a href="#" style="display:block;text-align:center;margin-top:14px;font-size:13px;color:var(--muted);" onclick="openAuth('signup')">Create Account</a>
   </div>
 </div>
 
@@ -106,7 +189,7 @@
         <div class="dropdown-col">
           <div class="dropdown-heading">Artists</div>
           <a href="#">⭐ Amr Diab</a>
-          <a href="#">⭐ Tamer hosny</a>
+          <a href="#">⭐ Mohamed Ramadan</a>
           <a href="#">⭐ Angham</a>
           <a href="#">⭐ Cairokee</a>
         </div>
@@ -157,7 +240,7 @@
     </button>
     <button class="nav-lang-btn" onclick="toggleLang(this)">EN</button>
     <div class="nav-profile-wrap">
-      <button class="nav-cta" onclick="toggleProfile()">Sign In ▾</button>
+      <button class="nav-cta" onclick="openAuth('signin')">Sign In ▾</button>
       <div class="profile-dropdown" id="profileDropdown">
         <div class="profile-dd-header">
           <div class="profile-avatar">👤</div>
@@ -168,8 +251,8 @@
         <a href="#" class="profile-dd-item">❤️ Saved Events</a>
         <a href="#" class="profile-dd-item">⚙️ Settings</a>
         <div class="profile-dd-divider"></div>
-        <a href="#" class="profile-dd-item">🔑 Sign In</a>
-        <a href="#" class="profile-dd-item profile-dd-register">✨ Create Account</a>
+        <a href="#" class="profile-dd-item" onclick="openAuth('signin')">🔑 Sign In</a>
+        <a href="#" class="profile-dd-item profile-dd-register" onclick="openAuth('signup')">✨ Create Account</a>
       </div>
     </div>
     <button class="hamburger" id="hamburger" onclick="toggleMobile()">
@@ -182,12 +265,12 @@
 <section class="hero">
   <div class="hero-bg"></div>
   <svg class="pyramid-deco" viewBox="0 0 400 340" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <polygon points="200,0 400,340 0,340" fill="#C9A84C"/>
-    <line x1="200" y1="0" x2="133" y2="113" stroke="#C9A84C" stroke-width="0.5" opacity="0.5"/>
-    <line x1="200" y1="0" x2="267" y2="113" stroke="#C9A84C" stroke-width="0.5" opacity="0.5"/>
-    <line x1="0" y1="227" x2="400" y2="227" stroke="#C9A84C" stroke-width="0.5" opacity="0.5"/>
-    <line x1="33" y1="284" x2="367" y2="284" stroke="#C9A84C" stroke-width="0.5" opacity="0.5"/>
-    <line x1="67" y1="113" x2="333" y2="113" stroke="#C9A84C" stroke-width="0.5" opacity="0.5"/>
+    <polygon points="200,0 400,340 0,340" fill="#FFB800"/>
+    <line x1="200" y1="0" x2="133" y2="113" stroke="#FFB800" stroke-width="0.5" opacity="0.5"/>
+    <line x1="200" y1="0" x2="267" y2="113" stroke="#FFB800" stroke-width="0.5" opacity="0.5"/>
+    <line x1="0" y1="227" x2="400" y2="227" stroke="#FFB800" stroke-width="0.5" opacity="0.5"/>
+    <line x1="33" y1="284" x2="367" y2="284" stroke="#FFB800" stroke-width="0.5" opacity="0.5"/>
+    <line x1="67" y1="113" x2="333" y2="113" stroke="#FFB800" stroke-width="0.5" opacity="0.5"/>
   </svg>
   <div class="hero-content">
     <div class="hero-tag animate-in">Egypt's Premier Ticketing Platform</div>
@@ -305,7 +388,7 @@
 </section>
 
 <!-- HOW IT WORKS -->
-<section class="section" style="background:var(--bg2);border-top:1px solid rgba(255,255,255,0.04);">
+<section class="section" style="background:var(--surface);border-top:1px solid rgba(255,255,255,0.04);">
   <div class="section-header" style="margin-bottom:60px;">
     <div><div class="section-tag">Simple & Fast</div><div class="section-title">How <em>Ehgzly</em> Works</div></div>
   </div>
@@ -329,7 +412,7 @@
     <div class="footer-col"><h5>Support</h5><ul><li>Help Center</li><li>Refund Policy</li><li>Contact Us</li><li>Terms of Service</li><li>Privacy Policy</li></ul></div>
   </div>
   <div class="footer-bottom">
-    <p>© 2025 <span>EHGZLY احجزلي</span>. All rights reserved.</p>
+    <p>© 2025 <span>EHGZLY احجزلي</span>. All rights reserved. Made with ❤️ in Egypt.</p>
     <div class="social-links">
       <a class="social-link">𝕏</a><a class="social-link">in</a><a class="social-link">f</a><a class="social-link">📸</a>
     </div>
@@ -348,6 +431,43 @@
   window.addEventListener('scroll', () => {
     document.getElementById('mainNav').classList.toggle('nav-solid', window.scrollY > 60);
   });
+  // ── Auth Modal ───────────────────────────────────────
+  function openAuth(tab) {
+    document.getElementById('profileDropdown').classList.remove('active');
+    document.getElementById('mobileMenu').classList.remove('active');
+    switchTab(tab);
+    document.getElementById('authOverlay').classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeAuth() {
+    document.getElementById('authOverlay').classList.remove('active');
+    document.body.style.overflow = '';
+  }
+  document.getElementById('authOverlay').addEventListener('click', function(e) {
+    if (e.target === this) closeAuth();
+  });
+  function switchTab(tab) {
+    document.querySelectorAll('.auth-tab').forEach((t, i) => {
+      t.classList.toggle('active', (i === 0 && tab === 'signin') || (i === 1 && tab === 'signup'));
+    });
+    document.getElementById('signin-form').classList.toggle('active', tab === 'signin');
+    document.getElementById('signup-form').classList.toggle('active', tab === 'signup');
+  }
+  function togglePass(id, btn) {
+    const input = document.getElementById(id);
+    if (input.type === 'password') { input.type = 'text'; btn.textContent = '🙈'; }
+    else { input.type = 'password'; btn.textContent = '👁'; }
+  }
+  function handleAuth(e, type) {
+    e.preventDefault();
+    const btn = e.target.querySelector('.auth-submit');
+    btn.innerHTML = '<span>Please wait…</span>';
+    setTimeout(() => {
+      closeAuth();
+      btn.innerHTML = type === 'signin' ? '<span>Sign In →</span>' : '<span>Create Account →</span>';
+    }, 1200);
+  }
+
   function toggleSearch() {
     const overlay = document.getElementById('searchOverlay');
     overlay.classList.toggle('active');
@@ -361,6 +481,7 @@
       document.getElementById('searchOverlay').classList.remove('active');
       document.getElementById('profileDropdown').classList.remove('active');
       document.getElementById('mobileMenu').classList.remove('active');
+      closeAuth();
     }
   });
   function toggleProfile() {
