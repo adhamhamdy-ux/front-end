@@ -1,562 +1,870 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>احجزلي — EHGZLY · Checkout</title>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&family=Space+Mono:wght@400;700&family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Noto+Kufi+Arabic:wght@400;700&display=swap" rel="stylesheet"/>
-  <link rel="stylesheet" href="../css/ehgzly-checkout.css">
-</head>
-<body>
-
-<!-- NAV -->
-<nav>
-  <a class="logo" href="ehgzly.html">
-    <div class="logo-mark">E</div>
-    <div>
-      <div class="logo-text">EHGZLY</div>
-      <div class="logo-arabic">احجزلي</div>
-    </div>
-  </a>
-  <a class="nav-back" href="ehgzly.html">← Back to Events</a>
-</nav>
-
-<!-- PROGRESS -->
-<div class="progress-bar">
-  <div class="progress-steps">
-    <div class="progress-step done" id="step1">
-      <div class="step-circle">✓</div>
-      <div class="step-label">Select Tickets</div>
-    </div>
-    <div class="progress-step active" id="step2">
-      <div class="step-circle">2</div>
-      <div class="step-label">Your Details</div>
-    </div>
-    <div class="progress-step" id="step3">
-      <div class="step-circle">3</div>
-      <div class="step-label">Payment</div>
-    </div>
-    <div class="progress-step" id="step4">
-      <div class="step-circle">4</div>
-      <div class="step-label">Confirmation</div>
-    </div>
-  </div>
-</div>
-
-<!-- SUCCESS SCREEN -->
-<div class="success-screen" id="successScreen">
-  <div class="success-icon">🎟️</div>
-  <div class="success-title">You're <span>In!</span></div>
-  <p class="success-sub">Your booking is confirmed. Your e-ticket has been sent to your email and is ready to scan at the gate.</p>
-  <div class="qr-box">
-    <div class="qr-label">Scan at Entry</div>
-    <div class="qr-code" id="qrCode"></div>
-    <div class="qr-label">Booking Reference</div>
-    <div class="booking-ref" id="bookingRef">EHG-2025-8834</div>
-  </div>
-  <div class="success-actions">
-    <button class="btn-download">⬇ Download Ticket</button>
-    <button class="btn-outline" onclick="window.location='ehgzly.html'">Browse More Events</button>
-  </div>
-</div>
-
-<!-- MAIN CHECKOUT LAYOUT -->
-<div class="checkout-layout" id="checkoutLayout">
-
-  <!-- LEFT: FORMS -->
-  <div class="checkout-forms">
-
-    <!-- TICKET SELECTION -->
-    <div class="panel">
-      <div class="panel-header">
-        <div class="panel-title"><span class="panel-num">1</span> Select Tickets</div>
-      </div>
-      <div class="panel-body">
-
-        <!-- ONE ticket section — JS populates based on event type -->
-        <div class="ticket-types" id="ticket-section">
-          <div class="ticket-row">
-            <div class="ticket-info">
-              <div class="ticket-type" id="type-general">General</div>
-              <div class="ticket-desc" id="desc-general">—</div>
-            </div>
-            <div class="ticket-price" id="price-general">0 EGP</div>
-            <div class="qty-control">
-              <button class="qty-btn" onclick="changeQty('general', -1)">−</button>
-              <span class="qty-val" id="qty-general">0</span>
-              <button class="qty-btn" onclick="changeQty('general', 1)">+</button>
-            </div>
-          </div>
-          <div class="ticket-row">
-            <div class="ticket-info">
-              <div class="ticket-type" id="type-vip">VIP</div>
-              <div class="ticket-desc" id="desc-vip">—</div>
-            </div>
-            <div class="ticket-price" id="price-vip">0 EGP</div>
-            <div class="qty-control">
-              <button class="qty-btn" onclick="changeQty('vip', -1)">−</button>
-              <span class="qty-val" id="qty-vip">0</span>
-              <button class="qty-btn" onclick="changeQty('vip', 1)">+</button>
-            </div>
-          </div>
-          <div class="ticket-row">
-            <div class="ticket-info">
-              <div class="ticket-type" id="type-royal">Royal Box</div>
-              <div class="ticket-desc" id="desc-royal">—</div>
-            </div>
-            <div class="ticket-price" id="price-royal">0 EGP</div>
-            <div class="qty-control">
-              <button class="qty-btn" onclick="changeQty('royal', -1)">−</button>
-              <span class="qty-val" id="qty-royal">0</span>
-              <button class="qty-btn" onclick="changeQty('royal', 1)">+</button>
-            </div>
-          </div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>احجزلي — EHGZLY · Checkout</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&family=Space+Mono:wght@400;700&family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Noto+Kufi+Arabic:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../css/ehgzly-checkout.css" />
+  </head>
+  <body>
+    <!-- NAV -->
+    <nav>
+      <a class="logo" href="ehgzly.html">
+        <div class="logo-mark">E</div>
+        <div>
+          <div class="logo-text">EHGZLY</div>
+          <div class="logo-arabic">احجزلي</div>
         </div>
+      </a>
+      <a class="nav-back" href="ehgzly.html">← Back to Events</a>
+    </nav>
 
-        <!-- Dining extras: time slot + guest count -->
-        <div id="dining-section" style="display:none;">
-          <div style="margin-bottom:20px;">
-            <div class="form-label" style="margin-bottom:10px;">Select Time Slot</div>
-            <div style="display:flex;flex-wrap:wrap;gap:10px;">
-              <div class="time-slot active" onclick="selectSlot(this)">12:00 PM</div>
-              <div class="time-slot" onclick="selectSlot(this)">1:00 PM</div>
-              <div class="time-slot" onclick="selectSlot(this)">2:00 PM</div>
-              <div class="time-slot" onclick="selectSlot(this)">3:00 PM</div>
-              <div class="time-slot" onclick="selectSlot(this)">7:00 PM</div>
-              <div class="time-slot" onclick="selectSlot(this)">8:00 PM</div>
-              <div class="time-slot" onclick="selectSlot(this)">9:00 PM</div>
-              <div class="time-slot" onclick="selectSlot(this)">10:00 PM</div>
-            </div>
-          </div>
-          <div style="margin-bottom:24px;">
-            <div class="form-label" style="margin-bottom:10px;">Number of Guests</div>
-            <div style="display:flex;flex-wrap:wrap;gap:10px;">
-              <div class="guest-opt" onclick="selectGuests(this,1)">1</div>
-              <div class="guest-opt" onclick="selectGuests(this,2)">2</div>
-              <div class="guest-opt" onclick="selectGuests(this,3)">3</div>
-              <div class="guest-opt active" onclick="selectGuests(this,4)">4</div>
-              <div class="guest-opt" onclick="selectGuests(this,5)">5</div>
-              <div class="guest-opt" onclick="selectGuests(this,6)">6</div>
-              <div class="guest-opt" onclick="selectGuests(this,8)">8</div>
-              <div class="guest-opt" onclick="selectGuests(this,10)">10+</div>
-            </div>
-          </div>
+    <!-- PROGRESS -->
+    <div class="progress-bar">
+      <div class="progress-steps">
+        <div class="progress-step done" id="step1">
+          <div class="step-circle">✓</div>
+          <div class="step-label">Select Tickets</div>
         </div>
-
-      </div>
-    </div>
-
-    <!-- PERSONAL DETAILS -->
-    <div class="panel">
-      <div class="panel-header">
-        <div class="panel-title"><span class="panel-num">2</span> Your Details</div>
-      </div>
-      <div class="panel-body">
-        <div class="form-grid">
-          <div class="form-group">
-            <label class="form-label">First Name</label>
-            <input class="form-input" type="text" placeholder="Ahmed" id="fname"/>
-          </div>
-          <div class="form-group">
-            <label class="form-label">Last Name</label>
-            <input class="form-input" type="text" placeholder="Hassan" id="lname"/>
-          </div>
-          <div class="form-group">
-            <label class="form-label">Email Address</label>
-            <input class="form-input" type="email" placeholder="ahmed@gmail.com" id="email"/>
-          </div>
-          <div class="form-group">
-            <label class="form-label">Phone Number</label>
-            <input class="form-input" type="tel" placeholder="+20 10X XXX XXXX" id="phone"/>
-          </div>
-          <div class="form-group full">
-            <label class="form-label">National ID (for verification)</label>
-            <input class="form-input" type="text" placeholder="2XXXXXXXXXXXXXXXXX" id="nid"/>
-          </div>
-          <div class="form-group full">
-            <label class="form-label">City</label>
-            <div class="select-wrap">
-              <select class="form-select" id="city">
-                <option value="">Select your city</option>
-                <option>Cairo</option>
-                <option>Alexandria</option>
-                <option>Giza</option>
-                <option>Hurghada</option>
-                <option>Luxor</option>
-                <option>Aswan</option>
-                <option>Other</option>
-              </select>
-            </div>
-          </div>
+        <div class="progress-step active" id="step2">
+          <div class="step-circle">2</div>
+          <div class="step-label">Your Details</div>
+        </div>
+        <div class="progress-step" id="step3">
+          <div class="step-circle">3</div>
+          <div class="step-label">Payment</div>
+        </div>
+        <div class="progress-step" id="step4">
+          <div class="step-circle">4</div>
+          <div class="step-label">Confirmation</div>
         </div>
       </div>
     </div>
 
-    <!-- PAYMENT -->
-    <div class="panel">
-      <div class="panel-header">
-        <div class="panel-title"><span class="panel-num">3</span> Payment Method</div>
+    <!-- SUCCESS SCREEN -->
+    <div class="success-screen" id="successScreen">
+      <div class="success-icon">🎟️</div>
+      <div class="success-title">You're <span>In!</span></div>
+      <p class="success-sub">
+        Your booking is confirmed. Your e-ticket has been sent to your email and
+        is ready to scan at the gate.
+      </p>
+      <div class="qr-box">
+        <div class="qr-label">Scan at Entry</div>
+        <div class="qr-code" id="qrCode"></div>
+        <div class="qr-label">Booking Reference</div>
+        <div class="booking-ref" id="bookingRef">EHG-2025-8834</div>
       </div>
-      <div class="panel-body">
+      <div class="success-actions">
+        <button class="btn-download">⬇ Download Ticket</button>
+        <button class="btn-outline" onclick="window.location = 'ehgzly.html'">
+          Browse More Events
+        </button>
+      </div>
+    </div>
 
-        <div class="payment-methods">
-          <div class="pay-method active" onclick="setPayment(this, 'card')">
-            <div class="pay-method-icon">💳</div>
-            <div class="pay-method-label">Credit Card</div>
-          </div>
-          <div class="pay-method" onclick="setPayment(this, 'vodafone')">
-            <div class="pay-method-icon">📱</div>
-            <div class="pay-method-label">Vodafone Cash</div>
-          </div>
-          <div class="pay-method" onclick="setPayment(this, 'fawry')">
-            <div class="pay-method-icon">🏪</div>
-            <div class="pay-method-label">Fawry</div>
-          </div>
-          <div class="pay-method" onclick="setPayment(this, 'instapay')">
-            <div class="pay-method-icon">⚡</div>
-            <div class="pay-method-label">InstaPay</div>
-          </div>
-          <div class="pay-method" onclick="setPayment(this, 'meeza')">
-            <div class="pay-method-icon">🏦</div>
-            <div class="pay-method-label">Meeza</div>
-          </div>
-          <div class="pay-method" onclick="setPayment(this, 'etisalat')">
-            <div class="pay-method-icon">📲</div>
-            <div class="pay-method-label">Etisalat Cash</div>
-          </div>
-        </div>
-
-        <!-- Card Fields -->
-        <div class="pay-alt active" id="pay-card">
-          <div class="card-fields">
-            <div class="form-group">
-              <label class="form-label">Cardholder Name</label>
-              <input class="form-input" type="text" placeholder="AHMED HASSAN"/>
+    <!-- MAIN CHECKOUT LAYOUT -->
+    <div class="checkout-layout" id="checkoutLayout">
+      <!-- LEFT: FORMS -->
+      <div class="checkout-forms">
+        <!-- TICKET SELECTION -->
+        <div class="panel">
+          <div class="panel-header">
+            <div class="panel-title">
+              <span class="panel-num">1</span> Select Tickets
             </div>
-            <div class="form-group">
-              <label class="form-label">Card Number</label>
-              <div class="input-icon-wrap">
-                <input class="form-input" type="text" placeholder="1234  5678  9012  3456" maxlength="19" id="cardNum" oninput="formatCard(this)"/>
-                <span class="input-icon">💳</span>
+          </div>
+          <div class="panel-body">
+            <!-- ONE ticket section — JS populates based on event type -->
+            <div class="ticket-types" id="ticket-section">
+              <div class="ticket-row">
+                <div class="ticket-info">
+                  <div class="ticket-type" id="type-general">General</div>
+                  <div class="ticket-desc" id="desc-general">—</div>
+                </div>
+                <div class="ticket-price" id="price-general">0 EGP</div>
+                <div class="qty-control">
+                  <button class="qty-btn" onclick="changeQty('general', -1)">
+                    −
+                  </button>
+                  <span class="qty-val" id="qty-general">0</span>
+                  <button class="qty-btn" onclick="changeQty('general', 1)">
+                    +
+                  </button>
+                </div>
+              </div>
+              <div class="ticket-row">
+                <div class="ticket-info">
+                  <div class="ticket-type" id="type-vip">VIP</div>
+                  <div class="ticket-desc" id="desc-vip">—</div>
+                </div>
+                <div class="ticket-price" id="price-vip">0 EGP</div>
+                <div class="qty-control">
+                  <button class="qty-btn" onclick="changeQty('vip', -1)">
+                    −
+                  </button>
+                  <span class="qty-val" id="qty-vip">0</span>
+                  <button class="qty-btn" onclick="changeQty('vip', 1)">
+                    +
+                  </button>
+                </div>
+              </div>
+              <div class="ticket-row">
+                <div class="ticket-info">
+                  <div class="ticket-type" id="type-royal">Royal Box</div>
+                  <div class="ticket-desc" id="desc-royal">—</div>
+                </div>
+                <div class="ticket-price" id="price-royal">0 EGP</div>
+                <div class="qty-control">
+                  <button class="qty-btn" onclick="changeQty('royal', -1)">
+                    −
+                  </button>
+                  <span class="qty-val" id="qty-royal">0</span>
+                  <button class="qty-btn" onclick="changeQty('royal', 1)">
+                    +
+                  </button>
+                </div>
               </div>
             </div>
-            <div class="card-row">
-              <div class="form-group">
-                <label class="form-label">Expiry Date</label>
-                <input class="form-input" type="text" placeholder="MM / YY" maxlength="7" oninput="formatExpiry(this)"/>
+
+            <!-- Dining extras: time slot + guest count -->
+            <div id="dining-section" style="display: none">
+              <div style="margin-bottom: 20px">
+                <div class="form-label" style="margin-bottom: 10px">
+                  Select Time Slot
+                </div>
+                <div style="display: flex; flex-wrap: wrap; gap: 10px">
+                  <div class="time-slot active" onclick="selectSlot(this)">
+                    12:00 PM
+                  </div>
+                  <div class="time-slot" onclick="selectSlot(this)">
+                    1:00 PM
+                  </div>
+                  <div class="time-slot" onclick="selectSlot(this)">
+                    2:00 PM
+                  </div>
+                  <div class="time-slot" onclick="selectSlot(this)">
+                    3:00 PM
+                  </div>
+                  <div class="time-slot" onclick="selectSlot(this)">
+                    7:00 PM
+                  </div>
+                  <div class="time-slot" onclick="selectSlot(this)">
+                    8:00 PM
+                  </div>
+                  <div class="time-slot" onclick="selectSlot(this)">
+                    9:00 PM
+                  </div>
+                  <div class="time-slot" onclick="selectSlot(this)">
+                    10:00 PM
+                  </div>
+                </div>
               </div>
-              <div class="form-group">
-                <label class="form-label">CVV</label>
-                <div class="input-icon-wrap">
-                  <input class="form-input" type="password" placeholder="•••" maxlength="3"/>
-                  <span class="input-icon">🔒</span>
+              <div style="margin-bottom: 24px">
+                <div class="form-label" style="margin-bottom: 10px">
+                  Number of Guests
+                </div>
+                <div style="display: flex; flex-wrap: wrap; gap: 10px">
+                  <div class="guest-opt" onclick="selectGuests(this, 1)">1</div>
+                  <div class="guest-opt" onclick="selectGuests(this, 2)">2</div>
+                  <div class="guest-opt" onclick="selectGuests(this, 3)">3</div>
+                  <div class="guest-opt active" onclick="selectGuests(this, 4)">
+                    4
+                  </div>
+                  <div class="guest-opt" onclick="selectGuests(this, 5)">5</div>
+                  <div class="guest-opt" onclick="selectGuests(this, 6)">6</div>
+                  <div class="guest-opt" onclick="selectGuests(this, 8)">8</div>
+                  <div class="guest-opt" onclick="selectGuests(this, 10)">
+                    10+
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- Vodafone / Instapay / Etisalat -->
-        <div class="pay-alt" id="pay-vodafone">
-          <div class="fawry-info">
-            <div style="font-size:13px;color:var(--muted);margin-bottom:8px;">Send payment to Vodafone Cash number</div>
-            <div class="fawry-code">010-XXXX-XXXX</div>
-            <div class="fawry-note">Send the exact amount and enter your phone number below to confirm. You'll receive an SMS once verified.</div>
-            <div class="form-group" style="margin-top:16px;text-align:left;">
-              <label class="form-label">Your Vodafone Number</label>
-              <input class="form-input" type="tel" placeholder="010XXXXXXXX"/>
+        <!-- PERSONAL DETAILS -->
+        <div class="panel">
+          <div class="panel-header">
+            <div class="panel-title">
+              <span class="panel-num">2</span> Your Details
             </div>
           </div>
-        </div>
-
-        <div class="pay-alt" id="pay-fawry">
-          <div class="fawry-info">
-            <div style="font-size:13px;color:var(--muted);margin-bottom:8px;">Your Fawry Reference Code</div>
-            <div class="fawry-code">7 8 4 2 1 9</div>
-            <div class="fawry-note">Use this code at any Fawry outlet or via the Fawry app within 48 hours. Your ticket will be issued once payment is confirmed.</div>
-          </div>
-        </div>
-
-        <div class="pay-alt" id="pay-instapay">
-          <div class="fawry-info">
-            <div style="font-size:13px;color:var(--muted);margin-bottom:8px;">InstaPay to</div>
-            <div class="fawry-code" style="font-size:22px;letter-spacing:2px;">ehgzly@instapay</div>
-            <div class="fawry-note">Transfer the exact amount and use your booking ID as the note. Confirmation within 15 minutes.</div>
-          </div>
-        </div>
-
-        <div class="pay-alt" id="pay-meeza">
-          <div class="card-fields">
-            <div class="form-group">
-              <label class="form-label">Meeza Card Number</label>
-              <div class="input-icon-wrap">
-                <input class="form-input" type="text" placeholder="6395  XXXX  XXXX  XXXX" maxlength="19"/>
-                <span class="input-icon">🏦</span>
+          <div class="panel-body">
+            <div class="form-grid">
+              <div class="form-group">
+                <label class="form-label">First Name</label>
+                <input
+                  class="form-input"
+                  type="text"
+                  placeholder="Ahmed"
+                  id="fname"
+                />
+              </div>
+              <div class="form-group">
+                <label class="form-label">Last Name</label>
+                <input
+                  class="form-input"
+                  type="text"
+                  placeholder="Hassan"
+                  id="lname"
+                />
+              </div>
+              <div class="form-group">
+                <label class="form-label">Email Address</label>
+                <input
+                  class="form-input"
+                  type="email"
+                  placeholder="ahmed@gmail.com"
+                  id="email"
+                />
+              </div>
+              <div class="form-group">
+                <label class="form-label">Phone Number</label>
+                <input
+                  class="form-input"
+                  type="tel"
+                  placeholder="+20 10X XXX XXXX"
+                  id="phone"
+                />
+              </div>
+              <div class="form-group full">
+                <label class="form-label">National ID (for verification)</label>
+                <input
+                  class="form-input"
+                  type="text"
+                  placeholder="2XXXXXXXXXXXXXXXXX"
+                  id="nid"
+                />
+              </div>
+              <div class="form-group full">
+                <label class="form-label">City</label>
+                <div class="select-wrap">
+                  <select class="form-select" id="city">
+                    <option value="">Select your city</option>
+                    <option>Cairo</option>
+                    <option>Alexandria</option>
+                    <option>Giza</option>
+                    <option>Hurghada</option>
+                    <option>Luxor</option>
+                    <option>Aswan</option>
+                    <option>Other</option>
+                  </select>
+                </div>
               </div>
             </div>
-            <div class="card-row">
-              <div class="form-group"><label class="form-label">Expiry</label><input class="form-input" type="text" placeholder="MM / YY" maxlength="7"/></div>
-              <div class="form-group"><label class="form-label">PIN</label><input class="form-input" type="password" placeholder="••••" maxlength="4"/></div>
-            </div>
           </div>
         </div>
 
-        <div class="pay-alt" id="pay-etisalat">
-          <div class="fawry-info">
-            <div style="font-size:13px;color:var(--muted);margin-bottom:8px;">Send to Etisalat Cash wallet</div>
-            <div class="fawry-code">011-XXXX-XXXX</div>
-            <div class="fawry-note">Transfer exact amount. Enter your Etisalat number to confirm payment.</div>
-            <div class="form-group" style="margin-top:16px;text-align:left;">
-              <label class="form-label">Your Etisalat Number</label>
-              <input class="form-input" type="tel" placeholder="011XXXXXXXX"/>
+        <!-- PAYMENT -->
+        <div class="panel">
+          <div class="panel-header">
+            <div class="panel-title">
+              <span class="panel-num">3</span> Payment Method
+            </div>
+          </div>
+          <div class="panel-body">
+            <div class="payment-methods">
+              <div class="pay-method active" onclick="setPayment(this, 'card')">
+                <div class="pay-method-icon">💳</div>
+                <div class="pay-method-label">Credit Card</div>
+              </div>
+              <div class="pay-method" onclick="setPayment(this, 'vodafone')">
+                <div class="pay-method-icon">📱</div>
+                <div class="pay-method-label">Vodafone Cash</div>
+              </div>
+              <div class="pay-method" onclick="setPayment(this, 'fawry')">
+                <div class="pay-method-icon">🏪</div>
+                <div class="pay-method-label">Fawry</div>
+              </div>
+              <div class="pay-method" onclick="setPayment(this, 'instapay')">
+                <div class="pay-method-icon">⚡</div>
+                <div class="pay-method-label">InstaPay</div>
+              </div>
+              <div class="pay-method" onclick="setPayment(this, 'meeza')">
+                <div class="pay-method-icon">🏦</div>
+                <div class="pay-method-label">Meeza</div>
+              </div>
+              <div class="pay-method" onclick="setPayment(this, 'etisalat')">
+                <div class="pay-method-icon">📲</div>
+                <div class="pay-method-label">Etisalat Cash</div>
+              </div>
+            </div>
+
+            <!-- Card Fields -->
+            <div class="pay-alt active" id="pay-card">
+              <div class="card-fields">
+                <div class="form-group">
+                  <label class="form-label">Cardholder Name</label>
+                  <input
+                    class="form-input"
+                    type="text"
+                    placeholder="OMAR ELSHENNAWY"
+                  />
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Card Number</label>
+                  <div class="input-icon-wrap">
+                    <input
+                      class="form-input"
+                      type="text"
+                      placeholder="1234  5678  9012  3456"
+                      maxlength="25"
+                      id="cardNum"
+                      oninput="formatCard(this)"
+                    />
+                    <span class="input-icon">💳</span>
+                  </div>
+                </div>
+                <div class="card-row">
+                  <div class="form-group">
+                    <label class="form-label">Expiry Date</label>
+                    <input
+                      class="form-input"
+                      type="text"
+                      placeholder="MM / YY"
+                      maxlength="7"
+                      oninput="formatExpiry(this)"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">CVV</label>
+                    <div class="input-icon-wrap">
+                      <input
+                        class="form-input"
+                        type="password"
+                        placeholder="•••"
+                        maxlength="3"
+                      />
+                      <span class="input-icon">🔒</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Vodafone / Instapay / Etisalat -->
+            <div class="pay-alt" id="pay-vodafone">
+              <div class="fawry-info">
+                <div
+                  style="
+                    font-size: 13px;
+                    color: var(--muted);
+                    margin-bottom: 8px;
+                  "
+                >
+                  Send payment to Vodafone Cash number
+                </div>
+                <div class="fawry-code">010-XXXX-XXXX</div>
+                <div class="fawry-note">
+                  Send the exact amount and enter your phone number below to
+                  confirm. You'll receive an SMS once verified.
+                </div>
+                <div
+                  class="form-group"
+                  style="margin-top: 16px; text-align: left"
+                >
+                  <label class="form-label">Your Vodafone Number</label>
+                  <input
+                    class="form-input"
+                    type="tel"
+                    placeholder="010XXXXXXXX"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div class="pay-alt" id="pay-fawry">
+              <div class="fawry-info">
+                <div
+                  style="
+                    font-size: 13px;
+                    color: var(--muted);
+                    margin-bottom: 8px;
+                  "
+                >
+                  Your Fawry Reference Code
+                </div>
+                <div class="fawry-code">7 8 4 2 1 9</div>
+                <div class="fawry-note">
+                  Use this code at any Fawry outlet or via the Fawry app within
+                  48 hours. Your ticket will be issued once payment is
+                  confirmed.
+                </div>
+              </div>
+            </div>
+
+            <div class="pay-alt" id="pay-instapay">
+              <div class="fawry-info">
+                <div
+                  style="
+                    font-size: 13px;
+                    color: var(--muted);
+                    margin-bottom: 8px;
+                  "
+                >
+                  InstaPay to
+                </div>
+                <div
+                  class="fawry-code"
+                  style="font-size: 22px; letter-spacing: 2px"
+                >
+                  ehgzly@instapay
+                </div>
+                <div class="fawry-note">
+                  Transfer the exact amount and use your booking ID as the note.
+                  Confirmation within 15 minutes.
+                </div>
+              </div>
+            </div>
+
+            <div class="pay-alt" id="pay-meeza">
+              <div class="card-fields">
+                <div class="form-group">
+                  <label class="form-label">Meeza Card Number</label>
+                  <div class="input-icon-wrap">
+                    <input
+                      class="form-input"
+                      type="text"
+                      placeholder="6395  XXXX  XXXX  XXXX"
+                      maxlength="19"
+                    />
+                    <span class="input-icon">🏦</span>
+                  </div>
+                </div>
+                <div class="card-row">
+                  <div class="form-group">
+                    <label class="form-label">Expiry</label
+                    ><input
+                      class="form-input"
+                      type="text"
+                      placeholder="MM / YY"
+                      maxlength="7"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">PIN</label
+                    ><input
+                      class="form-input"
+                      type="password"
+                      placeholder="••••"
+                      maxlength="4"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="pay-alt" id="pay-etisalat">
+              <div class="fawry-info">
+                <div
+                  style="
+                    font-size: 13px;
+                    color: var(--muted);
+                    margin-bottom: 8px;
+                  "
+                >
+                  Send to Etisalat Cash wallet
+                </div>
+                <div class="fawry-code">011-XXXX-XXXX</div>
+                <div class="fawry-note">
+                  Transfer exact amount. Enter your Etisalat number to confirm
+                  payment.
+                </div>
+                <div
+                  class="form-group"
+                  style="margin-top: 16px; text-align: left"
+                >
+                  <label class="form-label">Your Etisalat Number</label>
+                  <input
+                    class="form-input"
+                    type="tel"
+                    placeholder="011XXXXXXXX"
+                  />
+                </div>
+              </div>
             </div>
           </div>
         </div>
+      </div>
+      <!-- end checkout-forms -->
 
+      <!-- RIGHT: ORDER SUMMARY -->
+      <div class="order-summary">
+        <div class="summary-event-banner">
+          <div class="banner-emoji">⚽</div>
+          <div class="summary-badge">⚡ Selling Fast</div>
+        </div>
+        <div class="summary-body">
+          <div class="summary-event-title">Al Ahly vs Zamalek</div>
+          <div class="summary-event-sub">
+            Cairo Derby — Egyptian Premier League
+          </div>
+
+          <div class="summary-detail">
+            <span>📍</span><span>Cairo International Stadium</span>
+          </div>
+          <div class="summary-detail">
+            <span>📅</span><span>Saturday, March 15, 2025</span>
+          </div>
+          <div class="summary-detail">
+            <span>🕖</span><span>Kick-off at 18:00</span>
+          </div>
+          <div class="summary-detail">
+            <span id="ticket-icon">🎟️</span
+            ><span id="summary-ticket-count">0 Tickets Selected</span>
+          </div>
+
+          <div class="summary-divider"></div>
+
+          <div class="summary-line">
+            <span class="label"
+              ><span id="label-general">General</span> (×<span id="sl-general"
+                >0</span
+              >)</span
+            ><span class="value" id="sv-general">0 EGP</span>
+          </div>
+          <div class="summary-line">
+            <span class="label"
+              ><span id="label-vip">VIP</span> (×<span id="sl-vip">0</span
+              >)</span
+            ><span class="value" id="sv-vip">0 EGP</span>
+          </div>
+          <div class="summary-line">
+            <span class="label"
+              ><span id="label-royal">Royal Box</span> (×<span id="sl-royal"
+                >0</span
+              >)</span
+            ><span class="value" id="sv-royal">0 EGP</span>
+          </div>
+          <div class="summary-line">
+            <span class="label">Service Fee</span
+            ><span class="value" id="sv-fee">0 EGP</span>
+          </div>
+
+          <div class="promo-wrap">
+            <input
+              class="promo-input"
+              type="text"
+              placeholder="Promo code"
+              id="promoInput"
+            />
+            <button class="promo-btn" onclick="applyPromo()">Apply</button>
+          </div>
+          <div
+            id="promoMsg"
+            style="
+              font-size: 12px;
+              color: var(--green-light);
+              min-height: 16px;
+              margin-bottom: 4px;
+            "
+          ></div>
+
+          <div class="summary-line total">
+            <span class="label">Total</span>
+            <span class="value" id="sv-total">0 EGP</span>
+          </div>
+
+          <button
+            class="btn-confirm"
+            id="confirmBtn"
+            onclick="confirmBooking()"
+            disabled
+          >
+            <span>Confirm & Pay →</span>
+          </button>
+
+          <div class="secure-note">🔒 Secured by 256-bit SSL encryption</div>
+        </div>
       </div>
     </div>
+    <!-- end checkout-layout -->
 
-  </div><!-- end checkout-forms -->
+    <script>
+      // ── Read URL params and populate event info ──────────
+      const params = new URLSearchParams(window.location.search);
+      const eventTitle =
+        params.get("title") || "Al Ahly vs Zamalek — Cairo Derby";
+      const eventVenue = params.get("venue") || "Cairo International Stadium";
+      const eventDate = params.get("date") || "Mar 15, 2025";
+      const eventEmoji = params.get("emoji") || "⚽";
+      const eventCategory = params.get("category") || "Football";
+      const basePrice = parseInt(params.get("price")) || 250;
 
-  <!-- RIGHT: ORDER SUMMARY -->
-  <div class="order-summary">
-    <div class="summary-event-banner">
-      <div class="banner-emoji">⚽</div>
-      <div class="summary-badge">⚡ Selling Fast</div>
-    </div>
-    <div class="summary-body">
-      <div class="summary-event-title">Al Ahly vs Zamalek</div>
-      <div class="summary-event-sub">Cairo Derby — Egyptian Premier League</div>
+      // ── Prices (scaled from base) ─────────────────────────
+      const prices = {
+        general: basePrice,
+        vip: Math.round(basePrice * 2.2),
+        royal: Math.round(basePrice * 4.8),
+      };
+      const qty = { general: 0, vip: 0, royal: 0 };
 
-      <div class="summary-detail"><span>📍</span><span>Cairo International Stadium</span></div>
-      <div class="summary-detail"><span>📅</span><span>Saturday, March 15, 2025</span></div>
-      <div class="summary-detail"><span>🕖</span><span>Kick-off at 18:00</span></div>
-      <div class="summary-detail"><span id="ticket-icon">🎟️</span><span id="summary-ticket-count">0 Tickets Selected</span></div>
+      // ── Populate event summary panel ──────────────────────
+      document.querySelector(".summary-event-title").textContent = eventTitle;
+      document.querySelector(".summary-event-sub").textContent =
+        eventCategory + " · " + eventVenue;
+      document.querySelector(".banner-emoji").textContent = eventEmoji;
+      const details = document.querySelectorAll(".summary-detail");
+      details[0].lastElementChild.textContent = eventVenue;
+      details[1].lastElementChild.textContent = eventDate;
 
-      <div class="summary-divider"></div>
+      // Update ticket row prices on screen
+      const priceEls = document.querySelectorAll(".ticket-price");
+      priceEls[0].textContent = prices.general.toLocaleString() + " EGP";
+      priceEls[1].textContent = prices.vip.toLocaleString() + " EGP";
+      priceEls[2].textContent = prices.royal.toLocaleString() + " EGP";
+      let discount = 0;
 
-      <div class="summary-line"><span class="label"><span id="label-general">General</span> (×<span id="sl-general">0</span>)</span><span class="value" id="sv-general">0 EGP</span></div>
-      <div class="summary-line"><span class="label"><span id="label-vip">VIP</span> (×<span id="sl-vip">0</span>)</span><span class="value" id="sv-vip">0 EGP</span></div>
-      <div class="summary-line"><span class="label"><span id="label-royal">Royal Box</span> (×<span id="sl-royal">0</span>)</span><span class="value" id="sv-royal">0 EGP</span></div>
-      <div class="summary-line"><span class="label">Service Fee</span><span class="value" id="sv-fee">0 EGP</span></div>
+      // ── Event type detection & ticket config ─────────────
+      const isDining =
+        eventCategory.toLowerCase().includes("dining") ||
+        eventCategory.toLowerCase().includes("restaurant");
+      const isConcert =
+        eventCategory.toLowerCase().includes("concert") ||
+        eventCategory.toLowerCase().includes("show") ||
+        eventCategory.toLowerCase().includes("music");
 
-      <div class="promo-wrap">
-        <input class="promo-input" type="text" placeholder="Promo code" id="promoInput"/>
-        <button class="promo-btn" onclick="applyPromo()">Apply</button>
-      </div>
-      <div id="promoMsg" style="font-size:12px;color:var(--green-light);min-height:16px;margin-bottom:4px;"></div>
+      const ticketConfig = isDining
+        ? {
+            general: {
+              type: "Indoor Table",
+              desc: "Air-conditioned · Ideal for 2–4 guests",
+              price: basePrice,
+            },
+            vip: {
+              type: "Nile View Terrace",
+              desc: "Open air · Scenic Nile view · 2–6 guests",
+              price: Math.round(basePrice * 1.65),
+            },
+            royal: {
+              type: "Private Dining Room",
+              desc: "Exclusive room · Butler service · Up to 10 guests",
+              price: Math.round(basePrice * 4),
+            },
+          }
+        : isConcert
+          ? {
+              general: {
+                type: "Floor Standing",
+                desc: "Closest to stage · General access · Zone A",
+                price: basePrice,
+              },
+              vip: {
+                type: "Seated Balcony",
+                desc: "Elevated view · Numbered seat · Zone B",
+                price: Math.round(basePrice * 1.65),
+              },
+              royal: {
+                type: "VIP Backstage Pass",
+                desc: "Meet & greet · Front row · Exclusive lounge",
+                price: Math.round(basePrice * 4.2),
+              },
+            }
+          : {
+              general: {
+                type: "General Standing",
+                desc: "Ground floor · Open terrace · Gate C",
+                price: basePrice,
+              },
+              vip: {
+                type: "VIP Seated",
+                desc: "Covered stand · Numbered seat · Gate A",
+                price: Math.round(basePrice * 2.2),
+              },
+              royal: {
+                type: "Royal Box",
+                desc: "Private box · Catering included · Gate B",
+                price: Math.round(basePrice * 4.8),
+              },
+            };
 
-      <div class="summary-line total">
-        <span class="label">Total</span>
-        <span class="value" id="sv-total">0 EGP</span>
-      </div>
+      // Apply config to the single ticket section
+      ["general", "vip", "royal"].forEach((t) => {
+        document.getElementById("type-" + t).textContent = ticketConfig[t].type;
+        document.getElementById("desc-" + t).textContent = ticketConfig[t].desc;
+        document.getElementById("price-" + t).textContent =
+          ticketConfig[t].price.toLocaleString() + " EGP";
+        document.getElementById("label-" + t).textContent =
+          ticketConfig[t].type;
+        prices[t] = ticketConfig[t].price;
+      });
 
-      <button class="btn-confirm" id="confirmBtn" onclick="confirmBooking()" disabled>
-        <span>Confirm & Pay →</span>
-      </button>
+      // Show dining extras (time slots + guests) if needed
+      if (isDining) {
+        document.getElementById("dining-section").style.display = "block";
+        document.querySelector(".panel-title").innerHTML =
+          '<span class="panel-num">1</span> Reserve a Table';
+        document
+          .getElementById("step1")
+          .querySelector(".step-label").textContent = "Reserve Table";
+        document.getElementById("summary-ticket-count").textContent =
+          "4 Guests · 12:00 PM";
+        document.getElementById("ticket-icon").textContent = "🍽️";
+      }
 
-      <div class="secure-note">🔒 Secured by 256-bit SSL encryption</div>
-    </div>
-  </div>
+      function selectSlot(el) {
+        document
+          .querySelectorAll(".time-slot")
+          .forEach((s) => s.classList.remove("active"));
+        el.classList.add("active");
+        updateDiningSummary();
+      }
 
-</div><!-- end checkout-layout -->
+      function selectGuests(el, num) {
+        document
+          .querySelectorAll(".guest-opt")
+          .forEach((g) => g.classList.remove("active"));
+        el.classList.add("active");
+        updateDiningSummary();
+      }
 
-<script>
-  // ── Read URL params and populate event info ──────────
-  const params        = new URLSearchParams(window.location.search);
-  const eventTitle    = params.get('title')    || 'Al Ahly vs Zamalek — Cairo Derby';
-  const eventVenue    = params.get('venue')    || 'Cairo International Stadium';
-  const eventDate     = params.get('date')     || 'Mar 15, 2025';
-  const eventEmoji    = params.get('emoji')    || '⚽';
-  const eventCategory = params.get('category') || 'Football';
-  const basePrice     = parseInt(params.get('price')) || 250;
+      function updateDiningSummary() {
+        const slot = document.querySelector(".time-slot.active");
+        const guests = document.querySelector(".guest-opt.active");
+        if (slot && guests) {
+          document.getElementById("summary-ticket-count").textContent =
+            guests.textContent + " Guests · " + slot.textContent;
+        }
+      }
 
-  // ── Prices (scaled from base) ─────────────────────────
-  const prices = {
-    general: basePrice,
-    vip:     Math.round(basePrice * 2.2),
-    royal:   Math.round(basePrice * 4.8)
-  };
-  const qty = { general: 0, vip: 0, royal: 0 };
+      function changeQty(type, delta) {
+        qty[type] = Math.max(0, Math.min(10, qty[type] + delta));
+        document.getElementById("qty-" + type).textContent = qty[type];
+        updateSummary();
+      }
 
-  // ── Populate event summary panel ──────────────────────
-  document.querySelector('.summary-event-title').textContent = eventTitle;
-  document.querySelector('.summary-event-sub').textContent = eventCategory + ' · ' + eventVenue;
-  document.querySelector('.banner-emoji').textContent = eventEmoji;
-  const details = document.querySelectorAll('.summary-detail');
-  details[0].lastElementChild.textContent = eventVenue;
-  details[1].lastElementChild.textContent = eventDate;
+      function updateSummary() {
+        let subtotal = 0;
+        let totalTickets = 0;
 
-  // Update ticket row prices on screen
-  const priceEls = document.querySelectorAll('.ticket-price');
-  priceEls[0].textContent = prices.general.toLocaleString() + ' EGP';
-  priceEls[1].textContent = prices.vip.toLocaleString() + ' EGP';
-  priceEls[2].textContent = prices.royal.toLocaleString() + ' EGP';
-  let discount = 0;
+        ["general", "vip", "royal"].forEach((t) => {
+          const sub = qty[t] * prices[t];
+          subtotal += sub;
+          totalTickets += qty[t];
+          document.getElementById("sl-" + t).textContent = qty[t];
+          document.getElementById("sv-" + t).textContent =
+            sub.toLocaleString() + " EGP";
+        });
 
-  // ── Event type detection & ticket config ─────────────
-  const isDining  = eventCategory.toLowerCase().includes('dining') || eventCategory.toLowerCase().includes('restaurant');
-  const isConcert = eventCategory.toLowerCase().includes('concert') || eventCategory.toLowerCase().includes('show') || eventCategory.toLowerCase().includes('music');
+        const fee = totalTickets > 0 ? Math.round(subtotal * 0.05) : 0;
+        const total = Math.round((subtotal + fee) * (1 - discount));
 
-  const ticketConfig = isDining ? {
-    general: { type: 'Indoor Table',       desc: 'Air-conditioned · Ideal for 2–4 guests',          price: basePrice },
-    vip:     { type: 'Nile View Terrace',  desc: 'Open air · Scenic Nile view · 2–6 guests',         price: Math.round(basePrice * 1.65) },
-    royal:   { type: 'Private Dining Room',desc: 'Exclusive room · Butler service · Up to 10 guests', price: Math.round(basePrice * 4) },
-  } : isConcert ? {
-    general: { type: 'Floor Standing',     desc: 'Closest to stage · General access · Zone A',       price: basePrice },
-    vip:     { type: 'Seated Balcony',     desc: 'Elevated view · Numbered seat · Zone B',            price: Math.round(basePrice * 1.65) },
-    royal:   { type: 'VIP Backstage Pass', desc: 'Meet & greet · Front row · Exclusive lounge',       price: Math.round(basePrice * 4.2) },
-  } : {
-    general: { type: 'General Standing',   desc: 'Ground floor · Open terrace · Gate C',             price: basePrice },
-    vip:     { type: 'VIP Seated',         desc: 'Covered stand · Numbered seat · Gate A',            price: Math.round(basePrice * 2.2) },
-    royal:   { type: 'Royal Box',          desc: 'Private box · Catering included · Gate B',          price: Math.round(basePrice * 4.8) },
-  };
+        document.getElementById("sv-fee").textContent =
+          fee.toLocaleString() + " EGP";
+        document.getElementById("sv-total").textContent =
+          total.toLocaleString() + " EGP";
+        document.getElementById("summary-ticket-count").textContent =
+          totalTickets === 0
+            ? "0 Tickets Selected"
+            : totalTickets +
+              " Ticket" +
+              (totalTickets > 1 ? "s" : "") +
+              " Selected";
 
-  // Apply config to the single ticket section
-  ['general','vip','royal'].forEach(t => {
-    document.getElementById('type-' + t).textContent  = ticketConfig[t].type;
-    document.getElementById('desc-' + t).textContent  = ticketConfig[t].desc;
-    document.getElementById('price-' + t).textContent = ticketConfig[t].price.toLocaleString() + ' EGP';
-    document.getElementById('label-' + t).textContent = ticketConfig[t].type;
-    prices[t] = ticketConfig[t].price;
-  });
+        document.getElementById("confirmBtn").disabled = totalTickets === 0;
+      }
 
-  // Show dining extras (time slots + guests) if needed
-  if (isDining) {
-    document.getElementById('dining-section').style.display = 'block';
-    document.querySelector('.panel-title').innerHTML = '<span class="panel-num">1</span> Reserve a Table';
-    document.getElementById('step1').querySelector('.step-label').textContent = 'Reserve Table';
-    document.getElementById('summary-ticket-count').textContent = '4 Guests · 12:00 PM';
-    document.getElementById('ticket-icon').textContent = '🍽️';
-  }
+      function setPayment(el, type) {
+        document
+          .querySelectorAll(".pay-method")
+          .forEach((m) => m.classList.remove("active"));
+        document
+          .querySelectorAll(".pay-alt")
+          .forEach((p) => p.classList.remove("active"));
+        el.classList.add("active");
+        const target = document.getElementById("pay-" + type);
+        if (target) target.classList.add("active");
+      }
 
-  function selectSlot(el) {
-    document.querySelectorAll('.time-slot').forEach(s => s.classList.remove('active'));
-    el.classList.add('active');
-    updateDiningSummary();
-  }
+      function applyPromo() {
+        const code = document
+          .getElementById("promoInput")
+          .value.trim()
+          .toUpperCase();
+        const msg = document.getElementById("promoMsg");
+        if (code === "EHGZLY10") {
+          discount = 0.1;
+          msg.style.color = "var(--green-light)";
+          msg.textContent = "✓ 10% discount applied!";
+        } else if (code === "AHLY25") {
+          discount = 0.25;
+          msg.style.color = "var(--green-light)";
+          msg.textContent = "✓ 25% Al Ahly fan discount applied!";
+        } else {
+          discount = 0;
+          msg.style.color = "#C05050";
+          msg.textContent = "✗ Invalid promo code.";
+        }
+        updateSummary();
+      }
 
-  function selectGuests(el, num) {
-    document.querySelectorAll('.guest-opt').forEach(g => g.classList.remove('active'));
-    el.classList.add('active');
-    updateDiningSummary();
-  }
+      function formatCard(input) {
+        let val = input.value.replace(/\D/g, "").substring(0, 16);
+        input.value = val.replace(/(.{4})/g, "$1  ").trim();
+      }
 
-  function updateDiningSummary() {
-    const slot = document.querySelector('.time-slot.active');
-    const guests = document.querySelector('.guest-opt.active');
-    if (slot && guests) {
-      document.getElementById('summary-ticket-count').textContent =
-        guests.textContent + ' Guests · ' + slot.textContent;
-    }
-  }
+      function formatExpiry(input) {
+        let val = input.value.replace(/\D/g, "").substring(0, 4);
+        if (val.length >= 2)
+          val = val.substring(0, 2) + " / " + val.substring(2);
+        input.value = val;
+      }
 
-  function changeQty(type, delta) {
-    qty[type] = Math.max(0, Math.min(10, qty[type] + delta));
-    document.getElementById('qty-' + type).textContent = qty[type];
-    updateSummary();
-  }
+      function generateQR() {
+        const qr = document.getElementById("qrCode");
+        qr.innerHTML = "";
+        for (let i = 0; i < 49; i++) {
+          const px = document.createElement("div");
+          const isEdge = i < 7 || i > 41 || i % 7 === 0 || i % 7 === 6;
+          px.className =
+            "qr-pixel" + (isEdge || Math.random() > 0.5 ? "" : " w");
+          qr.appendChild(px);
+        }
+      }
 
-  function updateSummary() {
-    let subtotal = 0;
-    let totalTickets = 0;
+      function confirmBooking() {
+        const btn = document.getElementById("confirmBtn");
+        btn.innerHTML = "<span>Processing…</span>";
+        btn.disabled = true;
 
-    ['general', 'vip', 'royal'].forEach(t => {
-      const sub = qty[t] * prices[t];
-      subtotal += sub;
-      totalTickets += qty[t];
-      document.getElementById('sl-' + t).textContent = qty[t];
-      document.getElementById('sv-' + t).textContent = sub.toLocaleString() + ' EGP';
-    });
+        // Advance progress
+        document.getElementById("step2").classList.remove("active");
+        document.getElementById("step2").classList.add("done");
+        document
+          .getElementById("step2")
+          .querySelector(".step-circle").textContent = "✓";
+        document.getElementById("step3").classList.remove("active");
+        document.getElementById("step3").classList.add("done");
+        document
+          .getElementById("step3")
+          .querySelector(".step-circle").textContent = "✓";
+        document.getElementById("step4").classList.add("active");
 
-    const fee = totalTickets > 0 ? Math.round(subtotal * 0.05) : 0;
-    const total = Math.round((subtotal + fee) * (1 - discount));
+        setTimeout(() => {
+          // Generate random booking ref
+          const ref =
+            "EHG-" +
+            new Date().getFullYear() +
+            "-" +
+            Math.floor(1000 + Math.random() * 9000);
+          document.getElementById("bookingRef").textContent = ref;
+          generateQR();
 
-    document.getElementById('sv-fee').textContent = fee.toLocaleString() + ' EGP';
-    document.getElementById('sv-total').textContent = total.toLocaleString() + ' EGP';
-    document.getElementById('summary-ticket-count').textContent =
-      totalTickets === 0 ? '0 Tickets Selected' : totalTickets + ' Ticket' + (totalTickets > 1 ? 's' : '') + ' Selected';
+          document.getElementById("checkoutLayout").classList.add("hidden");
+          document.getElementById("successScreen").classList.add("visible");
 
-    document.getElementById('confirmBtn').disabled = totalTickets === 0;
-  }
-
-  function setPayment(el, type) {
-    document.querySelectorAll('.pay-method').forEach(m => m.classList.remove('active'));
-    document.querySelectorAll('.pay-alt').forEach(p => p.classList.remove('active'));
-    el.classList.add('active');
-    const target = document.getElementById('pay-' + type);
-    if (target) target.classList.add('active');
-  }
-
-  function applyPromo() {
-    const code = document.getElementById('promoInput').value.trim().toUpperCase();
-    const msg = document.getElementById('promoMsg');
-    if (code === 'EHGZLY10') {
-      discount = 0.10;
-      msg.style.color = 'var(--green-light)';
-      msg.textContent = '✓ 10% discount applied!';
-    } else if (code === 'AHLY25') {
-      discount = 0.25;
-      msg.style.color = 'var(--green-light)';
-      msg.textContent = '✓ 25% Al Ahly fan discount applied!';
-    } else {
-      discount = 0;
-      msg.style.color = '#C05050';
-      msg.textContent = '✗ Invalid promo code.';
-    }
-    updateSummary();
-  }
-
-  function formatCard(input) {
-    let val = input.value.replace(/\D/g, '').substring(0, 16);
-    input.value = val.replace(/(.{4})/g, '$1  ').trim();
-  }
-
-  function formatExpiry(input) {
-    let val = input.value.replace(/\D/g, '').substring(0, 4);
-    if (val.length >= 2) val = val.substring(0, 2) + ' / ' + val.substring(2);
-    input.value = val;
-  }
-
-  function generateQR() {
-    const qr = document.getElementById('qrCode');
-    qr.innerHTML = '';
-    for (let i = 0; i < 49; i++) {
-      const px = document.createElement('div');
-      const isEdge = (i < 7 || i > 41 || i % 7 === 0 || i % 7 === 6);
-      px.className = 'qr-pixel' + (isEdge || Math.random() > 0.5 ? '' : ' w');
-      qr.appendChild(px);
-    }
-  }
-
-  function confirmBooking() {
-    const btn = document.getElementById('confirmBtn');
-    btn.innerHTML = '<span>Processing…</span>';
-    btn.disabled = true;
-
-    // Advance progress
-    document.getElementById('step2').classList.remove('active');
-    document.getElementById('step2').classList.add('done');
-    document.getElementById('step2').querySelector('.step-circle').textContent = '✓';
-    document.getElementById('step3').classList.remove('active');
-    document.getElementById('step3').classList.add('done');
-    document.getElementById('step3').querySelector('.step-circle').textContent = '✓';
-    document.getElementById('step4').classList.add('active');
-
-    setTimeout(() => {
-      // Generate random booking ref
-      const ref = 'EHG-' + new Date().getFullYear() + '-' + Math.floor(1000 + Math.random() * 9000);
-      document.getElementById('bookingRef').textContent = ref;
-      generateQR();
-
-      document.getElementById('checkoutLayout').classList.add('hidden');
-      document.getElementById('successScreen').classList.add('visible');
-
-      document.getElementById('step4').classList.remove('active');
-      document.getElementById('step4').classList.add('done');
-      document.getElementById('step4').querySelector('.step-circle').textContent = '✓';
-    }, 1800);
-  }
-</script>
-</body>
+          document.getElementById("step4").classList.remove("active");
+          document.getElementById("step4").classList.add("done");
+          document
+            .getElementById("step4")
+            .querySelector(".step-circle").textContent = "✓";
+        }, 1800);
+      }
+    </script>
+  </body>
 </html>
