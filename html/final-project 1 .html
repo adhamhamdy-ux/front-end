@@ -573,9 +573,18 @@ function setPaymentDetails(method) {
       </div>
       <div class="field">
         <label>CVV</label>
-        <input type="password" id="cardCvv" inputmode="numeric" placeholder="123" maxlength="4">
+        <input type="text" id="cardCvv" inputmode="numeric" placeholder="123" maxlength="3">
       </div>
     `;
+    document.getElementById('cardNumber').addEventListener('input', function () {
+      let val = this.value.replace(/\D/g, '').substring(0, 16);
+      this.value = val.replace(/(.{4})/g, '$1 ').trim();
+    });
+    document.getElementById('cardExpiry').addEventListener('input', function () {
+      let val = this.value.replace(/\D/g, '').substring(0, 4);
+      if (val.length >= 3) val = val.substring(0, 2) + '/' + val.substring(2);
+      this.value = val;
+    });
     return;
   }
 
@@ -583,7 +592,7 @@ function setPaymentDetails(method) {
     wrap.innerHTML = `
       <div class="field full">
         <label>Vodafone Cash number</label>
-        <input type="tel" id="vfNumber" placeholder="01xxxxxxxxx">
+        <input type="tel" id="vfNumber" placeholder="01xxxxxxxxx" maxlength="11">
       </div>
       <div class="payment-note">You will receive a payment request after confirming.</div>
     `;
@@ -672,14 +681,14 @@ function confirmBooking() {
     const number = (document.getElementById('cardNumber')?.value || '').replace(/\s+/g, '');
     const expiry = (document.getElementById('cardExpiry')?.value || '').trim();
     const cvv = (document.getElementById('cardCvv')?.value || '').trim();
-    if (!name || number.length < 12 || expiry.length < 4 || cvv.length < 3) {
+    if (!name || number.length < 12 || expiry.length < 4 || cvv.length !== 3) {
       alert('Please enter valid card details.');
       return;
     }
   } else if (method === 'vodafone') {
     const vf = (document.getElementById('vfNumber')?.value || '').trim();
-    if (!vf || vf.length < 10) {
-      alert('Please enter your Vodafone Cash number.');
+    if (!vf || vf.length !== 11) {
+      alert('Please enter a valid 11-digit Vodafone Cash number.');
       return;
     }
   } else if (method === 'fawry') {
