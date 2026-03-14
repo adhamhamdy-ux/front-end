@@ -1,24 +1,23 @@
 @import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap");
 
 :root {
-  --bg: #080c10;
-  --surface: #0f1419;
-  --card: #141b24;
+  --bg: rgb(8, 12, 16);
+  --surface: rgb(15, 20, 25);
+  --card: rgb(20, 27, 36);
   --border: rgba(255, 255, 255, 0.07);
-  --accent: #ff3b30;
-  --gold: #ffb800;
-  --cyan: #00e5ff;
-  --green: #00ff88;
-  --purple: #a855f7;
-  --pink: #ff6ec7;
-  --text: #f0f4f8;
-  --muted: #8899aa;
+  --accent: rgb(255, 59, 48);
+  --gold: rgb(255, 184, 0);
+  --cyan: rgb(0, 229, 255);
+  --green: rgb(0, 255, 136);
+  --purple: rgb(168, 85, 247);
+  --pink: rgb(255, 110, 199);
+  --text: rgb(240, 244, 248);
+  --muted: rgb(136, 153, 170);
   --font-display: "Bebas Neue", sans-serif;
   --font-body: "DM Sans", sans-serif;
   --font-mono: "Space Mono", monospace;
 }
 
-/* --- RESET --- */
 *,
 *::before,
 *::after {
@@ -27,7 +26,6 @@
   padding: 0;
 }
 
-/* --- BASE --- */
 body {
   background: var(--bg);
   color: var(--text);
@@ -45,7 +43,6 @@ body::before {
   opacity: 0.4;
 }
 
-/* --- NAV --- */
 nav {
   position: fixed;
   top: 0;
@@ -136,9 +133,9 @@ nav {
   position: absolute;
   inset: 0;
   background: radial-gradient(
-    ellipse at 60% 50%,
-    rgba(255, 59, 48, 0.08) 0%,
-    transparent 70%
+    
+    black,
+   
   );
   pointer-events: none;
 }
@@ -203,7 +200,6 @@ nav {
   gap: 14px;
 }
 
-/* --- SECTION --- */
 .section {
   padding: 80px;
 }
@@ -242,7 +238,6 @@ nav {
   border-color: var(--text);
 }
 
-/* --- STAT CARDS --- */
 .stat-cards {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -270,8 +265,6 @@ nav {
   letter-spacing: 1px;
   margin-top: 4px;
 }
-
-/* --- FILTER TABS --- */
 .filter-tabs {
   display: flex;
   gap: 10px;
@@ -296,14 +289,11 @@ nav {
   color: white;
 }
 
-/* --- CARDS GRID --- */
 .cards-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 20px;
 }
-
-/* --- CARD --- */
 .card {
   background: var(--card);
   border: 1px solid var(--border);
@@ -454,7 +444,6 @@ nav {
   color: white;
 }
 
-/* --- SOLD BAR --- */
 .sold-bar-wrap {
   display: flex;
   gap: 8px;
@@ -480,7 +469,6 @@ nav {
   white-space: nowrap;
 }
 
-/* --- FEATURED DEAL CARD --- */
 .deal-card {
   background: var(--card);
   border: 1px solid var(--border);
@@ -518,7 +506,6 @@ nav {
   margin-bottom: 10px;
 }
 
-/* --- BUTTONS --- */
 .btn-primary {
   background: var(--accent);
   color: white;
@@ -555,8 +542,6 @@ nav {
 .btn-outline:hover {
   border-color: var(--text);
 }
-
-/* --- MODAL --- */
 .modal-overlay {
   position: fixed;
   inset: 0;
@@ -719,7 +704,6 @@ nav {
   box-shadow: 0 10px 30px rgba(255, 59, 48, 0.3);
 }
 
-/* --- FOOTER --- */
 footer {
   border-top: 1px solid var(--border);
   padding: 60px 80px 40px;
@@ -779,8 +763,6 @@ footer {
 .social-links a:hover {
   color: var(--text);
 }
-
-/* --- ANIMATIONS --- */
 @keyframes fadeUp {
   from {
     opacity: 0;
@@ -807,8 +789,6 @@ footer {
 .fade-up:nth-child(4) {
   animation-delay: 0.4s;
 }
-
-/* --- RESPONSIVE --- */
 @media (max-width: 1024px) {
   nav {
     padding: 16px 24px;
