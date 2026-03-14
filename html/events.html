@@ -466,6 +466,19 @@
       buildCalendar();
       renderFeatured(eventsData[0]);
       renderCards(eventsData);
+
+      // Nav: smooth fade-out on navigation
+      document.querySelectorAll('.nav-links a, .logo').forEach(a => {
+        a.addEventListener('click', function(e) {
+          const href = this.getAttribute('href');
+          if (!href || href.startsWith('#') || href.startsWith('javascript')) return;
+          e.preventDefault();
+          document.body.style.transition = 'opacity 0.22s ease, transform 0.22s ease';
+          document.body.style.opacity = '0';
+          document.body.style.transform = 'translateY(-8px)';
+          setTimeout(() => { location.href = href; }, 230);
+        });
+      });
     </script>
   </body>
 </html>
