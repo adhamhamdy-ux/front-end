@@ -729,6 +729,27 @@
           .getElementById("events")
           .scrollIntoView({ behavior: "smooth" });
       }
+      // Nav: mark current page as active
+      (function() {
+        const page = location.pathname.split('/').pop() || 'index.html';
+        document.querySelectorAll('.nav-links a').forEach(a => {
+          const href = a.getAttribute('href').split('/').pop();
+          if (href === page) a.classList.add('active');
+        });
+      })();
+
+      // Nav: smooth fade-out on navigation
+      document.querySelectorAll('.nav-links a, .logo').forEach(a => {
+        a.addEventListener('click', function(e) {
+          const href = this.getAttribute('href');
+          if (!href || href.startsWith('#') || href.startsWith('javascript')) return;
+          e.preventDefault();
+          document.body.style.transition = 'opacity 0.22s ease, transform 0.22s ease';
+          document.body.style.opacity = '0';
+          document.body.style.transform = 'translateY(-8px)';
+          setTimeout(() => { location.href = href; }, 230);
+        });
+      });
     </script>
   </body>
 </html>
