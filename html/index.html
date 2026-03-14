@@ -252,38 +252,43 @@
     <div class="modal" id="modal">
       <button class="modal-close" onclick="closeModal()">×</button>
       <div class="modal-title" id="modalTitle">Book Tickets</div>
-      <div class="modal-subtitle" id="modalSubtitle">
-        Select your ticket type and quantity
-      </div>
+      <div class="modal-subtitle" id="modalSubtitle">Select your ticket type and quantity</div>
       <div class="ticket-options" id="ticketOptions"></div>
-        <div class="qty-control">
-          <span class="qty-label">Number of Tickets</span>
-          <button class="qty-btn" onclick="changeQty(-1)">−</button>
-          <div class="qty-num" id="qtyNum">1</div>
-          <button class="qty-btn" onclick="changeQty(1)">+</button>
-        </div>
-    </div>
-  </body>
-</html>
-        <div class="ticket-options" id="ticketOptions"></div>
-        <div class="qty-control">
-          <span class="qty-label">Number of Tickets</span>
-          <button class="qty-btn" onclick="changeQty(-1)">−</button>
-          <div class="qty-num" id="qtyNum">1</div>
-          <button class="qty-btn" onclick="changeQty(1)">+</button>
-        </div>
-      <div class="modal-total">
-          <span class="total-label">Total Amount</span>
-          <span class="total-amount" id="totalAmount">EGP 0</span>
-        </div>
-        <button class="book-btn" onclick="confirmBooking()">
-          Confirm Booking →
-        </button>
-        <button class="book-btn" onclick="confirmBooking()">
-          Confirm Booking →
-        </button>
+      <div class="qty-control">
+        <span class="qty-label">Number of Tickets</span>
+        <button class="qty-btn" onclick="changeQty(-1)">−</button>
+        <div class="qty-num" id="qtyNum">1</div>
+        <button class="qty-btn" onclick="changeQty(1)">+</button>
       </div>
+      <div class="payment-section">
+        <div class="payment-title">Payment Method</div>
+        <div class="payment-methods" id="paymentMethods">
+          <label class="pay-method">
+            <input type="radio" name="paymentMethod" value="card" checked>
+            <span>Card</span>
+          </label>
+          <label class="pay-method">
+            <input type="radio" name="paymentMethod" value="vodafone">
+            <span>Vodafone Cash</span>
+          </label>
+          <label class="pay-method">
+            <input type="radio" name="paymentMethod" value="fawry">
+            <span>Fawry</span>
+          </label>
+          <label class="pay-method">
+            <input type="radio" name="paymentMethod" value="cash">
+            <span>Cash</span>
+          </label>
+        </div>
+        <div class="payment-details" id="paymentDetails"></div>
+      </div>
+      <div class="modal-total">
+        <span class="total-label">Total Amount</span>
+        <span class="total-amount" id="totalAmount">EGP 0</span>
+      </div>
+      <button class="book-btn" onclick="confirmBooking()">Confirm Booking →</button>
     </div>
+  </div>
 
     <script>
       const events = [
@@ -546,37 +551,97 @@
         .join("");
       ticker.innerHTML = tickerInner + tickerInner; // duplicate for seamless loop
 
-      // Modal
+      // Payment method change listener
+      document.getElementById('paymentMethods')?.addEventListener('change', (e) => {
+        if (e.target && e.target.name === 'paymentMethod') setPaymentDetails(e.target.value);
+      });
+
+      // Modal state
       let currentEvent = null;
       let selectedTicketIdx = 0;
       let qty = 1;
+      let paymentMethod = 'card';
+
+      function setPaymentDetails(method) {
+        paymentMethod = method;
+        const wrap = document.getElementById('paymentDetails');
+        if (!wrap) return;
+        if (method === 'card') {
+          wrap.innerHTML = `
+            <div class="field full">
+              <label>Name on card</label>
+              <input type="text" id="cardName" placeholder="Full name">
+            </div>
+            <div class="field full">
+              <label>Card number</label>
+              <input type="text" id="cardNumber" inputmode="numeric" placeholder="1234 5678 9012 3456" maxlength="19">
+            </div>
+            <div class="field">
+              <label>Expiry</label>
+              <input type="text" id="cardExpiry" placeholder="MM/YY" maxlength="5">
+            </div>
+            <div class="field">
+              <label>CVV</label>
+              <input type="text" id="cardCvv" inputmode="numeric" placeholder="123" maxlength="3">
+            </div>
+          `;
+          document.getElementById('cardNumber').addEventListener('input', function () {
+            let val = this.value.replace(/\D/g, '').substring(0, 16);
+            this.value = val.replace(/(.{4})/g, '$1 ').trim();
+          });
+          document.getElementById('cardExpiry').addEventListener('input', function () {
+            let val = this.value.replace(/\D/g, '').substring(0, 4);
+            if (val.length >= 3) val = val.substring(0, 2) + '/' + val.substring(2);
+            this.value = val;
+          });
+          return;
+        }
+        if (method === 'vodafone') {
+          wrap.innerHTML = `
+            <div class="field full">
+              <label>Vodafone Cash number</label>
+              <input type="tel" id="vfNumber" placeholder="01xxxxxxxxx" maxlength="11">
+            </div>
+            <div class="payment-note">You will receive a payment request after confirming.</div>
+          `;
+          return;
+        }
+        if (method === 'fawry') {
+          wrap.innerHTML = `
+            <div class="field full">
+              <label>Mobile number (for receipt)</label>
+              <input type="tel" id="fawryMobile" placeholder="01xxxxxxxxx" maxlength="11">
+            </div>
+            <div class="payment-note">A Fawry reference code will be generated after confirming.</div>
+          `;
+          return;
+        }
+        wrap.innerHTML = `<div class="payment-note">Pay at the venue before entry. Keep your booking confirmation.</div>`;
+      }
 
       function openModal(ev) {
         currentEvent = ev;
         selectedTicketIdx = 0;
         qty = 1;
-        document.getElementById("modalTitle").textContent = ev.name;
-        document.getElementById("modalSubtitle").textContent =
-          ev.date + " · " + (ev.location || "");
-        const opts = document.getElementById("ticketOptions");
-        opts.innerHTML = (ev.tickets || [])
-          .map(
-            (t, i) => `
-    <div class="ticket-option ${i === 0 ? "selected" : ""}" onclick="selectTicket(${i})">
-      <div>
-        <div class="ticket-type">${t.type}</div>
-        <div class="ticket-perks">${t.perks}</div>
-      </div>
-      <div class="ticket-right">
-        <div class="ticket-price-tag">EGP ${t.price}</div>
-      </div>
-    </div>
-  `,
-          )
-          .join("");
-        document.getElementById("qtyNum").textContent = qty;
+        document.getElementById('modalTitle').textContent = ev.name;
+        document.getElementById('modalSubtitle').textContent = ev.date + ' · ' + (ev.location || '');
+        const opts = document.getElementById('ticketOptions');
+        opts.innerHTML = (ev.tickets || []).map((t, i) => `
+          <div class="ticket-option ${i === 0 ? 'selected' : ''}" onclick="selectTicket(${i})">
+            <div>
+              <div class="ticket-type">${t.type}</div>
+              <div class="ticket-perks">${t.perks}</div>
+            </div>
+            <div class="ticket-right">
+              <div class="ticket-price-tag">EGP ${t.price}</div>
+            </div>
+          </div>
+        `).join('');
+        document.getElementById('qtyNum').textContent = qty;
         updateTotal();
-        document.getElementById("modalOverlay").classList.add("open");
+        const selected = document.querySelector('input[name="paymentMethod"]:checked');
+        setPaymentDetails(selected ? selected.value : 'card');
+        document.getElementById('modalOverlay').classList.add('open');
       }
 
       function selectTicket(idx) {
@@ -607,11 +672,44 @@
       }
 
       function confirmBooking() {
+        if (!currentEvent || !currentEvent.tickets || !currentEvent.tickets.length) {
+          alert('This item is not bookable right now.');
+          return;
+        }
         const t = currentEvent.tickets[selectedTicketIdx];
-        alert(
-          `✅ Booking Confirmed!\n\n${currentEvent.name}\n${t.type} × ${qty}\nTotal: EGP ${(t.price * qty).toLocaleString()}\n\nA confirmation will be sent to your email.`,
-        );
-        document.getElementById("modalOverlay").classList.remove("open");
+        const total = (t.price * qty).toLocaleString();
+        const method = paymentMethod || 'card';
+
+        if (method === 'card') {
+          const name = (document.getElementById('cardName')?.value || '').trim();
+          const number = (document.getElementById('cardNumber')?.value || '').replace(/\s+/g, '');
+          const expiry = (document.getElementById('cardExpiry')?.value || '').trim();
+          const cvv = (document.getElementById('cardCvv')?.value || '').trim();
+          if (!name || number.length < 12 || expiry.length < 4 || cvv.length !== 3) {
+            alert('Please enter valid card details.');
+            return;
+          }
+        } else if (method === 'vodafone') {
+          const vf = (document.getElementById('vfNumber')?.value || '').trim();
+          if (!vf || vf.length !== 11) {
+            alert('Please enter a valid 11-digit Vodafone Cash number.');
+            return;
+          }
+        } else if (method === 'fawry') {
+          const m = (document.getElementById('fawryMobile')?.value || '').trim();
+          if (!m || m.length < 10) {
+            alert('Please enter your mobile number.');
+            return;
+          }
+        }
+
+        const methodLabel =
+          method === 'card' ? 'Card' :
+          method === 'vodafone' ? 'Vodafone Cash' :
+          method === 'fawry' ? 'Fawry' : 'Cash';
+
+        alert(`✅ Booking Confirmed!\n\n${currentEvent.name}\n${t.type} × ${qty}\nTotal: EGP ${total}\nPayment: ${methodLabel}\n\nA confirmation will be sent to your email.`);
+        document.getElementById('modalOverlay').classList.remove('open');
       }
 
       function filterCategory(cat) {
