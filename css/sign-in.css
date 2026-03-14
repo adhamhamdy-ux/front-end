@@ -78,7 +78,6 @@ body {
 
 .span {
   font-size: 14px;
-  margin-left: 5px;
   color: #2d79f3;
   font-weight: 500;
   cursor: pointer;
@@ -146,6 +145,165 @@ body {
   box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.15);
   transition: background 200ms;
   z-index: 100;
+}
+.back-btn,
+.back-btn span {
+  transition: 200ms;
+}
+
+.back-btn .text {
+  transform: translateX(35px);
+  color: white;
+  font-weight: bold;
+  font-size: 14px;
+  letter-spacing: 0.5px;
+}
+
+.back-btn .icon {
+  position: absolute;
+  border-left: 1px solid #c41b1b;
+  transform: translateX(110px);
+  height: 40px;
+  width: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.back-btn:hover {
+  background: #ff3636;
+}
+
+.back-btn:hover .text {
+  color: transparent;
+}
+
+.back-btn:hover .icon {
+  width: 150px;
+  border-left: none;
+  transform: translateX(0);
+}
+
+.back-btn:focus {
+  outline: none;
+}
+
+.back-btn:active .icon svg {
+  transform: scale(0.8);
+}
+
+@media (max-width: 768px) {
+  .back-btn {
+    top: 16px;
+    left: 16px;
+    width: 60px;
+    height: 40px;
+  }
+  .back-btn .text { display: none; }
+  .back-btn .icon {
+    transform: translateX(0);
+    border-left: none;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+/* --- Forgot Password Modal --- */
+.forgot-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  z-index: 1000;
+}
+.forgot-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+.forgot-modal {
+  background: white;
+  width: 90%;
+  max-width: 400px;
+  border-radius: 20px;
+  padding: 30px;
+  box-sizing: border-box;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+  transform: translateY(20px);
+  transition: transform 0.3s ease;
+  position: relative;
+}
+.forgot-overlay.active .forgot-modal {
+  transform: translateY(0);
+}
+.forgot-close {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: none;
+  border: none;
+  font-size: 24px;
+  color: #737373;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+.forgot-close:hover {
+  color: #151717;
+}
+.forgot-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: #151717;
+  margin-bottom: 10px;
+}
+.forgot-desc {
+  font-size: 14px;
+  color: #737373;
+  margin-bottom: 20px;
+  line-height: 1.5;
+}
+.forgot-input {
+  width: 100%;
+  height: 45px;
+  border-radius: 10px;
+  border: 1.5px solid #ecedec;
+  padding: 0 15px;
+  font-size: 14px;
+  margin-bottom: 20px;
+  outline: none;
+  box-sizing: border-box;
+  transition: border 0.2s;
+}
+.forgot-input:focus {
+  border-color: #2d79f3;
+}
+.forgot-submit {
+  width: 100%;
+  height: 45px;
+  border-radius: 10px;
+  border: none;
+  background: #2d79f3;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  box-sizing: border-box;
+  transition: background 0.2s;
+}
+.forgot-submit:hover {
+  background: #1c62d4;
+}
+.forgot-success {
+  display: none;
+  text-align: center;
+  color: #28b446;
+  font-size: 15px;
+  font-weight: 500;
+  margin-top: 15px;
 }
 
 .back-btn,

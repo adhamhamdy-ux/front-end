@@ -585,14 +585,23 @@
               <input type="text" id="cardCvv" inputmode="numeric" placeholder="123" maxlength="3">
             </div>
           `;
-          document.getElementById('cardNumber').addEventListener('input', function () {
-            let val = this.value.replace(/\D/g, '').substring(0, 16);
-            this.value = val.replace(/(.{4})/g, '$1 ').trim();
+          document.getElementById('cardNumber')?.addEventListener('input', function (e) {
+            let val = this.value.replace(/\D/g, '');
+            val = val.substring(0, 16);
+            let parts = [];
+            for (let i = 0; i < val.length; i += 4) {
+              parts.push(val.substring(i, i + 4));
+            }
+            this.value = parts.join(' ');
           });
-          document.getElementById('cardExpiry').addEventListener('input', function () {
-            let val = this.value.replace(/\D/g, '').substring(0, 4);
-            if (val.length >= 3) val = val.substring(0, 2) + '/' + val.substring(2);
-            this.value = val;
+          document.getElementById('cardExpiry')?.addEventListener('input', function (e) {
+            let val = this.value.replace(/\D/g, '');
+            val = val.substring(0, 4);
+            if (val.length >= 3) {
+              this.value = val.substring(0, 2) + '/' + val.substring(2);
+            } else {
+              this.value = val;
+            }
           });
           return;
         }

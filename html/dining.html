@@ -134,29 +134,48 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; a
 .btn-outline:hover { border-color: var(--text); }
 
 /* --- MODAL --- */
+/* Payment Section (inside modal) */
+.payment-section { margin: 20px 0; }
+.payment-title { font-size: 12px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--muted); font-family: var(--font-mono); margin-bottom: 12px; }
+.payment-methods { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 20px; }
+.pay-method { display: flex; align-items: center; gap: 6px; border: 1px solid var(--border); border-radius: 6px; padding: 8px 14px; cursor: pointer; font-size: 13px; transition: all 0.2s; color: var(--muted); }
+.pay-method:has(input:checked) { border-color: var(--accent); color: var(--text); background: rgba(255, 59, 48, 0.07); }
+.pay-method input[type="radio"] { accent-color: var(--accent); }
+.payment-details { display: flex; flex-wrap: wrap; gap: 12px; }
+.payment-details .field { display: flex; flex-direction: column; gap: 6px; flex: 1; min-width: 100px; }
+.payment-details .field.full { flex-basis: 100%; }
+.payment-details label { font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: var(--muted); font-family: var(--font-mono); }
+.payment-details input { background: var(--surface); border: 1px solid var(--border); border-radius: 6px; padding: 10px 12px; color: var(--text); font-size: 14px; font-family: var(--font-body); outline: none; transition: border-color 0.2s; }
+.payment-details input:focus { border-color: var(--accent); }
+.payment-note { font-size: 13px; color: var(--muted); border: 1px dashed var(--border); border-radius: 6px; padding: 12px 16px; width: 100%; line-height: 1.5; box-sizing: border-box; }
+
+/* Modal Dialog */
 .modal-overlay { position: fixed; inset: 0; z-index: 1000; background: rgba(0,0,0,0.85); backdrop-filter: blur(8px); display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0.3s; }
 .modal-overlay.open { opacity: 1; pointer-events: all; }
-.modal { background: var(--card); border: 1px solid var(--border); border-radius: 20px; padding: 48px; max-width: 560px; width: 90%; transform: translateY(30px); transition: transform 0.3s; position: relative; }
+.modal { background: var(--card); border: 1px solid var(--border); border-radius: 20px; padding: 48px; max-width: 560px; width: 90%; max-height: 90vh; overflow-y: auto; scrollbar-width: none; transform: translateY(30px); transition: transform 0.3s; position: relative; box-sizing: border-box; }
+.modal::-webkit-scrollbar { display: none; }
 .modal-overlay.open .modal { transform: translateY(0); }
-.modal-close { position: absolute; top: 20px; right: 20px; background: none; border: none; color: var(--muted); font-size: 24px; cursor: pointer; }
+.modal-close { position: absolute; top: 20px; right: 20px; background: none; border: none; color: var(--muted); font-size: 24px; cursor: pointer; transition: color 0.2s; font-family: var(--font-body); }
 .modal-close:hover { color: var(--text); }
-.modal-title { font-family: var(--font-display); font-size: 34px; letter-spacing: 1px; margin-bottom: 6px; }
-.modal-sub   { color: var(--muted); font-size: 13px; margin-bottom: 28px; }
-.ticket-opts { display: flex; flex-direction: column; gap: 10px; margin-bottom: 24px; }
-.ticket-opt  { border: 1px solid var(--border); border-radius: 10px; padding: 16px 18px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; transition: all 0.2s; }
-.ticket-opt:hover, .ticket-opt.selected { border-color: var(--accent); background: rgba(255,59,48,0.05); }
-.ticket-opt-name  { font-weight: 600; font-size: 14px; margin-bottom: 2px; }
-.ticket-opt-perk  { font-size: 12px; color: var(--muted); }
-.ticket-opt-price { font-family: var(--font-display); font-size: 24px; }
-.qty-row   { display: flex; align-items: center; gap: 16px; margin-bottom: 24px; }
+.modal-title { font-family: var(--font-display); font-size: 36px; letter-spacing: 1px; margin-bottom: 8px; }
+.modal-subtitle { color: var(--muted); font-size: 14px; margin-bottom: 32px; }
+.ticket-options { display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
+.ticket-option { border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; transition: all 0.2s; }
+.ticket-option:hover, .ticket-option.selected { border-color: var(--accent); background: rgba(255, 59, 48, 0.05); }
+.ticket-type { font-weight: 600; font-size: 15px; margin-bottom: 3px; }
+.ticket-perks { font-size: 12px; color: var(--muted); }
+.ticket-right { text-align: right; }
+.ticket-price-tag { font-family: var(--font-display); font-size: 26px; letter-spacing: 1px; }
+
+.qty-control { display: flex; align-items: center; gap: 16px; margin-bottom: 28px; }
 .qty-label { font-size: 14px; color: var(--muted); flex: 1; }
-.qty-btn   { width: 34px; height: 34px; border: 1px solid var(--border); border-radius: 6px; background: none; color: var(--text); font-size: 18px; cursor: pointer; transition: all 0.2s; display: flex; align-items: center; justify-content: center; }
+.qty-btn { width: 36px; height: 36px; border: 1px solid var(--border); border-radius: 6px; background: none; color: var(--text); font-size: 20px; cursor: pointer; transition: all 0.2s; display: flex; align-items: center; justify-content: center; }
 .qty-btn:hover { border-color: var(--accent); color: var(--accent); }
-.qty-num   { font-family: var(--font-display); font-size: 26px; min-width: 28px; text-align: center; }
-.modal-total { display: flex; justify-content: space-between; align-items: center; padding: 18px 0; border-top: 1px solid var(--border); margin-bottom: 18px; }
-.total-label { font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; }
-.total-amt   { font-family: var(--font-display); font-size: 34px; }
-.book-btn    { width: 100%; background: var(--accent); color: white; padding: 16px; border: none; border-radius: 8px; font-family: var(--font-body); font-size: 15px; font-weight: 700; cursor: pointer; transition: all 0.2s; }
+.qty-num { font-family: var(--font-display); font-size: 28px; min-width: 32px; text-align: center; }
+.modal-total { display: flex; justify-content: space-between; align-items: center; padding: 20px 0; border-top: 1px solid var(--border); margin-bottom: 20px; }
+.total-label { font-size: 13px; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; }
+.total-amount { font-family: var(--font-display); font-size: 36px; letter-spacing: 1px; }
+.book-btn { width: 100%; background: var(--accent); color: white; padding: 18px; border: none; border-radius: 8px; font-family: var(--font-body); font-size: 15px; font-weight: 700; cursor: pointer; transition: all 0.2s; letter-spacing: 0.5px; box-sizing: border-box; }
 .book-btn:hover { background: #FF6B63; transform: translateY(-2px); box-shadow: 0 10px 30px rgba(255,59,48,0.3); }
 
 /* --- FOOTER --- */
@@ -334,22 +353,44 @@ footer { border-top: 1px solid var(--border); padding: 60px 80px 40px; }
 
 <!-- MODAL -->
 <div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
-  <div class="modal">
+  <div class="modal" id="modal">
     <button class="modal-close" onclick="closeModal()">×</button>
-    <div class="modal-title" id="modalTitle">Reserve Table</div>
-    <div class="modal-sub"   id="modalSub"></div>
-    <div class="ticket-opts" id="ticketOpts"></div>
-    <div class="qty-row">
-      <span class="qty-label">Number of Guests</span>
+    <div class="modal-title" id="modalTitle">Book Tickets</div>
+    <div class="modal-subtitle" id="modalSubtitle">Select your ticket type and quantity</div>
+    <div class="ticket-options" id="ticketOptions"></div>
+    <div class="qty-control">
+      <span class="qty-label">Number of Tickets</span>
       <button class="qty-btn" onclick="changeQty(-1)">−</button>
       <div class="qty-num" id="qtyNum">1</div>
       <button class="qty-btn" onclick="changeQty(1)">+</button>
     </div>
+    <div class="payment-section">
+      <div class="payment-title">Payment Method</div>
+      <div class="payment-methods" id="paymentMethods">
+        <label class="pay-method">
+          <input type="radio" name="paymentMethod" value="card" checked>
+          <span>Card</span>
+        </label>
+        <label class="pay-method">
+          <input type="radio" name="paymentMethod" value="vodafone">
+          <span>Vodafone Cash</span>
+        </label>
+        <label class="pay-method">
+          <input type="radio" name="paymentMethod" value="fawry">
+          <span>Fawry</span>
+        </label>
+        <label class="pay-method">
+          <input type="radio" name="paymentMethod" value="cash">
+          <span>Cash</span>
+        </label>
+      </div>
+      <div class="payment-details" id="paymentDetails"></div>
+    </div>
     <div class="modal-total">
       <span class="total-label">Total Amount</span>
-      <span class="total-amt" id="totalAmt">EGP 0</span>
+      <span class="total-amount" id="totalAmount">EGP 0</span>
     </div>
-    <button class="book-btn" onclick="confirmBooking()">Confirm Reservation →</button>
+    <button class="book-btn" onclick="confirmBooking()">Confirm Booking →</button>
   </div>
 </div>
 
@@ -490,51 +531,155 @@ function filterCuisine(type, btn) {
 
 /* --- MODAL --- */
 
-let _item = null, _selTicket = 0, _qty = 1;
+// Payment method change listener
+document.getElementById('paymentMethods')?.addEventListener('change', (e) => {
+  if (e.target && e.target.name === 'paymentMethod') setPaymentDetails(e.target.value);
+});
+
+let currentEvent = null;
+let selectedTicketIdx = 0;
+let qty = 1;
+let paymentMethod = 'card';
+
+function setPaymentDetails(method) {
+  paymentMethod = method;
+  const wrap = document.getElementById('paymentDetails');
+  if (!wrap) return;
+  if (method === 'card') {
+    wrap.innerHTML = `
+      <div class="field full">
+        <label>Name on card</label>
+        <input type="text" id="cardName" placeholder="Full name">
+      </div>
+      <div class="field full">
+        <label>Card number</label>
+        <input type="text" id="cardNumber" inputmode="numeric" placeholder="1234 5678 9012 3456" maxlength="19">
+      </div>
+      <div class="field">
+        <label>Expiry</label>
+        <input type="text" id="cardExpiry" placeholder="MM/YY" maxlength="5">
+      </div>
+      <div class="field">
+        <label>CVV</label>
+        <input type="text" id="cardCvv" inputmode="numeric" placeholder="123" maxlength="3">
+      </div>
+    `;
+    document.getElementById('cardNumber')?.addEventListener('input', function (e) {
+      let val = this.value.replace(/\D/g, '');
+      val = val.substring(0, 16);
+      let parts = [];
+      for (let i = 0; i < val.length; i += 4) {
+        parts.push(val.substring(i, i + 4));
+      }
+      this.value = parts.join(' ');
+    });
+    document.getElementById('cardExpiry')?.addEventListener('input', function (e) {
+      let val = this.value.replace(/\D/g, '');
+      val = val.substring(0, 4);
+      if (val.length >= 3) {
+        this.value = val.substring(0, 2) + '/' + val.substring(2);
+      } else {
+        this.value = val;
+      }
+    });
+    return;
+  }
+  if (method === 'vodafone') {
+    wrap.innerHTML = `
+      <div class="field full">
+        <label>Vodafone Cash number</label>
+        <input type="tel" id="vfNumber" placeholder="01xxxxxxxxx" maxlength="11">
+      </div>
+      <div class="payment-note">You will receive a payment request after confirming.</div>
+    `;
+    return;
+  }
+  if (method === 'fawry') {
+    wrap.innerHTML = `
+      <div class="field full">
+        <label>Mobile number (for receipt)</label>
+        <input type="tel" id="fawryMobile" placeholder="01xxxxxxxxx" maxlength="11">
+      </div>
+      <div class="payment-note">A Fawry reference code will be generated after confirming.</div>
+    `;
+    return;
+  }
+  wrap.innerHTML = `<div class="payment-note">Pay at the venue before entry. Keep your booking confirmation.</div>`;
+}
 
 function openModal(item) {
-  _item = item; _selTicket = 0; _qty = 1;
+  currentEvent = item;
+  selectedTicketIdx = 0;
+  qty = 1;
   document.getElementById('modalTitle').textContent = item.name;
-  document.getElementById('modalSub').textContent   = '📍 ' + item.location;
-  document.getElementById('ticketOpts').innerHTML   = item.tickets.map((t, i) => `
-    <div class="ticket-opt ${i === 0 ? 'selected' : ''}" onclick="selTicket(${i})">
+  document.getElementById('modalSubtitle').textContent = (item.date ? item.date + ' · ' : '') + (item.location || '');
+  const opts = document.getElementById('ticketOptions');
+  opts.innerHTML = (item.tickets || []).map((t, i) => `
+    <div class="ticket-option ${i === 0 ? 'selected' : ''}" onclick="selectTicket(${i})">
       <div>
-        <div class="ticket-opt-name">${t.type}</div>
-        <div class="ticket-opt-perk">${t.perks}</div>
+        <div class="ticket-type">${t.type}</div>
+        <div class="ticket-perks">${t.perks}</div>
       </div>
-      <div class="ticket-opt-price">EGP ${t.price}</div>
-    </div>`).join('');
-  document.getElementById('qtyNum').textContent = 1;
+      <div class="ticket-right">
+        <div class="ticket-price-tag">EGP ${t.price}</div>
+      </div>
+    </div>
+  `).join('');
+  document.getElementById('qtyNum').textContent = qty;
   updateTotal();
+  const selected = document.querySelector('input[name="paymentMethod"]:checked');
+  setPaymentDetails(selected ? selected.value : 'card');
   document.getElementById('modalOverlay').classList.add('open');
 }
 
-function selTicket(i) {
-  _selTicket = i;
-  document.querySelectorAll('.ticket-opt').forEach((el, j) => el.classList.toggle('selected', i === j));
+function selectTicket(idx) {
+  selectedTicketIdx = idx;
+  document.querySelectorAll(".ticket-option").forEach((el, i) => {
+    el.classList.toggle("selected", i === idx);
+  });
   updateTotal();
 }
 
-function changeQty(d) {
-  _qty = Math.max(1, Math.min(10, _qty + d));
-  document.getElementById('qtyNum').textContent = _qty;
+function changeQty(delta) {
+  qty = Math.max(1, Math.min(10, qty + delta));
+  document.getElementById("qtyNum").textContent = qty;
   updateTotal();
 }
 
 function updateTotal() {
-  if (!_item) return;
-  document.getElementById('totalAmt').textContent = 'EGP ' + (_item.tickets[_selTicket].price * _qty).toLocaleString();
+  if (!currentEvent) return;
+  const price = currentEvent.tickets[selectedTicketIdx].price * qty;
+  document.getElementById("totalAmount").textContent = "EGP " + price.toLocaleString();
 }
 
 function closeModal(e) {
-  if (!e || e.target === document.getElementById('modalOverlay'))
-    document.getElementById('modalOverlay').classList.remove('open');
+  if (!e || e.target === document.getElementById("modalOverlay")) {
+    document.getElementById("modalOverlay").classList.remove("open");
+  }
 }
 
 function confirmBooking() {
-  const t = _item.tickets[_selTicket];
-  alert(`✅ Reservation Confirmed!\n\n${_item.name}\n${t.type} × ${_qty} guests\nTotal: EGP ${(t.price * _qty).toLocaleString()}\n\nConfirmation sent to your email.`);
-  document.getElementById('modalOverlay').classList.remove('open');
+  if (!currentEvent || !currentEvent.tickets || !currentEvent.tickets.length) {
+    alert('This item is not bookable right now.');
+    return;
+  }
+  const t = currentEvent.tickets[selectedTicketIdx];
+  const total = (t.price * qty).toLocaleString();
+
+  // Basic validation check
+  if (paymentMethod === 'card') {
+    const cn = document.getElementById('cardNumber')?.value.replace(/\\s/g, '');
+    if (!cn || cn.length < 15) return alert('Please enter a valid card number.');
+  } else if (paymentMethod === 'vodafone') {
+    const vf = document.getElementById('vfNumber')?.value;
+    if (!vf || vf.length < 11) return alert('Please enter a valid Vodafone Cash number.');
+  } else if (paymentMethod === 'fawry') {
+    const fw = document.getElementById('fawryMobile')?.value;
+    if (!fw || fw.length < 11) return alert('Please enter a valid mobile number for Fawry.');
+  }
+
+  alert(`✅ Booking Confirmed for ${currentEvent.name}!\\n\\n${t.type} × ${qty} guests\\nTotal: EGP ${total}\\nPaid via: ${paymentMethod.toUpperCase()}\\n\\nYour reservation details have been sent to your email.`);
+  closeModal();
 }
 
 /* --- INIT --- */

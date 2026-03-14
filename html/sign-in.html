@@ -69,7 +69,7 @@
           <input type="checkbox" />
           <label>Remember me </label>
         </div>
-        <span class="span">Forgot password?</span>
+        <span class="span" style="cursor: pointer;" onclick="openForgotModal()">Forgot password?</span>
       </div>
       <button class="button-submit">Sign In</button>
       <p class="p">Don't have an account? <a href="sign-up.html"> <span class="span">Sign Up</span></a></p>
@@ -146,5 +146,47 @@
         </button>
       </div>
     </form>
+
+    <!-- Forgot Password Modal -->
+    <div class="forgot-overlay" id="forgotOverlay" onclick="closeForgotModal(event)">
+      <div class="forgot-modal">
+        <button class="forgot-close" onclick="closeForgotModal()">×</button>
+        <div class="forgot-title">Reset Password</div>
+        <div class="forgot-desc">Enter your email address and we'll send you a link to reset your password.</div>
+        
+        <form id="forgotForm" onsubmit="submitForgot(event)">
+          <input type="email" class="forgot-input" placeholder="Enter your email" required />
+          <button type="submit" class="forgot-submit">Send Reset Link</button>
+        </form>
+        
+        <div class="forgot-success" id="forgotSuccess">
+          ✅ Reset link sent! Check your email.
+        </div>
+      </div>
+    </div>
+
+    <!-- Scripts -->
+    <script>
+      function openForgotModal() {
+        document.getElementById('forgotOverlay').classList.add('active');
+        document.getElementById('forgotForm').style.display = 'block';
+        document.getElementById('forgotSuccess').style.display = 'none';
+        document.getElementById('forgotForm').reset();
+      }
+
+      function closeForgotModal(e) {
+        if (!e || e.target === document.getElementById('forgotOverlay')) {
+          document.getElementById('forgotOverlay').classList.remove('active');
+        }
+      }
+
+      function submitForgot(e) {
+        e.preventDefault();
+        // Here you would normally place your API call to send the password reset email.
+        // For the UI, we just simulate success:
+        document.getElementById('forgotForm').style.display = 'none';
+        document.getElementById('forgotSuccess').style.display = 'block';
+      }
+    </script>
   </body>
 </html>
