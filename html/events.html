@@ -1,261 +1,317 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Events — TicketZone</title>
-<link rel="stylesheet" href="/css/event.css">
-</head>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Events — TicketZone</title>
+    <link rel="stylesheet" href="/css/event.css" />
+  </head>
 
-
-<body>
-
-<nav>
-  <a href="index.html" class="logo">TICKET<span>ZONE</span></a>
-  <ul class="nav-links">
-    <li><a href="sports.html">Sports</a></li>
-    <li><a href="events.html" class="active">Events</a></li>
-    <li><a href="dining.html">Dining</a></li>
-    <li><a href="about.html">About</a></li>
-  </ul>
-  <div class="nav-ctas">
-      <a href="">
-        <button class="nav-cta" onclick="openModal({ name: 'Sign In' })">
-          My Tickets
-        </button>
-      </a>
-      <a href="sign-in.html">
-        <button class="nav-sign" onclick="openModal({ name: 'Sign In' })">
-          Sign In
-        </button>
-      </a>
-    </div>
-</nav>
-
-<div class="page-hero">
-  <div class="page-hero-bg">
-    <img src="" alt="Events">
-  </div>
-  <div class="fade-up page-hero-tag">Concerts · Festivals · Culture</div>
-  <h1 class="fade-up">EVENTS <span>&</span><br>FESTIVALS</h1>
-  <p class="fade-up">Concerts, festivals, cultural events and more. Every experience worth attending — all in one place.</p>
-  <div class="hero-btns fade-up">
-    <a href="#featured" class="btn-primary">Featured Event</a>
-    <a href="#all-events" class="btn-outline">All Events</a>
-  </div>
-</div>
-
-<section class="section">
-
-  <div class="stat-cards">
-    <div class="stat-card">
-      <div class="stat-card-num">85<span>+</span></div>
-      <div class="stat-card-label">Events This Month</div>
-    </div>
-    <div class="stat-card">
-      <div class="stat-card-num">40<span>+</span></div>
-      <div class="stat-card-label">Artists & Performers</div>
-    </div>
-    <div class="stat-card">
-      <div class="stat-card-num">12</div>
-      <div class="stat-card-label">Venues</div>
-    </div>
-    <div class="stat-card">
-      <div class="stat-card-num">30<span>K</span></div>
-      <div class="stat-card-label">Attendees Expected</div>
-    </div>
-  </div>
-
-  <!-- CALENDAR -->
-  <div class="section-header" style="margin-bottom:20px;">
-    <div>
-      <div class="section-title">PICK A <span class="accent">DATE</span></div>
-      <div class="section-sub">Browse events by date</div>
-    </div>
-  </div>
-  <div class="calendar-strip" id="calStrip"></div>
-
-  <!-- FEATURED -->
-  <div id="featured" class="section-header">
-    <div>
-      <div class="section-title">FEATURED <span class="accent">EVENT</span></div>
-      <div class="section-sub">Don't miss this one</div>
-    </div>
-  </div>
-  <div class="featured-event" id="featuredEvent"></div>
-
-  <!-- ALL EVENTS -->
-  <div id="all-events" class="section-header" style="margin-top:60px;">
-    <div>
-      <div class="section-title">ALL <span class="accent">EVENTS</span></div>
-      <div class="section-sub">Cairo & Alexandria</div>
-    </div>
-    <a href="#" class="view-all">View all →</a>
-  </div>
-  <div class="filter-tabs">
-    <button class="filter-tab active" onclick="filterEvt('all',this)">All</button>
-    <button class="filter-tab" onclick="filterEvt('concert',this)">🎵 Concerts</button>
-    <button class="filter-tab" onclick="filterEvt('festival',this)">🎪 Festivals</button>
-    <button class="filter-tab" onclick="filterEvt('cultural',this)">🎭 Cultural</button>
-    <button class="filter-tab" onclick="filterEvt('outdoor',this)">🌿 Outdoor</button>
-  </div>
-  <div class="cards-grid" id="eventsGrid"></div>
-
-</section>
-
-<!-- FOOTER -->
-<footer>
-  <div class="footer-grid">
-    <div class="footer-brand">
+  <body>
+    <nav>
       <a href="index.html" class="logo">TICKET<span>ZONE</span></a>
-      <p>Your one-stop platform for booking tickets to sports, entertainment, dining, and unforgettable experiences across Egypt.</p>
+      <ul class="nav-links">
+        <li><a href="sports.html">Sports</a></li>
+        <li><a href="events.html" class="active">Events</a></li>
+        <li><a href="dining.html">Dining</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+      <div class="nav-ctas">
+        <a href="">
+          <button class="nav-cta" onclick="openModal({ name: 'Sign In' })">
+            My Tickets
+          </button>
+        </a>
+        <a href="sign-in.html">
+          <button class="nav-sign" onclick="openModal({ name: 'Sign In' })">
+            Sign In
+          </button>
+        </a>
+      </div>
+    </nav>
+
+    <div class="page-hero">
+      <div class="page-hero-bg">
+        <img src="" alt="Events" />
+      </div>
+      <div class="fade-up page-hero-tag">Concerts · Festivals · Culture</div>
+      <h1 class="fade-up">EVENTS <span>&</span><br />FESTIVALS</h1>
+      <p class="fade-up">
+        Concerts, festivals, cultural events and more. Every experience worth
+        attending — all in one place.
+      </p>
+      <div class="hero-btns fade-up">
+        <a href="#featured" class="btn-primary">Featured Event</a>
+        <a href="#all-events" class="btn-outline">All Events</a>
+      </div>
     </div>
-    <div class="footer-col">
-      <h4>Sports</h4>
-      <a href="sports.html">Football Matches</a>
-      <a href="sports.html">Handball Games</a>
-      <a href="sports.html">Basketball</a>
-      <a href="sports.html">Tennis</a>
+
+    <section class="section">
+      <div class="stat-cards">
+        <div class="stat-card">
+          <div class="stat-card-num">85<span>+</span></div>
+          <div class="stat-card-label">Events This Month</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card-num">40<span>+</span></div>
+          <div class="stat-card-label">Artists & Performers</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card-num">12</div>
+          <div class="stat-card-label">Venues</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card-num">30<span>K</span></div>
+          <div class="stat-card-label">Attendees Expected</div>
+        </div>
+      </div>
+
+      <!-- CALENDAR -->
+      <div class="section-header" style="margin-bottom: 20px">
+        <div>
+          <div class="section-title">
+            PICK A <span class="accent">DATE</span>
+          </div>
+          <div class="section-sub">Browse events by date</div>
+        </div>
+      </div>
+      <div class="calendar-strip" id="calStrip"></div>
+
+      <!-- FEATURED -->
+      <div id="featured" class="section-header">
+        <div>
+          <div class="section-title">
+            FEATURED <span class="accent">EVENT</span>
+          </div>
+          <div class="section-sub">Don't miss this one</div>
+        </div>
+      </div>
+      <div class="featured-event" id="featuredEvent"></div>
+
+      <!-- ALL EVENTS -->
+      <div id="all-events" class="section-header" style="margin-top: 60px">
+        <div>
+          <div class="section-title">
+            ALL <span class="accent">EVENTS</span>
+          </div>
+          <div class="section-sub">Cairo & Alexandria</div>
+        </div>
+        <a href="#" class="view-all">View all →</a>
+      </div>
+      <div class="filter-tabs">
+        <button class="filter-tab active" onclick="filterEvt('all', this)">
+          All
+        </button>
+        <button class="filter-tab" onclick="filterEvt('concert', this)">
+          🎵 Concerts
+        </button>
+        <button class="filter-tab" onclick="filterEvt('festival', this)">
+          🎪 Festivals
+        </button>
+        <button class="filter-tab" onclick="filterEvt('cultural', this)">
+          🎭 Cultural
+        </button>
+        <button class="filter-tab" onclick="filterEvt('outdoor', this)">
+          🌿 Outdoor
+        </button>
+      </div>
+      <div class="cards-grid" id="eventsGrid"></div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="logo">TICKET<span>ZONE</span></a>
+          <p>
+            Your one-stop platform for booking tickets to sports, entertainment,
+            dining, and unforgettable experiences across Egypt.
+          </p>
+        </div>
+        <div class="footer-col">
+          <h4>Sports</h4>
+          <a href="sports.html">Football Matches</a>
+          <a href="sports.html">Handball Games</a>
+          <a href="sports.html">Basketball</a>
+          <a href="sports.html">Tennis</a>
+        </div>
+        <div class="footer-col">
+          <h4>Experiences</h4>
+          <a href="entertainment.html">Parties &amp; Clubs</a>
+          <a href="entertainment.html">Stand-up Comedy</a>
+          <a href="events.html">Concerts</a>
+          <a href="dining.html">Restaurants</a>
+        </div>
+        <div class="footer-col">
+          <h4>Company</h4>
+          <a href="about.html">About Us</a>
+          <a href="about.html">Partner With Us</a>
+          <a href="about.html">Careers</a>
+          <a href="#">Support</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div>© 2025 TicketZone. All rights reserved.</div>
+        <div class="social-links">
+          <a href="#">Twitter</a>
+          <a href="#">Instagram</a>
+          <a href="#">Facebook</a>
+          <a href="#">TikTok</a>
+        </div>
+      </div>
+    </footer>
+
+    <!-- MODAL -->
+    <div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
+      <div class="modal">
+        <button class="modal-close" onclick="closeModal()">×</button>
+        <div class="modal-title" id="modalTitle">Book Tickets</div>
+        <div class="modal-sub" id="modalSub"></div>
+        <div class="ticket-opts" id="ticketOpts"></div>
+        <div class="qty-row">
+          <span class="qty-label">Number of Tickets</span>
+          <button class="qty-btn" onclick="changeQty(-1)">−</button>
+          <div class="qty-num" id="qtyNum">1</div>
+          <button class="qty-btn" onclick="changeQty(1)">+</button>
+        </div>
+        <div class="modal-total">
+          <span class="total-label">Total Amount</span>
+          <span class="total-amt" id="totalAmt">EGP 0</span>
+        </div>
+        <button class="book-btn" onclick="confirmBooking()">
+          Confirm Booking →
+        </button>
+      </div>
     </div>
-    <div class="footer-col">
-      <h4>Experiences</h4>
-      <a href="entertainment.html">Parties &amp; Clubs</a>
-      <a href="entertainment.html">Stand-up Comedy</a>
-      <a href="events.html">Concerts</a>
-      <a href="dining.html">Restaurants</a>
-    </div>
-    <div class="footer-col">
-      <h4>Company</h4>
-      <a href="about.html">About Us</a>
-      <a href="about.html">Partner With Us</a>
-      <a href="about.html">Careers</a>
-      <a href="#">Support</a>
-    </div>
-  </div>
-  <div class="footer-bottom">
-    <div>© 2025 TicketZone. All rights reserved.</div>
-    <div class="social-links">
-      <a href="#">Twitter</a>
-      <a href="#">Instagram</a>
-      <a href="#">Facebook</a>
-      <a href="#">TikTok</a>
-    </div>
-  </div>
-</footer>
 
-<!-- MODAL -->
-<div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
-  <div class="modal">
-    <button class="modal-close" onclick="closeModal()">×</button>
-    <div class="modal-title" id="modalTitle">Book Tickets</div>
-    <div class="modal-sub"   id="modalSub"></div>
-    <div class="ticket-opts" id="ticketOpts"></div>
-    <div class="qty-row">
-      <span class="qty-label">Number of Tickets</span>
-      <button class="qty-btn" onclick="changeQty(-1)">−</button>
-      <div class="qty-num" id="qtyNum">1</div>
-      <button class="qty-btn" onclick="changeQty(1)">+</button>
-    </div>
-    <div class="modal-total">
-      <span class="total-label">Total Amount</span>
-      <span class="total-amt" id="totalAmt">EGP 0</span>
-    </div>
-    <button class="book-btn" onclick="confirmBooking()">Confirm Booking →</button>
-  </div>
-</div>
+    <script>
+      const eventsData = [
+        {
+          name: "Marwan pablo - Legacy ",
+          label: "Concert",
+          badgeClass: "badge-gold",
+          date: "APR 18, 2025",
+          location: "New Alamein,Egypt",
+          img: "https://www.visitalamein.com/uploads/0000/1/2025/07/11/screenshot-2025-07-11-at-83542-pm.png",
+          desc: "The biggest rapers show of the year. 10,000 capacity. Epic production.",
+          price: 250,
+          soldPct: 45,
+          hot: true,
+          type: "concert",
+          tickets: [
+            { type: "General", perks: "Floor standing", price: 250 },
+            { type: "VIP", perks: "Elevated platform + bar", price: 650 },
+          ],
+        },
+        {
+          name: "Abyusf concert",
+          label: "Festival",
+          badgeClass: "badge-green",
+          date: "APR 5, 2025",
+          location: "ELZamalek, Cairo",
+          img: "https://mir-s3-cdn-cf.behance.net/projects/404/f413bc136857025.Y3JvcCwzMzM1LDI2MDgsMCwzNjM.jpg",
+          desc: "one of the biggest rapers now in Zamalek with a lot of surprise guests.",
+          price: 350,
+          soldPct: 30,
+          hot: false,
+          type: "festival",
+          tickets: [
+            { type: "Day Pass", perks: "One day access", price: 350 },
+            { type: "3-Day", perks: "Full access", price: 850 },
+          ],
+        },
+        {
+          name: "Cairo Jazz Night",
+          label: "Concert",
+          badgeClass: "badge-cyan",
+          date: "MAR 29, 2025",
+          location: "Cairo Jazz Club",
+          img: "https://images.unsplash.com/photo-1415201364774-f6f0bb35f28f?w=600&q=80",
+          desc: "An intimate evening of world-class jazz with international artists.",
+          price: 180,
+          soldPct: 70,
+          hot: false,
+          type: "concert",
+          tickets: [
+            { type: "Standard", perks: "General entry", price: 180 },
+            { type: "VIP Table", perks: "Reserved table + drink", price: 450 },
+          ],
+        },
+        {
+          name: "Theatro Arkan",
+          label: "Cultural",
+          badgeClass: "badge-purple",
+          date: "APR 12, 2025",
+          location: "Theatro Arkan",
+          img: "https://d3vzzcunewy153.cloudfront.net/img/17f95c00-4ab0-492d-94a6-3a647e5ea2fe/0ba86a5189686975e97183b1f9676818.jpg",
+          desc: "A celebration of Egyptian art, poetry, and live music.",
+          price: 120,
+          soldPct: 50,
+          hot: false,
+          type: "cultural",
+          tickets: [
+            { type: "Standard", perks: "Main hall seating", price: 120 },
+            { type: "Premium", perks: "Front rows", price: 280 },
+          ],
+        },
+        {
+          name: "Gaming Festival Egypt ",
+          label: "Outdoor",
+          badgeClass: "badge-pink",
+          date: "APR 25, 2025",
+          location: "Gamming Arena ,   Egypt",
+          img: "https://www.insomniamerch.com/cdn/shop/files/Insomnia-Logo-02-blk.png?height=628&pad_color=fff&v=1680105494&width=1200",
+          desc: "Open-air rave under the stars with international DJs.",
+          price: 600,
+          soldPct: 88,
+          hot: true,
+          type: "outdoor",
+          tickets: [
+            { type: "Entry", perks: "Access + welcome drink", price: 600 },
+            {
+              type: "VIP Cabana",
+              perks: "Private cabana + bottle",
+              price: 3500,
+            },
+          ],
+        },
+        {
+          name: "Shehab in Alexandria",
+          label: "Festival",
+          badgeClass: "badge-green",
+          date: "MAY 1, 2025",
+          location: "Alexandia Stadium , Alexandria",
+          img: "https://cineegypt.com/wp-content/uploads/2025/08/WhatsApp-Image-2025-08-07-at-8.03.48-PM.jpeg",
+          desc: "Shehab concert in Alexandria for the first time with a lot of surprise guests.",
+          price: 250,
+          soldPct: 20,
+          hot: false,
+          type: "festival",
+          tickets: [
+            { type: "Standard", perks: "General entry", price: 250 },
+            { type: "VIP Beach", perks: "VIP zone + sunbed", price: 800 },
+          ],
+        },
+      ];
 
+      /* --- HELPERS --- */
 
-<script>
+      function esc(obj) {
+        return JSON.stringify(obj).replace(/"/g, "&quot;");
+      }
 
-
-
-const eventsData = [
-  {
-    name: 'Marwan pablo - Legacy ', label: 'Concert', badgeClass: 'badge-gold',
-    date: 'APR 18, 2025', location: 'New Alamein,Egypt',
-    img: 'https://www.visitalamein.com/uploads/0000/1/2025/07/11/screenshot-2025-07-11-at-83542-pm.png',
-    desc: 'The biggest rapers show of the year. 10,000 capacity. Epic production.',
-    price: 250, soldPct: 45, hot: true, type: 'concert',
-    tickets: [
-      { type: 'General', perks: 'Floor standing',          price: 250 },
-      { type: 'VIP',     perks: 'Elevated platform + bar', price: 650 }
-    ]
-  },
-  {
-    name: 'Abyusf concert', label: 'Festival', badgeClass: 'badge-green',
-    date: 'APR 5, 2025', location: 'ELZamalek, Cairo',
-    img: 'https://mir-s3-cdn-cf.behance.net/projects/404/f413bc136857025.Y3JvcCwzMzM1LDI2MDgsMCwzNjM.jpg',
-    desc: 'one of the biggest rapers now in Zamalek with a lot of surprise guests.',
-    price: 350, soldPct: 30, hot: false, type: 'festival',
-    tickets: [
-      { type: 'Day Pass', perks: 'One day access', price: 350 },
-      { type: '3-Day',    perks: 'Full access',    price: 850 }
-    ]
-  },
-  {
-    name: 'Cairo Jazz Night', label: 'Concert', badgeClass: 'badge-cyan',
-    date: 'MAR 29, 2025', location: 'Cairo Jazz Club',
-    img: 'https://images.unsplash.com/photo-1415201364774-f6f0bb35f28f?w=600&q=80',
-    desc: 'An intimate evening of world-class jazz with international artists.',
-    price: 180, soldPct: 70, hot: false, type: 'concert',
-    tickets: [
-      { type: 'Standard',  perks: 'General entry',          price: 180 },
-      { type: 'VIP Table', perks: 'Reserved table + drink', price: 450 }
-    ]
-  },
-  {
-    name: 'Theatro Arkan', label: 'Cultural', badgeClass: 'badge-purple',
-    date: 'APR 12, 2025', location: 'Theatro Arkan',
-    img: 'https://d3vzzcunewy153.cloudfront.net/img/17f95c00-4ab0-492d-94a6-3a647e5ea2fe/0ba86a5189686975e97183b1f9676818.jpg',
-    desc: 'A celebration of Egyptian art, poetry, and live music.',
-    price: 120, soldPct: 50, hot: false, type: 'cultural',
-    tickets: [
-      { type: 'Standard', perks: 'Main hall seating', price: 120 },
-      { type: 'Premium',  perks: 'Front rows',        price: 280 }
-    ]
-  },
-  {
-    name: 'Gaming Festival Egypt ', label: 'Outdoor', badgeClass: 'badge-pink',
-    date: 'APR 25, 2025', location: 'Gamming Arena ,   Egypt',
-    img: 'https://www.insomniamerch.com/cdn/shop/files/Insomnia-Logo-02-blk.png?height=628&pad_color=fff&v=1680105494&width=1200',
-    desc: 'Open-air rave under the stars with international DJs.',
-    price: 600, soldPct: 88, hot: true, type: 'outdoor',
-    tickets: [
-      { type: 'Entry',      perks: 'Access + welcome drink',  price: 600  },
-      { type: 'VIP Cabana', perks: 'Private cabana + bottle', price: 3500 }
-    ]
-  },
-  {
-    name: 'Shehab in Alexandria', label: 'Festival', badgeClass: 'badge-green',
-    date: 'MAY 1, 2025', location: 'Alexandia Stadium , Alexandria',
-    img: 'https://cineegypt.com/wp-content/uploads/2025/08/WhatsApp-Image-2025-08-07-at-8.03.48-PM.jpeg',
-    desc: 'Shehab concert in Alexandria for the first time with a lot of surprise guests.',
-    price: 200, soldPct: 20, hot: false, type: 'festival',
-    tickets: [
-      { type: 'Standard',  perks: 'General entry',      price: 200 },
-      { type: 'VIP Beach', perks: 'VIP zone + sunbed',  price: 800 }
-    ]
-  }
-];
-
-/* --- HELPERS --- */
-
-function esc(obj) {
-  return JSON.stringify(obj).replace(/"/g, '&quot;');
-}
-
-function soldBar(pct) {
-  return `<div class="sold-bar-wrap">
+      function soldBar(pct) {
+        return `<div class="sold-bar-wrap">
     <div class="sold-bar"><div class="sold-bar-fill" style="width:${pct}%"></div></div>
     <span class="sold-pct">${pct}% sold</span>
   </div>`;
-}
+      }
 
-/* --- RENDER FEATURED --- */
+      /* --- RENDER FEATURED --- */
 
-function renderFeatured(ev) {
-  const el = document.getElementById('featuredEvent');
-  el.innerHTML = `
+      function renderFeatured(ev) {
+        const el = document.getElementById("featuredEvent");
+        el.innerHTML = `
     <div class="feat-img"><img src="${ev.img}" alt="${ev.name}"></div>
     <div class="feat-body">
       <div class="feat-tag">⭐ Featured Event</div>
@@ -269,17 +325,19 @@ function renderFeatured(ev) {
       <div class="feat-price">EGP ${ev.price} <span>/ person</span></div>
       <button class="btn-primary" onclick="event.stopPropagation();openModal(${esc(ev)})">Book Now →</button>
     </div>`;
-  el.onclick = () => openModal(ev);
-}
+        el.onclick = () => openModal(ev);
+      }
 
-/* --- RENDER CARDS --- */
+      /* --- RENDER CARDS --- */
 
-function renderCards(list) {
-  document.getElementById('eventsGrid').innerHTML = list.map(ev => `
+      function renderCards(list) {
+        document.getElementById("eventsGrid").innerHTML = list
+          .map(
+            (ev) => `
     <div class="card" onclick="openModal(${esc(ev)})">
       <div class="card-img">
         <span class="card-badge ${ev.badgeClass}">${ev.label}</span>
-        ${ev.hot ? '<span class="card-hot">🔥 HOT</span>' : ''}
+        ${ev.hot ? '<span class="card-hot">🔥 HOT</span>' : ""}
         <img src="${ev.img}" alt="${ev.name}" loading="lazy">
       </div>
       <div class="card-body">
@@ -298,93 +356,116 @@ function renderCards(list) {
           <button class="card-btn" onclick="event.stopPropagation();openModal(${esc(ev)})">Get Tickets</button>
         </div>
       </div>
-    </div>`).join('');
-}
+    </div>`,
+          )
+          .join("");
+      }
 
-/* --- FILTER --- */
+      /* --- FILTER --- */
 
-function filterEvt(type, btn) {
-  document.querySelectorAll('.filter-tab').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-  renderCards(type === 'all' ? eventsData : eventsData.filter(e => e.type === type));
-}
+      function filterEvt(type, btn) {
+        document
+          .querySelectorAll(".filter-tab")
+          .forEach((b) => b.classList.remove("active"));
+        btn.classList.add("active");
+        renderCards(
+          type === "all"
+            ? eventsData
+            : eventsData.filter((e) => e.type === type),
+        );
+      }
 
-/* --- CALENDAR --- */
+      /* --- CALENDAR --- */
 
-function buildCalendar() {
-  const days = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
-  const strip = document.getElementById('calStrip');
-  const hasDot = [0, 2, 5, 9, 13];
-  for (let i = 0; i < 14; i++) {
-    const d = new Date();
-    d.setDate(d.getDate() + i);
-    const el = document.createElement('div');
-    el.className = 'cal-day' + (i === 0 ? ' active' : '');
-    el.innerHTML = `<div class="cal-day-name">${days[d.getDay()]}</div>
+      function buildCalendar() {
+        const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+        const strip = document.getElementById("calStrip");
+        const hasDot = [0, 2, 5, 9, 13];
+        for (let i = 0; i < 14; i++) {
+          const d = new Date();
+          d.setDate(d.getDate() + i);
+          const el = document.createElement("div");
+          el.className = "cal-day" + (i === 0 ? " active" : "");
+          el.innerHTML = `<div class="cal-day-name">${days[d.getDay()]}</div>
       <div class="cal-day-num">${d.getDate()}</div>
-      ${hasDot.includes(i) ? '<div class="cal-day-dot"></div>' : ''}`;
-    el.onclick = () => {
-      document.querySelectorAll('.cal-day').forEach(c => c.classList.remove('active'));
-      el.classList.add('active');
-    };
-    strip.appendChild(el);
-  }
-}
+      ${hasDot.includes(i) ? '<div class="cal-day-dot"></div>' : ""}`;
+          el.onclick = () => {
+            document
+              .querySelectorAll(".cal-day")
+              .forEach((c) => c.classList.remove("active"));
+            el.classList.add("active");
+          };
+          strip.appendChild(el);
+        }
+      }
 
-/* --- MODAL --- */
+      /* --- MODAL --- */
 
-let _item = null, _selTicket = 0, _qty = 1;
+      let _item = null,
+        _selTicket = 0,
+        _qty = 1;
 
-function openModal(item) {
-  _item = item; _selTicket = 0; _qty = 1;
-  document.getElementById('modalTitle').textContent = item.name;
-  document.getElementById('modalSub').textContent   = item.date + ' · ' + item.location;
-  document.getElementById('ticketOpts').innerHTML   = item.tickets.map((t, i) => `
-    <div class="ticket-opt ${i === 0 ? 'selected' : ''}" onclick="selTicket(${i})">
+      function openModal(item) {
+        _item = item;
+        _selTicket = 0;
+        _qty = 1;
+        document.getElementById("modalTitle").textContent = item.name;
+        document.getElementById("modalSub").textContent =
+          item.date + " · " + item.location;
+        document.getElementById("ticketOpts").innerHTML = item.tickets
+          .map(
+            (t, i) => `
+    <div class="ticket-opt ${i === 0 ? "selected" : ""}" onclick="selTicket(${i})">
       <div>
         <div class="ticket-opt-name">${t.type}</div>
         <div class="ticket-opt-perk">${t.perks}</div>
       </div>
       <div class="ticket-opt-price">EGP ${t.price}</div>
-    </div>`).join('');
-  document.getElementById('qtyNum').textContent = 1;
-  updateTotal();
-  document.getElementById('modalOverlay').classList.add('open');
-}
+    </div>`,
+          )
+          .join("");
+        document.getElementById("qtyNum").textContent = 1;
+        updateTotal();
+        document.getElementById("modalOverlay").classList.add("open");
+      }
 
-function selTicket(i) {
-  _selTicket = i;
-  document.querySelectorAll('.ticket-opt').forEach((el, j) => el.classList.toggle('selected', i === j));
-  updateTotal();
-}
+      function selTicket(i) {
+        _selTicket = i;
+        document
+          .querySelectorAll(".ticket-opt")
+          .forEach((el, j) => el.classList.toggle("selected", i === j));
+        updateTotal();
+      }
 
-function changeQty(d) {
-  _qty = Math.max(1, Math.min(10, _qty + d));
-  document.getElementById('qtyNum').textContent = _qty;
-  updateTotal();
-}
+      function changeQty(d) {
+        _qty = Math.max(1, Math.min(10, _qty + d));
+        document.getElementById("qtyNum").textContent = _qty;
+        updateTotal();
+      }
 
-function updateTotal() {
-  if (!_item) return;
-  document.getElementById('totalAmt').textContent = 'EGP ' + (_item.tickets[_selTicket].price * _qty).toLocaleString();
-}
+      function updateTotal() {
+        if (!_item) return;
+        document.getElementById("totalAmt").textContent =
+          "EGP " + (_item.tickets[_selTicket].price * _qty).toLocaleString();
+      }
 
-function closeModal(e) {
-  if (!e || e.target === document.getElementById('modalOverlay'))
-    document.getElementById('modalOverlay').classList.remove('open');
-}
+      function closeModal(e) {
+        if (!e || e.target === document.getElementById("modalOverlay"))
+          document.getElementById("modalOverlay").classList.remove("open");
+      }
 
-function confirmBooking() {
-  const t = _item.tickets[_selTicket];
-  alert(`✅ Booking Confirmed!\n\n${_item.name}\n${t.type} × ${_qty}\nTotal: EGP ${(t.price * _qty).toLocaleString()}\n\nConfirmation sent to your email.`);
-  document.getElementById('modalOverlay').classList.remove('open');
-}
+      function confirmBooking() {
+        const t = _item.tickets[_selTicket];
+        alert(
+          `✅ Booking Confirmed!\n\n${_item.name}\n${t.type} × ${_qty}\nTotal: EGP ${(t.price * _qty).toLocaleString()}\n\nConfirmation sent to your email.`,
+        );
+        document.getElementById("modalOverlay").classList.remove("open");
+      }
 
-/* --- INIT --- */
-buildCalendar();
-renderFeatured(eventsData[0]);
-renderCards(eventsData);
-
-</script>
-</body>
+      /* --- INIT --- */
+      buildCalendar();
+      renderFeatured(eventsData[0]);
+      renderCards(eventsData);
+    </script>
+  </body>
 </html>
