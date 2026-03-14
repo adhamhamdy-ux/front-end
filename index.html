@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TicketZone — Live Events & Experiences</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="index.css">
+</head>
+<body>
+  <nav>
+    <a href="index.html"><div class="logo">TICKET<span>ZONE</span></div></a>
+    <ul class="nav-links">
+      <li><a href="sports.html">Sports</a></li>
+      <li><a href="events.html">Events</a></li>
+      <li><a href="dining.html">Dining</a></li>
+      <li><a href="about.html">About</a></li>
+    </ul>
+    <div class="nav-ctas">
+      <a href="">
+        <button class="nav-cta" onclick="openModal({ name: 'Sign In' })">
+          My Tickets
+        </button>
+      </a>
+      <a href="sign-in.html">
+        <button class="nav-sign" onclick="openModal({ name: 'Sign In' })">
+          Sign In
+        </button>
+      </a>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-left">
+      <div class="hero-tag">Egypt #1 Ticket Platform</div>
+      <h1 class="hero-title">
+        LIVE<br>
+        <span class="line2">EVERY</span><br>
+        MOMENT
+      </h1>
+      <p class="hero-desc">
+        Football. Handball. Comedy nights. Restaurant reservations. Parties.
+        All the best experiences in one place — booked in seconds.
+      </p>
+      <div class="hero-actions">
+        <a href="#events" class="btn-primary">Explore Events</a>
+        <a href="#" class="btn-outline">How it works</a>
+      </div>
+      <div class="hero-stats">
+        <div>
+          <div class="stat-num">200<span>+</span></div>
+          <div class="stat-label">Events Monthly</div>
+        </div>
+        <div>
+          <div class="stat-num">50<span>K</span></div>
+          <div class="stat-label">Happy Fans</div>
+        </div>
+        <div>
+          <div class="stat-num">4.9<span>★</span></div>
+          <div class="stat-label">Avg Rating</div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="hero-img-grid">
+        <div class="hero-img-cell">
+          <img src="/images/the-ball-stadion-football-the-pitch-47730.jpeg" alt="Football" />
+        </div>
+        <div class="hero-img-cell">
+          <img src="/images/theater.jpg" alt="theater" />
+        </div>
+        <div class="hero-img-cell">
+          <img src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=600&q=80" alt="Party" />
+        </div>
+        <div class="hero-img-cell">
+          <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600&q=80" alt="Restaurant" />
+        </div>
+      </div>
+      <div class="hero-overlay"></div>
+    </div>
+  </section>
+
+  <div class="search-section">
+    <div class="search-bar">
+      <div class="search-field" style="flex: 2">
+        <label>Search Events</label>
+        <input type="text" placeholder="Football, Comedy, Restaurant..." />
+      </div>
+      <div class="search-divider"></div>
+      <div class="search-field">
+        <label>Category</label>
+        <select>
+          <option>All Categories</option>
+          <option>Football</option>
+          <option>Handball</option>
+          <option>Party</option>
+          <option>Restaurant</option>
+          <option>Stand-up Comedy</option>
+          <option>Concerts</option>
+        </select>
+      </div>
+      <div class="search-divider"></div>
+      <div class="search-field">
+        <label>Date</label>
+        <input type="date" />
+      </div>
+      <div class="search-divider"></div>
+      <div class="search-field">
+        <label>City</label>
+        <select>
+          <option>Cairo</option>
+          <option>Alexandria</option>
+          <option>Giza</option>
+          <option>Hurghada</option>
+        </select>
+      </div>
+      <button class="search-btn">🔍 Search</button>
+    </div>
+  </div>
+
+  <div class="ticker-wrap" style="margin-top: 60px">
+    <div class="ticker" id="ticker"></div>
+  </div>
+
+  <section class="section" id="events">
+    <div class="section-header">
+      <div>
+        <div class="section-title">
+          BROWSE <span class="accent">CATEGORIES</span>
+        </div>
+        <div class="section-sub">Find the experience you're looking for</div>
+      </div>
+      <a href="#" class="view-all">View all →</a>
+    </div>
+    <div class="cats-grid">
+      <div class="cat-card" style="--cat-color: #ff3b30" onclick="filterCategory('football')">
+        <div class="cat-icon">⚽</div>
+        <div class="cat-name">Football</div>
+        <div class="cat-count">24 matches</div>
+      </div>
+      <div class="cat-card" style="--cat-color: #a855f7" onclick="filterCategory('handball')">
+        <div class="cat-icon">🤾</div>
+        <div class="cat-name">Handball</div>
+        <div class="cat-count">12 matches</div>
+      </div>
+      <div class="cat-card" style="--cat-color: #ffb800" onclick="filterCategory('party')">
+        <div class="cat-icon">🎉</div>
+        <div class="cat-name">Parties</div>
+        <div class="cat-count">38 events</div>
+      </div>
+      <div class="cat-card" style="--cat-color: #00ff88" onclick="filterCategory('restaurant')">
+        <div class="cat-icon">🍽️</div>
+        <div class="cat-name">Restaurants</div>
+        <div class="cat-count">86 venues</div>
+      </div>
+      <div class="cat-card" style="--cat-color: #00e5ff" onclick="filterCategory('comedy')">
+        <div class="cat-icon">🎤</div>
+        <div class="cat-name">Stand-up</div>
+        <div class="cat-count">15 shows</div>
+      </div>
+      <div class="cat-card" style="--cat-color: #ff6ec7" onclick="filterCategory('concert')">
+        <div class="cat-icon">🎵</div>
+        <div class="cat-name">Concerts</div>
+        <div class="cat-count">20 shows</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top: 0">
+    <div class="section-header">
+      <div>
+        <div class="section-title">
+          HOT <span class="accent">EVENTS</span>
+        </div>
+        <div class="section-sub">Don't miss out — tickets selling fast</div>
+      </div>
+      <a href="#" class="view-all">See all events →</a>
+    </div>
+    <div class="events-grid" id="eventsGrid"></div>
+  </section>
+
+  <div class="promo-banner">
+    <div class="promo-text">
+      <div class="promo-tag">// Limited Offer — VIP Access</div>
+      <div class="promo-title">UPGRADE TO<br>PREMIUM</div>
+      <div class="promo-desc">
+        Get early access to sold-out events, exclusive VIP seats, and priority
+        customer support.
+      </div>
+    </div>
+    <button class="promo-btn" onclick="openModal({ name: 'Premium Membership' })">
+      Get VIP Access →
+    </button>
+  </div>
+
+  <section class="section">
+    <div class="section-header">
+      <div>
+        <div class="section-title">
+          COMING <span class="accent">SOON</span> 
+        </div>
+        <div class="section-sub">Mark your calendar</div>
+      </div>
+    </div>
+    <div class="events-grid" id="upcomingGrid"></div>
+  </section>
+
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <span class="logo">TICKET<span>ZONE</span></span>
+        <p>
+          Your one-stop platform for booking tickets to sports, entertainment,
+          dining, and unforgettable experiences across Egypt.
+        </p>
+      </div>
+      <div class="footer-col">
+        <h4>Sports</h4>
+        <a href="#">Football Matches</a>
+        <a href="#">Handball Games</a>
+        <a href="#">Basketball</a>
+        <a href="#">Tennis</a>
+      </div>
+      <div class="footer-col">
+        <h4>Experiences</h4>
+        <a href="#">Parties & Clubs</a>
+        <a href="#">Stand-up Comedy</a>
+        <a href="#">Concerts</a>
+        <a href="#">Restaurants</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="#">About Us</a>
+        <a href="#">Partner With Us</a>
+        <a href="#">Careers</a>
+        <a href="#">Support</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>© 2025 TicketZone. All rights reserved.</div>
+      <div class="social-links">
+        <a href="#">Twitter</a>
+        <a href="#">Instagram</a>
+        <a href="#">Facebook</a>
+        <a href="#">TikTok</a>
+      </div>
+    </div>
+  </footer>
+
+  <div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
+    <div class="modal" id="modal">
+      <button class="modal-close" onclick="closeModal()">×</button>
+      <div class="modal-title" id="modalTitle">Book Tickets</div>
+      <div class="modal-subtitle" id="modalSubtitle">
+        Select your ticket type and quantity
+      </div>
+      <div class="ticket-options" id="ticketOptions"></div>
+        <div class="qty-control">
+          <span class="qty-label">Number of Tickets</span>
+          <button class="qty-btn" onclick="changeQty(-1)">−</button>
+          <div class="qty-num" id="qtyNum">1</div>
+          <button class="qty-btn" onclick="changeQty(1)">+</button>
+        </div>
+    </div>
+  </body>
+</html>
+        <div class="ticket-options" id="ticketOptions"></div>
+        <div class="qty-control">
+          <span class="qty-label">Number of Tickets</span>
+          <button class="qty-btn" onclick="changeQty(-1)">−</button>
+          <div class="qty-num" id="qtyNum">1</div>
+          <button class="qty-btn" onclick="changeQty(1)">+</button>
+        </div>
+      <div class="modal-total">
+          <span class="total-label">Total Amount</span>
+          <span class="total-amount" id="totalAmount">EGP 0</span>
+        </div>
+        <button class="book-btn" onclick="confirmBooking()">
+          Confirm Booking →
+        </button>
+        <button class="book-btn" onclick="confirmBooking()">
+          Confirm Booking →
+        </button>
+      </div>
+    </div>
+
+    <script>
+      const events = [
+        {
+          id: 1,
+          name: "Al Ahly vs Zamalek",
+          category: "football",
+          badge: "badge-sport",
+          label: "Football",
+          date: "MAR 15, 2025",
+          location: "Cairo Stadium",
+          img: "https://i.ytimg.com/vi/3edNYGSY81M/maxresdefault.jpg",
+          desc: "The biggest derby in African football. El-Classico returns to Cairo International Stadium.",
+          price: 150,
+          currency: "EGP",
+          soldPct: 82,
+          hot: true,
+          featured: true,
+          tickets: [
+            { type: "General", perks: "Standing section", price: 150 },
+            { type: "Tribune", perks: "Seated, great view", price: 300 },
+            { type: "VIP", perks: "Premium seats + lounge access", price: 750 },
+          ],
+        },
+        {
+          id: 2,
+          name: "Nile Comedy Night",
+          category: "comedy",
+          badge: "badge-comedy",
+          label: "Stand-up",
+          date: "MAR 20, 2025",
+          location: "Cairo Opera House",
+          img: "https://images.unsplash.com/photo-1585699324551-f6c309eedeca?w=600&q=80",
+          desc: "A hilarious night with Egypt's top stand-up comedians. Laughs guaranteed.",
+          price: 200,
+          currency: "EGP",
+          soldPct: 65,
+          hot: false,
+          featured: false,
+          tickets: [
+            { type: "Standard", perks: "General admission", price: 200 },
+            { type: "Premium", perks: "Front rows + drink", price: 400 },
+          ],
+        },
+        {
+          id: 3,
+          name: "Rooftop Rave 2025",
+          category: "party",
+          badge: "badge-party",
+          label: "Party",
+          date: "MAR 22, 2025",
+          location: "W Hotel, Cairo",
+          img: "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=600&q=80",
+          desc: "Open-air rooftop party with international DJs, infinity pool, and city skyline views.",
+          price: 500,
+          currency: "EGP",
+          soldPct: 91,
+          hot: true,
+          featured: false,
+          tickets: [
+            { type: "Entry", perks: "Access only", price: 500 },
+            { type: "Table", perks: "Reserved table + bottle", price: 3000 },
+          ],
+        },
+        {
+          id: 4,
+          name: "Handball Egypt League Final",
+          category: "handball",
+          badge: "badge-handball",
+          label: "Handball",
+          date: "MAR 28, 2025",
+          location: "Hassan Moustafa Hall",
+          img: "https://egyptian-gazette.com/wp-content/uploads/2025/01/Lead-Mail-P155555.webp",
+          desc: "The final showdown of the Egyptian Handball League. Championship glory on the line.",
+          price: 100,
+          currency: "EGP",
+          soldPct: 55,
+          hot: false,
+          featured: false,
+          tickets: [
+            { type: "Standard", perks: "General entry", price: 100 },
+            { type: "VIP", perks: "Premium seating", price: 350 },
+          ],
+        },
+        {
+          id: 5,
+          name: "Dinner at Nusr-Et",
+          category: "restaurant",
+          badge: "badge-food",
+          label: "Restaurant",
+          date: "ANY DATE",
+          location: "Citystars, Cairo",
+          img: "https://images.unsplash.com/photo-1424847651672-bf20a4b0982b?w=600&q=80",
+          desc: "Reserve your table at Cairo's most iconic steakhouse. Premium wagyu and live entertainment.",
+          price: 800,
+          currency: "EGP",
+          soldPct: 40,
+          hot: false,
+          featured: false,
+          tickets: [
+            {
+              type: "2 Persons",
+              perks: "Table for two, window seat",
+              price: 800,
+            },
+            {
+              type: "4 Persons",
+              perks: "Table for four, private area",
+              price: 1500,
+            },
+          ],
+        },
+        {
+          id: 6,
+          name: "Marwan Pablo & Lege-Cy",
+          category: "concert",
+          badge: "badge-party",
+          label: "Festival",
+          date: "APR 5, 2025",
+          location: " Al Alamein Festival",
+          img: "https://www.visitalamein.com/uploads/0000/1/2025/07/11/screenshot-2025-07-11-at-83542-pm.png",
+          desc: "Marwan Pablo & Lege-Cy Live at Al Alamein Festival 2025 – August 15 - Alamein Awaits | Visit Alamein | New Alamein",
+          price: 350,
+          currency: "EGP",
+          soldPct: 30,
+          hot: false,
+          featured: false,
+          tickets: [
+            { type: "Day Pass", perks: "One day access", price: 350 },
+            { type: "3-Day Pass", perks: "Full festival access", price: 850 },
+            { type: "VIP Pass", perks: "All access + backstage", price: 2000 },
+          ],
+        },
+      ];
+
+      const upcoming = [
+        {
+          id: 7,
+          name: "ahly vs pyramids in AFCON",
+          category: "football",
+          badge: "badge-sport",
+          label: "Football",
+          date: "APR 10, 2025",
+          location: "cairo stadium",
+          img: "data:image/jpeg;base64,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",
+          desc: "Watch the AFCON semi-finals live in cairo stadium",
+          price: 300,
+          currency: "EGP",
+          soldPct: 20,
+          hot: false,
+          featured: false,
+          tickets: [
+            { type: "Standard", perks: "Entry + welcome drink", price: 300 },
+          ],
+        },
+        {
+          id: 8,
+          name: "Mahraganat Night XL",
+          category: "concert",
+          badge: "badge-party",
+          label: "Concert",
+          date: "APR 18, 2025",
+          location: "New Cairo Exhibition Center",
+          img: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=600&q=80",
+          desc: "The biggest Mahraganat concert of the year. 10,000 capacity. Epic production.",
+          price: 250,
+          currency: "EGP",
+          soldPct: 45,
+          hot: true,
+          featured: false,
+          tickets: [
+            { type: "General", perks: "Floor standing", price: 250 },
+            { type: "VIP", perks: "Elevated platform + bar", price: 650 },
+          ],
+        },
+        {
+          id: 9,
+          name: "Iftar Experience at Hitlon hotel",
+          category: "restaurant",
+          badge: "badge-food",
+          label: "Restaurant",
+          date: "MAR - APR 2025",
+          location: "Tahrir, Cairo",
+          img: "https://www.hilton.com/im/en/CAIRHTW/4642557/43387.jpg?impolicy=crop&cw=2499&ch=1944&gravity=NorthWest&xposition=46&yposition=0&rw=684&rh=532",
+          desc: "Celebrate Ramadan with a curated Iftar with open buffet",
+          price: 450,
+          currency: "EGP",
+          soldPct: 60,
+          hot: false,
+          featured: false,
+          tickets: [
+            {
+              type: "Per Person",
+              perks: "5-course Iftar + drinks",
+              price: 450,
+            },
+          ],
+        },
+      ];
+
+      function renderEvents(list, gridId) {
+        const grid = document.getElementById(gridId);
+        grid.innerHTML = "";
+        list.forEach((ev, i) => {
+          const card = document.createElement("div");
+          card.className = "event-card" + (ev.featured ? " featured" : "");
+          card.innerHTML = `
+      <div class="event-img">
+        <span class="event-badge ${ev.badge}">${ev.label}</span>
+        ${ev.hot ? '<span class="badge-hot">🔥 HOT</span>' : ""}
+        <img src="${ev.img}" alt="${ev.name}" loading="lazy">
+      </div>
+      <div class="event-body">
+        <div class="event-meta">
+          <span class="event-date">${ev.date}</span>
+          <span class="event-loc">📍 ${ev.location}</span>
+        </div>
+        <div class="event-name">${ev.name}</div>
+        <div class="event-desc">${ev.desc}</div>
+        <div class="sold-out-bar">
+          <div class="sold-bar-fill"><div class="sold-bar-inner" style="width:${ev.soldPct}%"></div></div>
+          <span class="sold-pct">${ev.soldPct}% sold</span>
+        </div>
+        <div class="event-footer">
+          <div class="event-price">
+            <span class="price-from">from</span>
+            <span class="price-amount">EGP ${ev.price} <span>/ticket</span></span>
+          </div>
+          <button class="ticket-btn" onclick="openModal(events[${i}] || upcoming[${list === upcoming ? i : -1}])">Get Tickets</button>
+        </div>
+      </div>
+    `;
+          card.addEventListener("click", (e) => {
+            if (!e.target.classList.contains("ticket-btn")) openModal(ev);
+          });
+          grid.appendChild(card);
+        });
+      }
+
+      renderEvents(events, "eventsGrid");
+      renderEvents(upcoming, "upcomingGrid");
+
+      // Fix ticket button references
+      document.querySelectorAll(".ticket-btn").forEach((btn, i) => {
+        const allEvents = [...events, ...upcoming];
+        btn.onclick = () => openModal(allEvents[i] || allEvents[0]);
+      });
+
+      // Ticker
+      const tickerData = [
+        ...events.map((e) => ({ name: e.name, pct: e.soldPct })),
+        ...upcoming.map((e) => ({ name: e.name, pct: e.soldPct })),
+      ];
+      const ticker = document.getElementById("ticker");
+      const tickerInner = tickerData
+        .map(
+          (t) =>
+            `<span class="ticker-item"><span class="dot"></span> <strong>${t.name}</strong> — ${t.pct}% Sold</span>`,
+        )
+        .join("");
+      ticker.innerHTML = tickerInner + tickerInner; // duplicate for seamless loop
+
+      // Modal
+      let currentEvent = null;
+      let selectedTicketIdx = 0;
+      let qty = 1;
+
+      function openModal(ev) {
+        currentEvent = ev;
+        selectedTicketIdx = 0;
+        qty = 1;
+        document.getElementById("modalTitle").textContent = ev.name;
+        document.getElementById("modalSubtitle").textContent =
+          ev.date + " · " + (ev.location || "");
+        const opts = document.getElementById("ticketOptions");
+        opts.innerHTML = (ev.tickets || [])
+          .map(
+            (t, i) => `
+    <div class="ticket-option ${i === 0 ? "selected" : ""}" onclick="selectTicket(${i})">
+      <div>
+        <div class="ticket-type">${t.type}</div>
+        <div class="ticket-perks">${t.perks}</div>
+      </div>
+      <div class="ticket-right">
+        <div class="ticket-price-tag">EGP ${t.price}</div>
+      </div>
+    </div>
+  `,
+          )
+          .join("");
+        document.getElementById("qtyNum").textContent = qty;
+        updateTotal();
+        document.getElementById("modalOverlay").classList.add("open");
+      }
+
+      function selectTicket(idx) {
+        selectedTicketIdx = idx;
+        document.querySelectorAll(".ticket-option").forEach((el, i) => {
+          el.classList.toggle("selected", i === idx);
+        });
+        updateTotal();
+      }
+
+      function changeQty(delta) {
+        qty = Math.max(1, Math.min(10, qty + delta));
+        document.getElementById("qtyNum").textContent = qty;
+        updateTotal();
+      }
+
+      function updateTotal() {
+        if (!currentEvent) return;
+        const price = currentEvent.tickets[selectedTicketIdx].price * qty;
+        document.getElementById("totalAmount").textContent =
+          "EGP " + price.toLocaleString();
+      }
+
+      function closeModal(e) {
+        if (!e || e.target === document.getElementById("modalOverlay")) {
+          document.getElementById("modalOverlay").classList.remove("open");
+        }
+      }
+
+      function confirmBooking() {
+        const t = currentEvent.tickets[selectedTicketIdx];
+        alert(
+          `✅ Booking Confirmed!\n\n${currentEvent.name}\n${t.type} × ${qty}\nTotal: EGP ${(t.price * qty).toLocaleString()}\n\nA confirmation will be sent to your email.`,
+        );
+        document.getElementById("modalOverlay").classList.remove("open");
+      }
+
+      function filterCategory(cat) {
+        const filtered = events.filter((e) => e.category === cat);
+        renderEvents(filtered.length ? filtered : events, "eventsGrid");
+        // re-bind buttons
+        document
+          .querySelectorAll("#eventsGrid .ticket-btn")
+          .forEach((btn, i) => {
+            const arr = filtered.length ? filtered : events;
+            btn.onclick = (e) => {
+              e.stopPropagation();
+              openModal(arr[i]);
+            };
+          });
+        document
+          .getElementById("events")
+          .scrollIntoView({ behavior: "smooth" });
+      }
+    </script>
+  </body>
+</html>

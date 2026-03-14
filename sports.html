@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sports — TicketZone</title>
+
+<link rel="stylesheet" href="sport.css">
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="logo">TICKET<span>ZONE</span></a>
+  <ul class="nav-links">
+    <li><a href="sports.html" class="active">Sports</a></li>
+    <li><a href="events.html">Events</a></li>
+    <li><a href="dining.html">Dining</a></li>
+    <li><a href="about.html">About</a></li>
+  </ul>
+  <div class="nav-ctas">
+      <a href="">
+        <button class="nav-cta" onclick="openModal({ name: 'Sign In' })">
+          My Tickets
+        </button>
+      </a>
+      <a href="sign-in.html">
+        <button class="nav-sign" onclick="openModal({ name: 'Sign In' })">
+          Sign In
+        </button>
+      </a>
+    </div>
+</nav>
+
+<div class="page-hero">
+  <div class="page-hero-bg">
+    <img src="https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=1200&q=80" alt="Football">
+  </div>
+  <div class="fade-up page-hero-tag">Matchday Tickets</div>
+  <h1 class="fade-up">LIVE <span>SPORTS</span><br>TICKETS</h1>
+  <p class="fade-up">Football. Handball. Basketball. Tennis. Get your seats for the biggest matches in Egypt and beyond.</p>
+  <div class="hero-btns fade-up">
+    <a href="#featured" class="btn-primary">Featured Deals</a>
+    <a href="#matches"  class="btn-outline">All Matches</a>
+  </div>
+</div>
+
+<!-- MAIN CONTENT -->
+<section class="section">
+
+  <!-- STATS -->
+  <div class="stat-cards">
+    <div class="stat-card">
+      <div class="stat-card-num">24<span>+</span></div>
+      <div class="stat-card-label">Matches Available</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-card-num">6</div>
+      <div class="stat-card-label">Sport Types</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-card-num">18<span>K</span></div>
+      <div class="stat-card-label">Tickets Sold</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-card-num">99<span>%</span></div>
+      <div class="stat-card-label">Valid Entry Rate</div>
+    </div>
+  </div>
+
+  <!-- FEATURED DEALS -->
+  <div id="featured" class="section-header">
+    <div>
+      <div class="section-title">FEATURED <span class="accent">DEALS</span></div>
+      <div class="section-sub">Best seats at the best prices — limited availability</div>
+    </div>
+    <a href="#matches" class="view-all">All matches →</a>
+  </div>
+  <div id="featuredGrid" style="display:flex; flex-direction:column; gap:20px; margin-bottom:60px;"></div>
+
+  <!-- ALL MATCHES -->
+  <div id="matches" class="section-header">
+    <div>
+      <div class="section-title">UPCOMING <span class="accent">MATCHES</span></div>
+      <div class="section-sub">Select your seats now</div>
+    </div>
+  </div>
+  <div class="filter-tabs">
+    <button class="filter-tab active" onclick="filterSport('all',this)">All Sports</button>
+    <button class="filter-tab" onclick="filterSport('football',this)">⚽ Football</button>
+    <button class="filter-tab" onclick="filterSport('handball',this)">🤾 Handball</button>
+    <button class="filter-tab" onclick="filterSport('basketball',this)">🏀 Basketball</button>
+    <button class="filter-tab" onclick="filterSport('tennis',this)">🎾 Tennis</button>
+  </div>
+  <div class="cards-grid" id="sportsGrid"></div>
+
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a href="index.html" class="logo">TICKET<span>ZONE</span></a>
+      <p>Your one-stop platform for booking tickets to sports, entertainment, dining, and unforgettable experiences across Egypt.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Sports</h4>
+      <a href="sports.html">Football Matches</a>
+      <a href="sports.html">Handball Games</a>
+      <a href="sports.html">Basketball</a>
+      <a href="sports.html">Tennis</a>
+    </div>
+    <div class="footer-col">
+      <h4>Experiences</h4>
+      <a href="entertainment.html">Parties &amp; Clubs</a>
+      <a href="entertainment.html">Stand-up Comedy</a>
+      <a href="events.html">Concerts</a>
+      <a href="dining.html">Restaurants</a>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <a href="about.html">About Us</a>
+      <a href="about.html">Partner With Us</a>
+      <a href="about.html">Careers</a>
+      <a href="#">Support</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div>© 2025 TicketZone. All rights reserved.</div>
+    <div class="social-links">
+      <a href="#">Twitter</a>
+      <a href="#">Instagram</a>
+      <a href="#">Facebook</a>
+      <a href="#">TikTok</a>
+    </div>
+  </div>
+</footer>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()">×</button>
+    <div class="modal-title" id="modalTitle">Book Tickets</div>
+    <div class="modal-sub"   id="modalSub"></div>
+    <div class="ticket-opts" id="ticketOpts"></div>
+    <div class="qty-row">
+      <span class="qty-label">Number of Tickets</span>
+      <button class="qty-btn" onclick="changeQty(-1)">−</button>
+      <div class="qty-num" id="qtyNum">1</div>
+      <button class="qty-btn" onclick="changeQty(1)">+</button>
+    </div>
+    <div class="modal-total">
+      <span class="total-label">Total Amount</span>
+      <span class="total-amt" id="totalAmt">EGP 0</span>
+    </div>
+    <button class="book-btn" onclick="confirmBooking()">Confirm Booking →</button>
+  </div>
+</div>
+
+<!-- ============================================================
+     JS SECTION
+     ============================================================ -->
+<script>
+
+/* --- DATA --- */
+
+const featuredDeals = [
+  {
+    name: 'Al Ahly vs Zamalek — VIP Box',
+    label: 'Football', badgeClass: 'badge-red',
+    date: 'MAR 15, 2025', location: 'Cairo International Stadium',
+    img: 'https://images.unsplash.com/photo-1489944440615-453fc2b6a9a9?w=900&q=80',
+    desc: 'Premium VIP Box seats for the Cairo Derby. Lounge access, catering, and the best view in the stadium.',
+    price: 750, soldPct: 90, hot: true,
+    tickets: [
+      { type: 'VIP Box',  perks: 'Glass box + catering + lounge', price: 750 },
+      { type: 'Tribune',  perks: 'Covered seated section',         price: 300 }
+    ]
+  },
+  {
+    name: 'Egypt vs Senegal — East Stand',
+    label: 'Football', badgeClass: 'badge-red',
+    date: 'APR 10, 2025', location: 'Cairo International Stadium',
+    img: 'https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=900&q=80',
+    desc: 'AFCON qualifier. Covered East Stand seats with great pitch views — going fast.',
+    price: 400, soldPct: 75, hot: true,
+    tickets: [
+      { type: 'East Stand', perks: 'Covered seating', price: 400 },
+      { type: 'General',    perks: 'Open section',    price: 200 }
+    ]
+  },
+  {
+    name: 'Handball Final — Courtside',
+    label: 'Handball', badgeClass: 'badge-purple',
+    date: 'MAR 28, 2025', location: 'Hassan Moustafa Hall',
+    img: 'https://images.unsplash.com/photo-1607627000458-210e8d2bdb1d?w=900&q=80',
+    desc: 'Championship Final courtside seats. Closest to the action — only 12 seats remaining.',
+    price: 350, soldPct: 88, hot: true,
+    tickets: [
+      { type: 'VIP Courtside', perks: 'Front row + premium seat', price: 350 },
+      { type: 'Standard',      perks: 'General entry',             price: 100 }
+    ]
+  }
+];
+
+const sportMatches = [
+  {
+    name: 'Al Ahly vs Zamalek', label: 'Football', badgeClass: 'badge-red',
+    date: 'MAR 15', location: 'Cairo Stadium',
+    img: 'https://images.unsplash.com/photo-1489944440615-453fc2b6a9a9?w=600&q=80',
+    desc: 'The Cairo Derby — biggest match in African club football.',
+    price: 150, soldPct: 82, hot: true, sport: 'football',
+    tickets: [
+      { type: 'General', perks: 'Standing',        price: 150 },
+      { type: 'Tribune', perks: 'Seated',           price: 300 },
+      { type: 'VIP',     perks: 'Premium + Lounge', price: 750 }
+    ]
+  },
+  {
+    name: 'Handball League Final', label: 'Handball', badgeClass: 'badge-purple',
+    date: 'MAR 28', location: 'Hassan Moustafa Hall',
+    img: 'https://images.unsplash.com/photo-1607627000458-210e8d2bdb1d?w=600&q=80',
+    desc: 'Championship glory on the line in the handball season finale.',
+    price: 100, soldPct: 55, hot: false, sport: 'handball',
+    tickets: [
+      { type: 'Standard', perks: 'General entry', price: 100 },
+      { type: 'VIP',      perks: 'Premium seats', price: 350 }
+    ]
+  },
+  {
+    name: 'Smouha vs Pyramids FC', label: 'Football', badgeClass: 'badge-red',
+    date: 'APR 2', location: 'Alexandria Stadium',
+    img: 'https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=600&q=80',
+    desc: 'Top of the table clash in the Egyptian Premier League.',
+    price: 120, soldPct: 40, hot: false, sport: 'football',
+    tickets: [
+      { type: 'General', perks: 'Standing',      price: 120 },
+      { type: 'Seated',  perks: 'Numbered seat', price: 220 }
+    ]
+  },
+  {
+    name: 'Egypt vs Senegal', label: 'Football', badgeClass: 'badge-red',
+    date: 'APR 10', location: 'Cairo International Stadium',
+    img: 'https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=600&q=80',
+    desc: 'AFCON qualifier. The Pharaohs face the Lions of Teranga.',
+    price: 200, soldPct: 91, hot: true, sport: 'football',
+    tickets: [
+      { type: 'General',    perks: 'Open section',         price: 200  },
+      { type: 'East Stand', perks: 'Covered seating',      price: 400  },
+      { type: 'VIP Box',    perks: 'Glass box + catering', price: 1200 }
+    ]
+  },
+  {
+    name: 'Cairo Basketball Classic', label: 'Basketball', badgeClass: 'badge-cyan',
+    date: 'APR 5', location: 'Al Ahly Club Arena',
+    img: 'https://images.unsplash.com/photo-1546519638-68e109498ffc?w=600&q=80',
+    desc: 'The best basketball teams in Egypt battle for the cup.',
+    price: 80, soldPct: 30, hot: false, sport: 'basketball',
+    tickets: [
+      { type: 'Standard',  perks: 'General seating', price: 80  },
+      { type: 'Courtside', perks: 'Courtside seats', price: 350 }
+    ]
+  },
+  {
+    name: 'Egypt Open Tennis', label: 'Tennis', badgeClass: 'badge-green',
+    date: 'APR 18', location: 'New Cairo Tennis Club',
+    img: 'https://images.unsplash.com/photo-1622279457486-62dcc4a431d6?w=600&q=80',
+    desc: 'International tennis tournament featuring top-ranked players.',
+    price: 250, soldPct: 45, hot: false, sport: 'tennis',
+    tickets: [
+      { type: 'Day Pass',     perks: 'All courts access',   price: 250 },
+      { type: 'Centre Court', perks: 'Main court reserved', price: 600 }
+    ]
+  }
+];
+
+/* --- HELPERS --- */
+
+function esc(obj) {
+  return JSON.stringify(obj).replace(/"/g, '&quot;');
+}
+
+function soldBar(pct) {
+  return `<div class="sold-bar-wrap">
+    <div class="sold-bar"><div class="sold-bar-fill" style="width:${pct}%"></div></div>
+    <span class="sold-pct">${pct}% sold</span>
+  </div>`;
+}
+
+/* --- RENDER FEATURED DEALS --- */
+
+function renderFeatured(list) {
+  document.getElementById('featuredGrid').innerHTML = list.map(ev => `
+    <div class="deal-card" onclick="openModal(${esc(ev)})">
+      <div class="card-img">
+        <span class="card-badge ${ev.badgeClass}">${ev.label}</span>
+        ${ev.hot ? '<span class="card-hot">🔥 HOT</span>' : ''}
+        <img src="${ev.img}" alt="${ev.name}" loading="lazy">
+      </div>
+      <div class="card-body">
+        <span class="deal-tag">⭐ Featured Deal</span>
+        <div class="card-meta">
+          <span class="card-date">${ev.date}</span>
+          <span class="card-loc">📍 ${ev.location}</span>
+        </div>
+        <div class="card-name">${ev.name}</div>
+        <div class="card-desc">${ev.desc}</div>
+        ${soldBar(ev.soldPct)}
+        <div class="card-footer">
+          <div>
+            <div class="card-price-from">from</div>
+            <div class="card-price">EGP ${ev.price} <span>/ticket</span></div>
+          </div>
+          <button class="card-btn" onclick="event.stopPropagation();openModal(${esc(ev)})">Book Now</button>
+        </div>
+      </div>
+    </div>`).join('');
+}
+
+/* --- RENDER MATCH CARDS --- */
+
+function renderCards(list, gridId) {
+  const grid = document.getElementById(gridId);
+  if (!grid) return;
+  grid.innerHTML = list.map(ev => `
+    <div class="card" onclick="openModal(${esc(ev)})">
+      <div class="card-img">
+        <span class="card-badge ${ev.badgeClass}">${ev.label}</span>
+        ${ev.hot ? '<span class="card-hot">🔥 HOT</span>' : ''}
+        <img src="${ev.img}" alt="${ev.name}" loading="lazy">
+      </div>
+      <div class="card-body">
+        <div class="card-meta">
+          <span class="card-date">${ev.date}</span>
+          <span class="card-loc">📍 ${ev.location}</span>
+        </div>
+        <div class="card-name">${ev.name}</div>
+        <div class="card-desc">${ev.desc}</div>
+        ${soldBar(ev.soldPct)}
+        <div class="card-footer">
+          <div>
+            <div class="card-price-from">from</div>
+            <div class="card-price">EGP ${ev.price} <span>/ticket</span></div>
+          </div>
+          <button class="card-btn" onclick="event.stopPropagation();openModal(${esc(ev)})">Get Tickets</button>
+        </div>
+      </div>
+    </div>`).join('');
+}
+
+/* --- FILTER --- */
+
+function filterSport(sport, btn) {
+  document.querySelectorAll('.filter-tab').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderCards(sport === 'all' ? sportMatches : sportMatches.filter(m => m.sport === sport), 'sportsGrid');
+}
+
+/* --- MODAL --- */
+
+let _item = null, _selTicket = 0, _qty = 1;
+
+function openModal(item) {
+  _item = item; _selTicket = 0; _qty = 1;
+  document.getElementById('modalTitle').textContent = item.name;
+  document.getElementById('modalSub').textContent   = item.date + ' · ' + item.location;
+  document.getElementById('ticketOpts').innerHTML   = item.tickets.map((t, i) => `
+    <div class="ticket-opt ${i === 0 ? 'selected' : ''}" onclick="selTicket(${i})">
+      <div>
+        <div class="ticket-opt-name">${t.type}</div>
+        <div class="ticket-opt-perk">${t.perks}</div>
+      </div>
+      <div class="ticket-opt-price">EGP ${t.price}</div>
+    </div>`).join('');
+  document.getElementById('qtyNum').textContent = 1;
+  updateTotal();
+  document.getElementById('modalOverlay').classList.add('open');
+}
+
+function selTicket(i) {
+  _selTicket = i;
+  document.querySelectorAll('.ticket-opt').forEach((el, j) => el.classList.toggle('selected', i === j));
+  updateTotal();
+}
+
+function changeQty(d) {
+  _qty = Math.max(1, Math.min(10, _qty + d));
+  document.getElementById('qtyNum').textContent = _qty;
+  updateTotal();
+}
+
+function updateTotal() {
+  if (!_item) return;
+  document.getElementById('totalAmt').textContent = 'EGP ' + (_item.tickets[_selTicket].price * _qty).toLocaleString();
+}
+
+function closeModal(e) {
+  if (!e || e.target === document.getElementById('modalOverlay'))
+    document.getElementById('modalOverlay').classList.remove('open');
+}
+
+function confirmBooking() {
+  const t = _item.tickets[_selTicket];
+  alert(`✅ Booking Confirmed!\n\n${_item.name}\n${t.type} × ${_qty}\nTotal: EGP ${(t.price * _qty).toLocaleString()}\n\nConfirmation sent to your email.`);
+  document.getElementById('modalOverlay').classList.remove('open');
+}
+
+/* --- INIT --- */
+renderFeatured(featuredDeals);
+renderCards(sportMatches, 'sportsGrid');
+
+</script>
+</body>
+</html>

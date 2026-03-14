@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About — TicketZone</title>
+
+<!-- ============================================================
+     CSS SECTION
+     ============================================================ -->
+<style>
+
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap');
+
+/* --- VARIABLES --- */
+:root {
+  --bg:      rgb(8, 12, 16);
+  --surface: rgb(15, 20, 25);
+  --card:    rgb(20, 27, 36);
+  --border:  rgba(255,255,255,0.07);
+  --accent:  rgb(255, 59, 48);
+  --gold:    rgb(255, 184, 0);
+  --cyan:    rgb(0, 229, 255);
+  --green:   rgb(0, 255, 136);
+  --purple:  rgb(168, 85, 247);
+  --pink:    rgb(255, 110, 199);
+  --text:    rgb(240, 244, 248);
+  --muted:   rgb(136, 153, 170);
+  --font-display: 'Bebas Neue', sans-serif;
+  --font-body:    'DM Sans', sans-serif;
+  --font-mono:    'Space Mono', monospace;
+}
+
+/* --- RESET --- */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* --- BASE --- */
+body { background: var(--bg); color: var(--text); font-family: var(--font-body); overflow-x: hidden; cursor: auto; }
+body::before {
+  content: ''; position: fixed; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none; z-index: 9997; opacity: 0.4;
+}
+
+/* --- NAV --- */
+nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 20px 48px; background: rgba(8,12,16,0.85); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); }
+.logo { font-family: var(--font-display); font-size: 28px; letter-spacing: 3px; color: var(--text); text-decoration: none; }
+.logo span { color: var(--accent); }
+.nav-links { display: flex; gap: 36px; list-style: none; }
+.nav-links a { color: var(--muted); text-decoration: none; font-size: 13px; font-weight: 500; letter-spacing: 1px; text-transform: uppercase; transition: color 0.2s; }
+.nav-links a:hover  { color: var(--text); }
+.nav-links a.active { color: var(--text); border-bottom: 2px solid var(--accent); padding-bottom: 2px; }
+.nav-cta { background: var(--accent); color: white; padding: 10px 24px; border: none; border-radius: 4px; font-family: var(--font-body); font-size: 13px; font-weight: 600; cursor: pointer; transition: all 0.2s; }
+.nav-cta:hover { background: rgb(255, 107, 99); transform: translateY(-1px); }
+
+/* --- ABOUT HERO --- */
+.about-hero { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; padding: 140px 80px 80px; border-bottom: 1px solid var(--border); }
+.hero-tag { display: inline-flex; align-items: center; gap: 8px; font-family: var(--font-mono); font-size: 11px; color: var(--accent); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 20px; }
+.hero-tag::before { content: ''; width: 24px; height: 1px; background: var(--accent); }
+.manifesto { font-family: var(--font-display); font-size: clamp(52px, 7vw, 90px); letter-spacing: 2px; line-height: 0.92; margin-bottom: 24px; }
+.manifesto span { color: var(--accent); }
+.hero-desc { color: var(--muted); font-size: 16px; line-height: 1.7; max-width: 460px; margin-bottom: 32px; }
+.hero-btns { display: flex; gap: 14px; }
+.img-mosaic { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.img-mosaic-cell { border-radius: 12px; overflow: hidden; }
+.img-mosaic-cell img { width: 100%; height: 200px; object-fit: cover; filter: saturate(0.7); transition: filter 0.3s; }
+.img-mosaic-cell:hover img { filter: saturate(1); }
+.img-mosaic-cell:nth-child(2) { margin-top: 28px; }
+.img-mosaic-cell:nth-child(4) { margin-top: -28px; }
+
+/* --- SECTION --- */
+.section { padding: 80px; }
+.section-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 48px; }
+.section-title { font-family: var(--font-display); font-size: 52px; letter-spacing: 2px; line-height: 1; }
+.section-title .accent { color: var(--accent); }
+.section-sub { color: var(--muted); font-size: 14px; margin-top: 8px; }
+
+/* --- STAT CARDS --- */
+.stat-cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 60px; }
+.stat-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 28px 24px; }
+.stat-card-num { font-family: var(--font-display); font-size: 48px; letter-spacing: 1px; }
+.stat-card-num span { color: var(--accent); }
+.stat-card-label { font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; margin-top: 4px; }
+
+/* --- MISSION --- */
+.mission-section { background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 80px; }
+.mission-grid { display: grid; grid-template-columns: 1fr 2fr; gap: 80px; align-items: start; }
+.mission-label { font-family: var(--font-mono); font-size: 11px; color: var(--accent); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 16px; }
+.mission-title { font-family: var(--font-display); font-size: 52px; letter-spacing: 2px; line-height: 1; }
+.mission-body { color: var(--muted); font-size: 16px; line-height: 1.8; }
+.mission-body p + p { margin-top: 16px; }
+
+/* --- VALUES --- */
+.values-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.value-card { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 36px 28px; transition: all 0.3s; }
+.value-card:hover { border-color: var(--accent); transform: translateY(-4px); }
+.value-icon  { font-size: 40px; margin-bottom: 16px; }
+.value-title { font-family: var(--font-display); font-size: 26px; letter-spacing: 1px; margin-bottom: 10px; }
+.value-desc  { color: var(--muted); font-size: 14px; line-height: 1.7; }
+
+/* --- TEAM --- */
+.team-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+.team-card { background: var(--card); border: 1px solid var(--border); border-radius: 14px; overflow: hidden; text-align: center; transition: all 0.3s; }
+.team-card:hover { border-color: rgba(255,255,255,0.15); transform: translateY(-4px); }
+.team-img { height: 240px; overflow: hidden; }
+.team-img img { width: 100%; height: 100%; object-fit: cover; filter: saturate(0.6) grayscale(0.3); transition: all 0.3s; }
+.team-card:hover .team-img img { filter: saturate(1) grayscale(0); }
+.team-body { padding: 22px; }
+.team-name { font-family: var(--font-display); font-size: 22px; letter-spacing: 1px; margin-bottom: 4px; }
+.team-role { font-family: var(--font-mono); font-size: 11px; color: var(--accent); text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 10px; }
+.team-bio  { font-size: 13px; color: var(--muted); line-height: 1.6; }
+
+/* --- TIMELINE --- */
+.timeline { position: relative; padding-left: 40px; max-width: 600px; }
+.timeline::before { content: ''; position: absolute; left: 12px; top: 0; bottom: 0; width: 1px; background: var(--border); }
+.tl-item  { position: relative; margin-bottom: 40px; }
+.tl-dot   { width: 14px; height: 14px; border-radius: 50%; background: var(--accent); border: 2px solid var(--bg); position: absolute; left: -34px; top: 4px; }
+.tl-year  { font-family: var(--font-mono); font-size: 11px; color: var(--accent); letter-spacing: 1px; margin-bottom: 6px; }
+.tl-title { font-family: var(--font-display); font-size: 22px; letter-spacing: 1px; margin-bottom: 6px; }
+.tl-desc  { color: var(--muted); font-size: 14px; line-height: 1.6; }
+
+/* --- PARTNERS --- */
+.partners-row { display: flex; gap: 16px; flex-wrap: wrap; }
+.partner-logo { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 18px 28px; font-family: var(--font-display); font-size: 18px; letter-spacing: 1px; color: var(--muted); transition: all 0.2s; cursor: pointer; }
+.partner-logo:hover { border-color: var(--accent); color: var(--text); }
+
+/* --- CONTACT --- */
+.contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; }
+.contact-info { display: flex; flex-direction: column; gap: 24px; }
+.contact-row  { display: flex; align-items: center; gap: 16px; }
+.contact-icon { width: 44px; height: 44px; background: var(--card); border: 1px solid var(--border); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0; }
+.contact-row-label { font-size: 12px; color: var(--muted); margin-bottom: 2px; }
+.contact-row-value { font-size: 15px; }
+.contact-form { display: flex; flex-direction: column; gap: 16px; }
+.form-group { display: flex; flex-direction: column; gap: 6px; }
+.form-group label { font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--muted); }
+.form-group input,
+.form-group textarea,
+.form-group select {
+  background: var(--card); border: 1px solid var(--border); border-radius: 8px;
+  padding: 14px 16px; color: var(--text); font-family: var(--font-body); font-size: 14px;
+}
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus { border-color: var(--accent); }
+.form-group textarea { resize: vertical; min-height: 120px; }
+.form-group select option { background: var(--card); }
+
+/* --- BUTTONS --- */
+.btn-primary { background: var(--accent); color: white; padding: 14px 32px; border: none; border-radius: 4px; font-family: var(--font-body); font-size: 14px; font-weight: 600; cursor: pointer; transition: all 0.3s; text-decoration: none; display: inline-block; }
+.btn-primary:hover { transform: translateY(-3px); box-shadow: 0 20px 40px rgba(255,59,48,0.3); }
+.btn-outline { background: transparent; color: var(--text); padding: 14px 32px; border: 1px solid var(--border); border-radius: 4px; font-family: var(--font-body); font-size: 14px; font-weight: 500; cursor: pointer; transition: all 0.3s; text-decoration: none; display: inline-block; }
+.btn-outline:hover { border-color: var(--text); }
+
+/* --- DIVIDER --- */
+hr.divider { border: none; border-top: 1px solid var(--border); margin: 0 80px; }
+
+/* --- FOOTER --- */
+footer { border-top: 1px solid var(--border); padding: 60px 80px 40px; }
+.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 60px; margin-bottom: 60px; }
+.footer-brand p { color: var(--muted); font-size: 14px; line-height: 1.7; max-width: 300px; margin-top: 14px; }
+.footer-col h4 { font-size: 11px; text-transform: uppercase; letter-spacing: 2px; color: var(--muted); font-family: var(--font-mono); margin-bottom: 20px; }
+.footer-col a  { display: block; color: var(--muted); text-decoration: none; font-size: 14px; margin-bottom: 10px; transition: color 0.2s; }
+.footer-col a:hover { color: var(--text); }
+.footer-bottom { display: flex; justify-content: space-between; align-items: center; padding-top: 30px; border-top: 1px solid var(--border); font-size: 12px; color: var(--muted); font-family: var(--font-mono); }
+.social-links  { display: flex; gap: 16px; }
+.social-links a { color: var(--muted); text-decoration: none; font-size: 12px; transition: color 0.2s; }
+.social-links a:hover { color: var(--text); }
+
+/* --- ANIMATIONS --- */
+@keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+.fade-up { opacity: 0; animation: fadeUp 0.7s ease forwards; }
+.fade-up:nth-child(1) { animation-delay: 0.1s; }
+.fade-up:nth-child(2) { animation-delay: 0.2s; }
+.fade-up:nth-child(3) { animation-delay: 0.3s; }
+.fade-up:nth-child(4) { animation-delay: 0.4s; }
+
+/* --- RESPONSIVE --- */
+@media (max-width: 1024px) {
+  nav { padding: 16px 24px; }
+  .nav-links { display: none; }
+  .about-hero { grid-template-columns: 1fr; padding: 120px 24px 60px; }
+  .img-mosaic { display: none; }
+  .section, .mission-section { padding: 60px 24px; }
+  footer { padding: 40px 24px 32px; }
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 40px; }
+  .stat-cards { grid-template-columns: repeat(2, 1fr); }
+  .values-grid, .team-grid { grid-template-columns: repeat(2, 1fr); }
+  .mission-grid, .contact-grid { grid-template-columns: 1fr; }
+  hr.divider { margin: 0 24px; }
+}
+@media (max-width: 600px) {
+  .stat-cards, .values-grid, .team-grid { grid-template-columns: 1fr; }
+}
+
+</style>
+</head>
+
+<!-- ============================================================
+     HTML SECTION
+     ============================================================ -->
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="logo">TICKET<span>ZONE</span></a>
+  <ul class="nav-links">
+    <li><a href="sports.html">Sports</a></li>
+    <li><a href="events.html">Events</a></li>
+    <li><a href="dining.html">Dining</a></li>
+    <li><a href="about.html" class="active">About</a></li>
+  </ul>
+  <div class="nav-ctas">
+      <a href="">
+        <button class="nav-cta" onclick="openModal({ name: 'Sign In' })">
+          My Tickets
+        </button>
+      </a>
+      <a href="sign-in.html">
+        <button class="nav-sign" onclick="openModal({ name: 'Sign In' })">
+          Sign In
+        </button>
+      </a>
+    </div>
+</nav>
+
+<!-- ABOUT HERO -->
+<div class="about-hero">
+  <div>
+    <div class="fade-up hero-tag">Our Story</div>
+    <h1 class="fade-up manifesto">WE LIVE<br>FOR <span>LIVE</span><br>MOMENTS</h1>
+    <p class="fade-up hero-desc">TicketZone was born in Cairo with a single mission — to make every live experience easier to access, so more people can enjoy the things that matter most.</p>
+    <div class="fade-up hero-btns">
+      <a href="#contact" class="btn-primary">Partner With Us</a>
+      <a href="#team"    class="btn-outline">Meet the Team</a>
+    </div>
+  </div>
+  <div class="img-mosaic">
+    <div class="img-mosaic-cell"><img src="https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=500&q=80"  alt="Football"></div>
+    <div class="img-mosaic-cell"><img src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=500&q=80" alt="Party"></div>
+    <div class="img-mosaic-cell"><img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=500&q=80" alt="Dining"></div>
+    <div class="img-mosaic-cell"><img src="https://images.unsplash.com/photo-1585699324551-f6c309eedeca?w=500&q=80" alt="Comedy"></div>
+  </div>
+</div>
+
+<!-- STATS -->
+<section class="section" style="padding-bottom:0;">
+  <div class="stat-cards">
+    <div class="stat-card">
+      <div class="stat-card-num">50<span>K+</span></div>
+      <div class="stat-card-label">Happy Customers</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-card-num">200<span>+</span></div>
+      <div class="stat-card-label">Monthly Events</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-card-num">4</div>
+      <div class="stat-card-label">Egyptian Cities</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-card-num">2020</div>
+      <div class="stat-card-label">Founded in Cairo</div>
+    </div>
+  </div>
+</section>
+
+<!-- MISSION -->
+<div class="mission-section">
+  <div class="mission-grid">
+    <div>
+      <div class="mission-label">Our Mission</div>
+      <div class="mission-title">WHY<br>WE<br>EXIST</div>
+    </div>
+    <div class="mission-body">
+      <p>We believe that live experiences — whether a football derby, a comedy show, a perfect dinner, or a rooftop party — are the moments that define our lives. Yet for too long, accessing these experiences has been fragmented, frustrating, and unreliable.</p>
+      <p>TicketZone was created to fix that. We've built the simplest, most trustworthy platform for Egyptians to discover, book, and attend the events they love — all in one place, with zero hassle.</p>
+      <p>From the Cairo Derby to an intimate restaurant reservation, every ticket we sell is a gateway to a memory. We take that responsibility seriously, and we're proud to serve over 50,000 fans, diners, and party-goers across Egypt.</p>
+    </div>
+  </div>
+</div>
+
+<!-- VALUES -->
+<section class="section">
+  <div class="section-header">
+    <div>
+      <div class="section-title">OUR <span class="accent">VALUES</span></div>
+    </div>
+  </div>
+  <div class="values-grid">
+    <div class="value-card">
+      <div class="value-icon">⚡</div>
+      <div class="value-title">Speed First</div>
+      <div class="value-desc">Booking a ticket should take seconds, not minutes. We've engineered every flow for the fastest possible experience — especially on mobile.</div>
+    </div>
+    <div class="value-card">
+      <div class="value-icon">🔒</div>
+      <div class="value-title">Trusted Always</div>
+      <div class="value-desc">Every ticket is verified, every venue is vetted, and every transaction is secure. You'll never show up to find your booking doesn't exist.</div>
+    </div>
+    <div class="value-card">
+      <div class="value-icon">🌍</div>
+      <div class="value-title">Built for Egypt</div>
+      <div class="value-desc">We're not a global platform retrofitted for Egypt. We're Egyptian-first, built around the way Egyptians live, celebrate, and gather.</div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- TEAM -->
+<section class="section" id="team">
+  <div class="section-header">
+    <div>
+      <div class="section-title">MEET THE <span class="accent">TEAM</span></div>
+      <div class="section-sub">The people behind TicketZone</div>
+    </div>
+  </div>
+  <div class="team-grid" id="teamGrid"></div>
+</section>
+
+<hr class="divider">
+
+<!-- TIMELINE -->
+<section class="section">
+  <div class="section-header">
+    <div>
+      <div class="section-title">OUR <span class="accent">JOURNEY</span></div>
+    </div>
+  </div>
+  <div class="timeline" id="timeline"></div>
+</section>
+
+<hr class="divider">
+
+<!-- PARTNERS -->
+<section class="section">
+  <div class="section-header">
+    <div>
+      <div class="section-title">OUR <span class="accent">PARTNERS</span></div>
+      <div class="section-sub">Trusted by Egypt's best venues and clubs</div>
+    </div>
+  </div>
+  <div class="partners-row" id="partnersRow"></div>
+</section>
+
+<hr class="divider">
+
+<!-- CONTACT -->
+<section class="section" id="contact">
+  <div class="section-header">
+    <div>
+      <div class="section-title">GET IN <span class="accent">TOUCH</span></div>
+      <div class="section-sub">Partner with us or say hello</div>
+    </div>
+  </div>
+  <div class="contact-grid">
+    <div>
+      <p style="color:var(--muted);font-size:15px;line-height:1.8;margin-bottom:32px;">Whether you're a venue owner, event organiser, restaurant manager, or just a fan with an idea — we'd love to hear from you.</p>
+      <div class="contact-info">
+        <div class="contact-row">
+          <div class="contact-icon">📧</div>
+          <div>
+            <div class="contact-row-label">Email</div>
+            <div class="contact-row-value">hello@ticketzone.eg</div>
+          </div>
+        </div>
+        <div class="contact-row">
+          <div class="contact-icon">📱</div>
+          <div>
+            <div class="contact-row-label">WhatsApp</div>
+            <div class="contact-row-value">+20 100 000 0000</div>
+          </div>
+        </div>
+        <div class="contact-row">
+          <div class="contact-icon">📍</div>
+          <div>
+            <div class="contact-row-label">Office</div>
+            <div class="contact-row-value">Maadi, Cairo, Egypt</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <form class="contact-form" onsubmit="handleContact(event)">
+      <div class="form-group">
+        <label>Your Name</label>
+        <input type="text" placeholder="Ahmed Mostafa">
+      </div>
+      <div class="form-group">
+        <label>Email</label>
+        <input type="email" placeholder="ahmed@example.com">
+      </div>
+      <div class="form-group">
+        <label>Subject</label>
+        <select>
+          <option>Partner With Us</option>
+          <option>List My Venue</option>
+          <option>Media Enquiry</option>
+          <option>General Enquiry</option>
+          <option>Technical Support</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Message</label>
+        <textarea placeholder="Tell us about your venue, event, or idea..."></textarea>
+      </div>
+      <button type="submit" class="btn-primary" style="width:100%;text-align:center;">Send Message →</button>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a href="index.html" class="logo">TICKET<span>ZONE</span></a>
+      <p>Your one-stop platform for booking tickets to sports, entertainment, dining, and unforgettable experiences across Egypt.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Sports</h4>
+      <a href="sports.html">Football Matches</a>
+      <a href="sports.html">Handball Games</a>
+      <a href="sports.html">Basketball</a>
+      <a href="sports.html">Tennis</a>
+    </div>
+    <div class="footer-col">
+      <h4>Experiences</h4>
+      <a href="entertainment.html">Parties & Clubs</a>
+      <a href="entertainment.html">Stand-up Comedy</a>
+      <a href="events.html">Concerts</a>
+      <a href="dining.html">Restaurants</a>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <a href="about.html">About Us</a>
+      <a href="about.html">Partner With Us</a>
+      <a href="about.html">Careers</a>
+      <a href="#">Support</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div>© 2025 TicketZone. All rights reserved.</div>
+    <div class="social-links">
+      <a href="#">Twitter</a>
+      <a href="#">Instagram</a>
+      <a href="#">Facebook</a>
+      <a href="#">TikTok</a>
+    </div>
+  </div>
+</footer>
+
+<!-- ============================================================
+     JS SECTION
+     ============================================================ -->
+<script>
+
+/* --- DATA --- */
+
+const teamMembers = [
+  { name: 'Karim Hassan',  role: 'CEO & Co-Founder',      bio: 'Former Al Ahly superfan turned startup founder. Built TicketZone after one too many scalper nightmares.',              img: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80' },
+  { name: 'Nour Eldin',    role: 'CTO & Co-Founder',      bio: 'Computer science graduate from AUC. Obsessed with performance and building things that just work.',                    img: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&q=80' },
+  { name: 'Amr Salah',     role: 'Head of Partnerships',  bio: 'Spent 10 years in event management before joining TicketZone. Knows every venue owner in Cairo personally.',          img: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&q=80' },
+  { name: 'Hana Mostafa',  role: 'Head of Design',        bio: "Every pixel on TicketZone went through Hana's eyes. She believes great design is invisible.",                         img: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&q=80' }
+];
+
+const timelineData = [
+  { year: '2020', title: 'Founded in Cairo',         desc: 'Karim and Nour launch TicketZone from a small apartment in Maadi with 5 venue partners.' },
+  { year: '2021', title: 'First 10,000 Users',       desc: 'Word spreads fast. TicketZone hits 10K registered users just 8 months after launch.' },
+  { year: '2022', title: 'Al Ahly Partnership',      desc: 'Secured the official ticketing deal with Al Ahly SC — the biggest sports partnership in our history.' },
+  { year: '2023', title: 'Expanded to Alexandria',   desc: 'Opened our second city with 30 new restaurant and venue partners on day one.' },
+  { year: '2025', title: '50K+ Users & Growing',     desc: 'Today we serve over 50,000 active users and are expanding to Hurghada and Sharm El Sheikh.' }
+];
+
+const partnerNames = ['AL AHLY SC', 'ZAMALEK SC', 'CAIRO OPERA', 'FOUR SEASONS', 'W HOTELS', 'NUSR-ET', 'CITYSTARS', 'NOBU CAIRO'];
+
+/* --- RENDER TEAM --- */
+
+function renderTeam() {
+  document.getElementById('teamGrid').innerHTML = teamMembers.map(m => `
+    <div class="team-card">
+      <div class="team-img"><img src="${m.img}" alt="${m.name}" loading="lazy"></div>
+      <div class="team-body">
+        <div class="team-name">${m.name}</div>
+        <div class="team-role">${m.role}</div>
+        <div class="team-bio">${m.bio}</div>
+      </div>
+    </div>`).join('');
+}
+
+/* --- RENDER TIMELINE --- */
+
+function renderTimeline() {
+  document.getElementById('timeline').innerHTML = timelineData.map(t => `
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-year">${t.year}</div>
+      <div class="tl-title">${t.title}</div>
+      <div class="tl-desc">${t.desc}</div>
+    </div>`).join('');
+}
+
+/* --- RENDER PARTNERS --- */
+
+function renderPartners() {
+  document.getElementById('partnersRow').innerHTML = partnerNames.map(p => `
+    <div class="partner-logo">${p}</div>`).join('');
+}
+
+/* --- CONTACT FORM --- */
+
+function handleContact(e) {
+  e.preventDefault();
+  alert("✅ Message sent! We'll get back to you within 24 hours.");
+}
+
+/* --- INIT --- */
+renderTeam();
+renderTimeline();
+renderPartners();
+
+</script>
+</body>
+</html>
+
