@@ -554,7 +554,7 @@
           allEl.classList.add("active");
           currentDateFilter = null;
           applySort();
-          const filterRow = document.querySelector('.controls-row');
+          const filterRow = document.querySelector('.filter-tabs');
           const gridPos = filterRow.getBoundingClientRect().top + window.scrollY;
           window.scrollTo({ top: gridPos - 100, behavior: 'smooth' });
         };
@@ -575,7 +575,7 @@
             el.classList.add("active");
             currentDateFilter = d;
             applySort();
-            const filterRow = document.querySelector('.controls-row');
+            const filterRow = document.querySelector('.filter-tabs');
             const gridPos = filterRow.getBoundingClientRect().top + window.scrollY;
             window.scrollTo({ top: gridPos - 100, behavior: 'smooth' });
           };
