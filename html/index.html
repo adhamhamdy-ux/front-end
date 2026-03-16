@@ -695,7 +695,7 @@
           const expiry = (document.getElementById('cardExpiry')?.value || '').trim();
           const cvv = (document.getElementById('cardCvv')?.value || '').trim();
           if (!name || number.length < 12 || expiry.length < 4 || cvv.length !== 3) {
-            alert('Please enter valid card details.');
+            alert('Please enter valid card details.\n\n- Name on card\n- Card number (at least 12 digits)\n- Expiry (MM/YY)\n- 3-digit CVV');
             return;
           }
         } else if (method === 'vodafone') {
@@ -707,7 +707,7 @@
         } else if (method === 'fawry') {
           const m = (document.getElementById('fawryMobile')?.value || '').trim();
           if (!m || m.length < 10) {
-            alert('Please enter your mobile number.');
+            alert('Please enter your mobile number (at least 10 digits).');
             return;
           }
         }
@@ -717,7 +717,19 @@
           method === 'vodafone' ? 'Vodafone Cash' :
           method === 'fawry' ? 'Fawry' : 'Cash';
 
-        alert(`✅ Booking Confirmed!\n\n${currentEvent.name}\n${t.type} × ${qty}\nTotal: EGP ${total}\nPayment: ${methodLabel}\n\nA confirmation will be sent to your email.`);
+        var message = 'Booking Confirmed!' +
+          '\r\n\r\n' +
+          currentEvent.name +
+          '\r\n' +
+          t.type + ' × ' + qty +
+          '\r\n' +
+          'Total: EGP ' + total +
+          '\r\n' +
+          'Payment: ' + methodLabel +
+          '\r\n\r\n' +
+          'A confirmation will be sent to your email.';
+
+        alert(message);
         document.getElementById('modalOverlay').classList.remove('open');
       }
 
