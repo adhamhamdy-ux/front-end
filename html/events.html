@@ -66,16 +66,7 @@
         </div>
       </div>
 
-      <!-- CALENDAR -->
-      <div class="section-header" style="margin-bottom: 20px">
-        <div>
-          <div class="section-title">
-            PICK A <span class="accent">DATE</span>
-          </div>
-          <div class="section-sub">Browse events by date</div>
-        </div>
-      </div>
-      <div class="calendar-strip" id="calStrip"></div>
+
 
       <!-- FEATURED -->
       <div id="featured" class="section-header">
@@ -88,6 +79,30 @@
       </div>
       <div class="featured-event" id="featuredEvent"></div>
 
+      <!-- CALENDAR -->
+      <div class="section-header" style="margin-bottom: 20px; margin-top: 60px;">
+        <div>
+          <div class="section-title">
+            PICK A <span class="accent">DATE</span>
+          </div>
+          <div class="section-sub">Browse events by date</div>
+        </div>
+      </div>
+      <div class="calendar-strip" id="calStrip"></div>
+
+      <!-- SORTING STRIP -->
+      <div style="display: flex; justify-content: flex-end; margin-top: 40px; margin-bottom: -20px;">
+        <div class="sort-control" style="display: flex; align-items: center; gap: 12px;">
+          <label style="font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; font-family: var(--font-mono);">Sort By</label>
+          <select id="sortEvents" onchange="applySort()" style="background: var(--surface); color: var(--text); border: 1px solid var(--border); padding: 10px 36px 10px 16px; border-radius: 8px; font-family: var(--font-body); font-size: 14px; outline: none; cursor: pointer; appearance: none; background-image: url('data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'16\' height=\'16\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'%238899aa\' stroke-width=\'2\' stroke-linecap=\'round\' stroke-linejoin=\'round\'%3E%3Cpolyline points=\'6 9 12 15 18 9\'%3E%3C/polyline%3E%3C/svg%3E'); background-repeat: no-repeat; background-position: right 12px center;">
+            <option value="date-asc" style="background: var(--card);">Date (Upcoming)</option>
+            <option value="date-desc" style="background: var(--card);">Date (Latest)</option>
+            <option value="price-asc" style="background: var(--card);">Price (Low to High)</option>
+            <option value="price-desc" style="background: var(--card);">Price (High to Low)</option>
+          </select>
+        </div>
+      </div>
+
       <!-- ALL EVENTS -->
       <div id="all-events" class="section-header" style="margin-top: 60px">
         <div>
@@ -98,34 +113,22 @@
         </div>
         <a href="#" class="view-all">View all →</a>
       </div>
-      <div class="controls-row" style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 40px; flex-wrap: wrap; gap: 20px;">
-        <div class="filter-tabs" style="margin-bottom: 0;">
-          <button class="filter-tab active" onclick="filterEvt('all', this)">
-            All
-          </button>
-          <button class="filter-tab" onclick="filterEvt('concert', this)">
-            🎵 Concerts
-          </button>
-          <button class="filter-tab" onclick="filterEvt('festival', this)">
-            🎪 Festivals
-          </button>
-          <button class="filter-tab" onclick="filterEvt('cultural', this)">
-            🎭 Cultural
-          </button>
-          <button class="filter-tab" onclick="filterEvt('outdoor', this)">
-            🌿 Outdoor
-          </button>
-        </div>
-        
-        <div class="sort-control" style="display: flex; align-items: center; gap: 12px;">
-          <label style="font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; font-family: var(--font-mono);">Sort By</label>
-          <select id="sortEvents" onchange="applySort()" style="background: var(--surface); color: var(--text); border: 1px solid var(--border); padding: 10px 36px 10px 16px; border-radius: 8px; font-family: var(--font-body); font-size: 14px; outline: none; cursor: pointer; appearance: none; background-image: url('data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'16\' height=\'16\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'%238899aa\' stroke-width=\'2\' stroke-linecap=\'round\' stroke-linejoin=\'round\'%3E%3Cpolyline points=\'6 9 12 15 18 9\'%3E%3C/polyline%3E%3C/svg%3E'); background-repeat: no-repeat; background-position: right 12px center;">
-            <option value="date-asc" style="background: var(--card);">Date (Upcoming)</option>
-            <option value="date-desc" style="background: var(--card);">Date (Latest)</option>
-            <option value="price-asc" style="background: var(--card);">Price (Low to High)</option>
-            <option value="price-desc" style="background: var(--card);">Price (High to Low)</option>
-          </select>
-        </div>
+      <div class="filter-tabs">
+        <button class="filter-tab active" onclick="filterEvt('all', this)">
+          All
+        </button>
+        <button class="filter-tab" onclick="filterEvt('concert', this)">
+          🎵 Concerts
+        </button>
+        <button class="filter-tab" onclick="filterEvt('festival', this)">
+          🎪 Festivals
+        </button>
+        <button class="filter-tab" onclick="filterEvt('cultural', this)">
+          🎭 Cultural
+        </button>
+        <button class="filter-tab" onclick="filterEvt('outdoor', this)">
+          🌿 Outdoor
+        </button>
       </div>
       <div class="cards-grid" id="eventsGrid"></div>
     </section>
@@ -324,6 +327,107 @@
             { type: "VIP Beach", perks: "VIP zone + sunbed", price: 800 },
           ],
         },
+        {
+          name: "Symphony at the Opera",
+          label: "Cultural",
+          badgeClass: "badge-purple",
+          date: "MAR 17, 2026",
+          location: "Cairo Opera House",
+          img: "https://images.pexels.com/photos/109669/pexels-photo-109669.jpeg?auto=compress&cs=tinysrgb&w=800",
+          desc: "An enchanting evening featuring classic symphonies directed by renowned maestros.",
+          price: 350,
+          soldPct: 65,
+          hot: true,
+          type: "cultural",
+          tickets: [
+            { type: "Balcony", perks: "Upper seating", price: 350 },
+            { type: "Orchestra", perks: "Premium immersive view", price: 750 },
+          ],
+        },
+        {
+          name: "Electronic Lakeside",
+          label: "Outdoor",
+          badgeClass: "badge-pink",
+          date: "MAR 21, 2026",
+          location: "Magic Lake, Fayoum",
+          img: "https://images.pexels.com/photos/1190298/pexels-photo-1190298.jpeg?auto=compress&cs=tinysrgb&w=800",
+          desc: "A sprawling outdoor electronic music festival held by the serene Magic Lake.",
+          price: 450,
+          soldPct: 92,
+          hot: true,
+          type: "outdoor",
+          tickets: [
+            { type: "Early Bird", perks: "General Area", price: 450 },
+            { type: "VIP Camping", perks: "Private Tent + Breakfast", price: 1200 },
+          ],
+        },
+        {
+          name: "Underground Indie Night",
+          label: "Concert",
+          badgeClass: "badge-cyan",
+          date: "MAR 22, 2026",
+          location: "Room Art Space, Garden City",
+          img: "https://images.pexels.com/photos/1763075/pexels-photo-1763075.jpeg?auto=compress&cs=tinysrgb&w=800",
+          desc: "Discover emerging local indie bands in an intimate, underground atmosphere.",
+          price: 150,
+          soldPct: 40,
+          hot: false,
+          type: "concert",
+          tickets: [
+            { type: "General Admission", perks: "Standing + 1 Drink", price: 150 },
+          ],
+        },
+        {
+          name: "Heritage Music Festival",
+          label: "Festival",
+          badgeClass: "badge-green",
+          date: "MAR 26, 2026",
+          location: "Citadel of Saladin, Cairo",
+          img: "https://images.pexels.com/photos/2091383/pexels-photo-2091383.jpeg?auto=compress&cs=tinysrgb&w=800",
+          desc: "A multi-day celebration of traditional Egyptian and Arabic musical heritage.",
+          price: 200,
+          soldPct: 55,
+          hot: false,
+          type: "festival",
+          tickets: [
+            { type: "Day Pass", perks: "Full Day Access", price: 200 },
+            { type: "VIP Fortress", perks: "Prime seating + Tour", price: 600 },
+          ],
+        },
+        {
+          name: "Amr Diab Live in Cairo",
+          label: "Concert",
+          badgeClass: "badge-gold",
+          date: "MAR 25, 2026",
+          location: "Cairo International Stadium",
+          img: "https://www.cairo360.com/wp-content/uploads/2019/02/Amr-Diab.jpg",
+          desc: "The megastar Amr Diab performs his biggest hits live in an unforgettable night.",
+          price: 500,
+          soldPct: 85,
+          hot: true,
+          type: "concert",
+          tickets: [
+            { type: "Regular", perks: "Field Standing", price: 500 },
+            { type: "VIP", perks: "Front Pit + Lounge Access", price: 1500 },
+          ],
+        },
+        {
+          name: "Tamer Ashour Romantic Night",
+          label: "Concert",
+          badgeClass: "badge-cyan",
+          date: "MAR 28, 2026",
+          location: "Al Manara Arena",
+          img: "https://www.masrawy.com/News/Images/2023/11/4/2023114152749509M.jpg",
+          desc: "Experience a night of deep emotions and romantic melodies with Tamer Ashour.",
+          price: 400,
+          soldPct: 60,
+          hot: false,
+          type: "concert",
+          tickets: [
+            { type: "Silver", perks: "Seated", price: 400 },
+            { type: "Gold", perks: "Premium Seating", price: 850 },
+          ],
+        },
       ];
 
       /* --- HELPERS --- */
@@ -450,6 +554,9 @@
           allEl.classList.add("active");
           currentDateFilter = null;
           applySort();
+          const filterRow = document.querySelector('.controls-row');
+          const gridPos = filterRow.getBoundingClientRect().top + window.scrollY;
+          window.scrollTo({ top: gridPos - 100, behavior: 'smooth' });
         };
         strip.appendChild(allEl);
 
@@ -468,6 +575,9 @@
             el.classList.add("active");
             currentDateFilter = d;
             applySort();
+            const filterRow = document.querySelector('.controls-row');
+            const gridPos = filterRow.getBoundingClientRect().top + window.scrollY;
+            window.scrollTo({ top: gridPos - 100, behavior: 'smooth' });
           };
           strip.appendChild(el);
         }
