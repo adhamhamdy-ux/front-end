@@ -98,22 +98,34 @@
         </div>
         <a href="#" class="view-all">View all →</a>
       </div>
-      <div class="filter-tabs">
-        <button class="filter-tab active" onclick="filterEvt('all', this)">
-          All
-        </button>
-        <button class="filter-tab" onclick="filterEvt('concert', this)">
-          🎵 Concerts
-        </button>
-        <button class="filter-tab" onclick="filterEvt('festival', this)">
-          🎪 Festivals
-        </button>
-        <button class="filter-tab" onclick="filterEvt('cultural', this)">
-          🎭 Cultural
-        </button>
-        <button class="filter-tab" onclick="filterEvt('outdoor', this)">
-          🌿 Outdoor
-        </button>
+      <div class="controls-row" style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 40px; flex-wrap: wrap; gap: 20px;">
+        <div class="filter-tabs" style="margin-bottom: 0;">
+          <button class="filter-tab active" onclick="filterEvt('all', this)">
+            All
+          </button>
+          <button class="filter-tab" onclick="filterEvt('concert', this)">
+            🎵 Concerts
+          </button>
+          <button class="filter-tab" onclick="filterEvt('festival', this)">
+            🎪 Festivals
+          </button>
+          <button class="filter-tab" onclick="filterEvt('cultural', this)">
+            🎭 Cultural
+          </button>
+          <button class="filter-tab" onclick="filterEvt('outdoor', this)">
+            🌿 Outdoor
+          </button>
+        </div>
+        
+        <div class="sort-control" style="display: flex; align-items: center; gap: 12px;">
+          <label style="font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; font-family: var(--font-mono);">Sort By</label>
+          <select id="sortEvents" onchange="applySort()" style="background: var(--surface); color: var(--text); border: 1px solid var(--border); padding: 10px 36px 10px 16px; border-radius: 8px; font-family: var(--font-body); font-size: 14px; outline: none; cursor: pointer; appearance: none; background-image: url('data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'16\' height=\'16\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'%238899aa\' stroke-width=\'2\' stroke-linecap=\'round\' stroke-linejoin=\'round\'%3E%3Cpolyline points=\'6 9 12 15 18 9\'%3E%3C/polyline%3E%3C/svg%3E'); background-repeat: no-repeat; background-position: right 12px center;">
+            <option value="date-asc" style="background: var(--card);">Date (Upcoming)</option>
+            <option value="date-desc" style="background: var(--card);">Date (Latest)</option>
+            <option value="price-asc" style="background: var(--card);">Price (Low to High)</option>
+            <option value="price-desc" style="background: var(--card);">Price (High to Low)</option>
+          </select>
+        </div>
       </div>
       <div class="cards-grid" id="eventsGrid"></div>
     </section>
@@ -210,7 +222,7 @@
           name: "Marwan pablo - Legacy ",
           label: "Concert",
           badgeClass: "badge-gold",
-          date: "APR 18, 2025",
+          date: "MAR 16, 2026",
           location: "New Alamein,Egypt",
           img: "https://www.visitalamein.com/uploads/0000/1/2025/07/11/screenshot-2025-07-11-at-83542-pm.png",
           desc: "The biggest rapers show of the year. 10,000 capacity. Epic production.",
@@ -227,7 +239,7 @@
           name: "Abyusf concert",
           label: "Festival",
           badgeClass: "badge-green",
-          date: "APR 5, 2025",
+          date: "MAR 18, 2026",
           location: "ELZamalek, Cairo",
           img: "https://mir-s3-cdn-cf.behance.net/projects/404/f413bc136857025.Y3JvcCwzMzM1LDI2MDgsMCwzNjM.jpg",
           desc: "one of the biggest rapers now in Zamalek with a lot of surprise guests.",
@@ -244,7 +256,7 @@
           name: "Cairo Jazz Night",
           label: "Concert",
           badgeClass: "badge-cyan",
-          date: "MAR 29, 2025",
+          date: "MAR 20, 2026",
           location: "Cairo Jazz Club",
           img: "https://images.unsplash.com/photo-1415201364774-f6f0bb35f28f?w=600&q=80",
           desc: "An intimate evening of world-class jazz with international artists.",
@@ -261,7 +273,7 @@
           name: "Theatro Arkan",
           label: "Cultural",
           badgeClass: "badge-purple",
-          date: "APR 12, 2025",
+          date: "MAR 22, 2026",
           location: "Theatro Arkan",
           img: "https://d3vzzcunewy153.cloudfront.net/img/17f95c00-4ab0-492d-94a6-3a647e5ea2fe/0ba86a5189686975e97183b1f9676818.jpg",
           desc: "A celebration of Egyptian art, poetry, and live music.",
@@ -278,7 +290,7 @@
           name: "Gaming Festival Egypt ",
           label: "Outdoor",
           badgeClass: "badge-pink",
-          date: "APR 25, 2025",
+          date: "MAR 25, 2026",
           location: "Gamming Arena ,   Egypt",
           img: "https://www.insomniamerch.com/cdn/shop/files/Insomnia-Logo-02-blk.png?height=628&pad_color=fff&v=1680105494&width=1200",
           desc: "Open-air rave under the stars with international DJs.",
@@ -299,7 +311,7 @@
           name: "Shehab in Alexandria",
           label: "Festival",
           badgeClass: "badge-green",
-          date: "MAY 1, 2025",
+          date: "MAR 28, 2026",
           location: "Alexandia Stadium , Alexandria",
           img: "https://cineegypt.com/wp-content/uploads/2025/08/WhatsApp-Image-2025-08-07-at-8.03.48-PM.jpeg",
           desc: "Shehab concert in Alexandria for the first time with a lot of surprise guests.",
@@ -381,31 +393,71 @@
           .join("");
       }
 
-      /* --- FILTER --- */
+      /* --- FILTER & SORT --- */
+
+      let currentFilter = 'all';
 
       function filterEvt(type, btn) {
-        document
-          .querySelectorAll(".filter-tab")
-          .forEach((b) => b.classList.remove("active"));
-        btn.classList.add("active");
-        renderCards(
-          type === "all"
-            ? eventsData
-            : eventsData.filter((e) => e.type === type),
-        );
+        if (btn) {
+          document
+            .querySelectorAll(".filter-tab")
+            .forEach((b) => b.classList.remove("active"));
+          btn.classList.add("active");
+        }
+        currentFilter = type;
+        applySort();
+      }
+
+      function applySort() {
+        const sortVal = document.getElementById("sortEvents")?.value || "date-asc";
+        let list = currentFilter === "all" ? [...eventsData] : eventsData.filter((e) => e.type === currentFilter);
+        
+        if (currentDateFilter) {
+           list = list.filter(e => {
+              const d1 = new Date(e.date);
+              return d1.getDate() === currentDateFilter.getDate() && d1.getMonth() === currentDateFilter.getMonth();
+           });
+        }
+
+        list.sort((a, b) => {
+          if (sortVal === "date-asc") {
+            return new Date(a.date) - new Date(b.date);
+          } else if (sortVal === "date-desc") {
+            return new Date(b.date) - new Date(a.date);
+          } else if (sortVal === "price-asc") {
+            return a.price - b.price;
+          } else if (sortVal === "price-desc") {
+            return b.price - a.price;
+          }
+        });
+        
+        renderCards(list);
       }
 
       /* --- CALENDAR --- */
 
+      let currentDateFilter = null;
       function buildCalendar() {
         const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
         const strip = document.getElementById("calStrip");
         const hasDot = [0, 2, 5, 9, 13];
+        
+        const allEl = document.createElement("div");
+        allEl.className = "cal-day active";
+        allEl.innerHTML = `<div class="cal-day-name" style="color:var(--accent);">ALL</div><div class="cal-day-num" style="font-size: 20px; line-height: 30px;">∞</div>`;
+        allEl.onclick = () => {
+          document.querySelectorAll(".cal-day").forEach((c) => c.classList.remove("active"));
+          allEl.classList.add("active");
+          currentDateFilter = null;
+          applySort();
+        };
+        strip.appendChild(allEl);
+
         for (let i = 0; i < 14; i++) {
           const d = new Date();
           d.setDate(d.getDate() + i);
           const el = document.createElement("div");
-          el.className = "cal-day" + (i === 0 ? " active" : "");
+          el.className = "cal-day";
           el.innerHTML = `<div class="cal-day-name">${days[d.getDay()]}</div>
       <div class="cal-day-num">${d.getDate()}</div>
       ${hasDot.includes(i) ? '<div class="cal-day-dot"></div>' : ""}`;
@@ -414,6 +466,8 @@
               .querySelectorAll(".cal-day")
               .forEach((c) => c.classList.remove("active"));
             el.classList.add("active");
+            currentDateFilter = d;
+            applySort();
           };
           strip.appendChild(el);
         }
@@ -575,7 +629,7 @@
       /* --- INIT --- */
       buildCalendar();
       renderFeatured(eventsData[0]);
-      renderCards(eventsData);
+      applySort();
 
       // Nav: smooth fade-out on navigation
       document.querySelectorAll('.nav-links a, .logo').forEach(a => {
