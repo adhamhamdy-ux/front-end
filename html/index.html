@@ -84,37 +84,38 @@
     <div class="search-bar">
       <div class="search-field" style="flex: 2">
         <label>Search Events</label>
-        <input type="text" placeholder="Football, Comedy, Restaurant..." />
+        <input type="text" id="searchInput" placeholder="Football, Comedy, Restaurant..." />
       </div>
       <div class="search-divider"></div>
       <div class="search-field">
         <label>Category</label>
-        <select>
-          <option>All Categories</option>
-          <option>Football</option>
-          <option>Handball</option>
-          <option>Party</option>
-          <option>Restaurant</option>
-          <option>Stand-up Comedy</option>
-          <option>Concerts</option>
+        <select id="searchCategory">
+          <option value="">All Categories</option>
+          <option value="football">Football</option>
+          <option value="handball">Handball</option>
+          <option value="party">Party</option>
+          <option value="restaurant">Restaurant</option>
+          <option value="comedy">Stand-up Comedy</option>
+          <option value="concert">Concerts</option>
         </select>
       </div>
       <div class="search-divider"></div>
       <div class="search-field">
         <label>Date</label>
-        <input type="date" />
+        <input type="date" id="searchDate" />
       </div>
       <div class="search-divider"></div>
       <div class="search-field">
         <label>City</label>
-        <select>
-          <option>Cairo</option>
-          <option>Alexandria</option>
-          <option>Giza</option>
-          <option>Hurghada</option>
+        <select id="searchCity">
+          <option value="">All Cities</option>
+          <option value="cairo">Cairo</option>
+          <option value="alexandria">Alexandria</option>
+          <option value="giza">Giza</option>
+          <option value="hurghada">Hurghada</option>
         </select>
       </div>
-      <button class="search-btn">🔍 Search</button>
+      <button class="search-btn" onclick="handleSearch()">🔍 Search</button>
     </div>
   </div>
 
@@ -166,13 +167,13 @@
     </div>
   </section>
 
-  <section class="section" style="padding-top: 0">
+  <section class="section" id="eventsList" style="padding-top: 0">
     <div class="section-header">
       <div>
-        <div class="section-title">
+        <div class="section-title" id="eventsGridTitle">
           HOT <span class="accent">EVENTS</span>
         </div>
-        <div class="section-sub">Don't miss out — tickets selling fast</div>
+        <div class="section-sub" id="eventsGridSub">Don't miss out — tickets selling fast</div>
       </div>
       <a href="#" class="view-all">See all events →</a>
     </div>
@@ -735,20 +736,95 @@
 
       function filterCategory(cat) {
         const filtered = events.filter((e) => e.category === cat);
-        renderEvents(filtered.length ? filtered : events, "eventsGrid");
+        const arr = filtered.length ? filtered : events;
+        renderEvents(arr, "eventsGrid");
+
+        const title = document.getElementById("eventsGridTitle");
+        const sub = document.getElementById("eventsGridSub");
+        if (title && sub) {
+          title.innerHTML = `CATEGORY <span class="accent">${cat.toUpperCase()}</span>`;
+          sub.textContent = `${arr.length} events found`;
+        }
+        
         // re-bind buttons
         document
           .querySelectorAll("#eventsGrid .ticket-btn")
           .forEach((btn, i) => {
-            const arr = filtered.length ? filtered : events;
             btn.onclick = (e) => {
               e.stopPropagation();
               openModal(arr[i]);
             };
           });
         document
-          .getElementById("events")
+          .getElementById("eventsList")
           .scrollIntoView({ behavior: "smooth" });
+      }
+
+      function handleSearch() {
+        const query = (document.getElementById("searchInput").value || "").toLowerCase();
+        const category = document.getElementById("searchCategory").value;
+        const dateVal = document.getElementById("searchDate").value;
+        const city = document.getElementById("searchCity").value.toLowerCase();
+
+        const allEvents = [...events, ...upcoming];
+
+        const filtered = allEvents.filter(e => {
+          let match = true;
+          
+          if (query && !(e.name.toLowerCase().includes(query) || e.desc.toLowerCase().includes(query))) {
+            match = false;
+          }
+          if (category && e.category !== category) {
+            match = false;
+          }
+          if (dateVal) {
+            const dateObj = new Date(dateVal);
+            if (!isNaN(dateObj)) {
+                const monthNames = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
+                const monthStr = monthNames[dateObj.getMonth()];
+                if (e.date !== "ANY DATE" && monthStr && !e.date.includes(monthStr)) {
+                    match = false;
+                }
+            }
+          }
+          if (city && e.location && !e.location.toLowerCase().includes(city)) {
+            match = false;
+          }
+          return match;
+        });
+
+        renderEvents(filtered, "eventsGrid");
+        
+        const title = document.getElementById("eventsGridTitle");
+        const sub = document.getElementById("eventsGridSub");
+        const upcomingGrid = document.getElementById("upcomingGrid");
+        const upcomingSection = upcomingGrid ? upcomingGrid.closest('section') : null;
+
+        if (query || category || dateVal || city) {
+          if (title && sub) {
+            title.innerHTML = 'SEARCH <span class="accent">RESULTS</span>';
+            sub.textContent = `${filtered.length} events found`;
+          }
+          if (upcomingSection) upcomingSection.style.display = 'none';
+        } else {
+          if (title && sub) {
+            title.innerHTML = 'HOT <span class="accent">EVENTS</span>';
+            sub.textContent = `Don't miss out — tickets selling fast`;
+          }
+          if (upcomingSection) upcomingSection.style.display = '';
+        }
+
+        // re-bind buttons
+        document
+          .querySelectorAll("#eventsGrid .ticket-btn")
+          .forEach((btn, i) => {
+            btn.onclick = (e) => {
+              e.stopPropagation();
+              openModal(filtered[i]);
+            };
+          });
+
+        document.getElementById("eventsList").scrollIntoView({ behavior: "smooth" });
       }
       // Nav: mark current page as active
       (function() {
