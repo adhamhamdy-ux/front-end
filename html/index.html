@@ -1054,14 +1054,9 @@
           if (profileDropdownBtn) profileDropdownBtn.style.display = 'block';
           if (myTicketsLink) {
             myTicketsLink.href = '#';
-<<<<<<< HEAD
-            myTicketsLink.querySelector('button').removeAttribute('onclick');
-            myTicketsLink.querySelector('button').onclick = () => alert("Redirecting to My Tickets...");
-=======
             const btn = myTicketsLink.querySelector('button');
             btn?.removeAttribute('onclick');
             if (btn) btn.onclick = () => alert("Redirecting to My Tickets...");
->>>>>>> 982eb27 (feat: Enhance navigation with profile dropdown and sign-in state management)
           }
         } else {
           if (signInLink) signInLink.style.display = 'block';

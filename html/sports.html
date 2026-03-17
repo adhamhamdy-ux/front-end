@@ -585,8 +585,9 @@ document.addEventListener("DOMContentLoaded", () => {
     if (profileDropdownBtn) profileDropdownBtn.style.display = 'block';
     if (myTicketsLink) {
       myTicketsLink.href = '#';
-      myTicketsLink.querySelector('button').removeAttribute('onclick');
-      myTicketsLink.querySelector('button').onclick = () => alert("Redirecting to My Tickets...");
+      const btn = myTicketsLink.querySelector('button');
+      btn?.removeAttribute('onclick');
+      if (btn) btn.onclick = () => alert("Redirecting to My Tickets...");
     }
   } else {
     if (signInLink) signInLink.style.display = 'block';
