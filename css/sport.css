@@ -907,7 +907,8 @@ footer {
 }
 .social-links {
   display: flex;
-  gap: 16px;
+  flex-direction: column;
+  gap: 12px;
 }
 .social-links a {
   color: var(--muted);
