@@ -116,8 +116,12 @@ nav {
   animation: navUnderline 0.35s ease forwards;
 }
 @keyframes navUnderline {
-  from { transform: scaleX(0); }
-  to   { transform: scaleX(1); }
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
 }
 .nav-cta {
   background: var(--accent);
@@ -133,8 +137,7 @@ nav {
   margin: 10px;
 }
 .nav-cta:hover,
-.nav-sign:hover
-{
+.nav-sign:hover {
   background: #ff6b63;
   transform: translateY(-1px);
 }
@@ -149,11 +152,7 @@ nav {
   content: "";
   position: absolute;
   inset: 0;
-  background: radial-gradient(
-    
-    black,
-   
-  );
+  background: radial-gradient(black);
   pointer-events: none;
 }
 .page-hero-bg {
@@ -865,7 +864,7 @@ footer {
 }
 .footer-grid {
   display: grid;
-  grid-template-columns: 2fr 1fr 1fr 1fr;
+  grid-template-columns: 2fr 1fr 1fr;
   gap: 60px;
   margin-bottom: 60px;
 }
@@ -991,16 +990,86 @@ footer {
 }
 
 /* Payment Section (inside modal) */
-.payment-section { margin: 20px 0; }
-.payment-title { font-size: 12px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--muted); font-family: var(--font-mono); margin-bottom: 12px; }
-.payment-methods { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 20px; }
-.pay-method { display: flex; align-items: center; gap: 6px; border: 1px solid var(--border); border-radius: 6px; padding: 8px 14px; cursor: pointer; font-size: 13px; transition: all 0.2s; color: var(--muted); }
-.pay-method:has(input:checked) { border-color: var(--accent); color: var(--text); background: rgba(255, 59, 48, 0.07); }
-.pay-method input[type="radio"] { accent-color: var(--accent); }
-.payment-details { display: flex; flex-wrap: wrap; gap: 12px; }
-.payment-details .field { display: flex; flex-direction: column; gap: 6px; flex: 1; min-width: 100px; }
-.payment-details .field.full { flex-basis: 100%; }
-.payment-details label { font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: var(--muted); font-family: var(--font-mono); }
-.payment-details input { background: var(--surface); border: 1px solid var(--border); border-radius: 6px; padding: 10px 12px; color: var(--text); font-size: 14px; font-family: var(--font-body); outline: none; transition: border-color 0.2s; }
-.payment-details input:focus { border-color: var(--accent); }
-.payment-note { font-size: 13px; color: var(--muted); border: 1px dashed var(--border); border-radius: 6px; padding: 12px 16px; width: 100%; line-height: 1.5; box-sizing: border-box; }
+.payment-section {
+  margin: 20px 0;
+}
+.payment-title {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--muted);
+  font-family: var(--font-mono);
+  margin-bottom: 12px;
+}
+.payment-methods {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+.pay-method {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 8px 14px;
+  cursor: pointer;
+  font-size: 13px;
+  transition: all 0.2s;
+  color: var(--muted);
+}
+.pay-method:has(input:checked) {
+  border-color: var(--accent);
+  color: var(--text);
+  background: rgba(255, 59, 48, 0.07);
+}
+.pay-method input[type="radio"] {
+  accent-color: var(--accent);
+}
+.payment-details {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.payment-details .field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1;
+  min-width: 100px;
+}
+.payment-details .field.full {
+  flex-basis: 100%;
+}
+.payment-details label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--muted);
+  font-family: var(--font-mono);
+}
+.payment-details input {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 10px 12px;
+  color: var(--text);
+  font-size: 14px;
+  font-family: var(--font-body);
+  outline: none;
+  transition: border-color 0.2s;
+}
+.payment-details input:focus {
+  border-color: var(--accent);
+}
+.payment-note {
+  font-size: 13px;
+  color: var(--muted);
+  border: 1px dashed var(--border);
+  border-radius: 6px;
+  padding: 12px 16px;
+  width: 100%;
+  line-height: 1.5;
+  box-sizing: border-box;
+}

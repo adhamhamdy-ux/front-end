@@ -66,8 +66,6 @@
         </div>
       </div>
 
-
-
       <!-- FEATURED -->
       <div id="featured" class="section-header">
         <div>
@@ -80,7 +78,7 @@
       <div class="featured-event" id="featuredEvent"></div>
 
       <!-- CALENDAR -->
-      <div class="section-header" style="margin-bottom: 20px; margin-top: 60px;">
+      <div class="section-header" style="margin-bottom: 20px; margin-top: 60px">
         <div>
           <div class="section-title">
             PICK A <span class="accent">DATE</span>
@@ -91,14 +89,59 @@
       <div class="calendar-strip" id="calStrip"></div>
 
       <!-- SORTING STRIP -->
-      <div style="display: flex; justify-content: flex-end; margin-top: 40px; margin-bottom: -20px;">
-        <div class="sort-control" style="display: flex; align-items: center; gap: 12px;">
-          <label style="font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; font-family: var(--font-mono);">Sort By</label>
-          <select id="sortEvents" onchange="applySort()" style="background: var(--surface); color: var(--text); border: 1px solid var(--border); padding: 10px 36px 10px 16px; border-radius: 8px; font-family: var(--font-body); font-size: 14px; outline: none; cursor: pointer; appearance: none; background-image: url('data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'16\' height=\'16\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'%238899aa\' stroke-width=\'2\' stroke-linecap=\'round\' stroke-linejoin=\'round\'%3E%3Cpolyline points=\'6 9 12 15 18 9\'%3E%3C/polyline%3E%3C/svg%3E'); background-repeat: no-repeat; background-position: right 12px center;">
-            <option value="date-asc" style="background: var(--card);">Date (Upcoming)</option>
-            <option value="date-desc" style="background: var(--card);">Date (Latest)</option>
-            <option value="price-asc" style="background: var(--card);">Price (Low to High)</option>
-            <option value="price-desc" style="background: var(--card);">Price (High to Low)</option>
+      <div
+        style="
+          display: flex;
+          justify-content: flex-end;
+          margin-top: 40px;
+          margin-bottom: -20px;
+        "
+      >
+        <div
+          class="sort-control"
+          style="display: flex; align-items: center; gap: 12px"
+        >
+          <label
+            style="
+              font-size: 12px;
+              color: var(--muted);
+              text-transform: uppercase;
+              letter-spacing: 1px;
+              font-family: var(--font-mono);
+            "
+            >Sort By</label
+          >
+          <select
+            id="sortEvents"
+            onchange="applySort()"
+            style="
+              background: var(--surface);
+              color: var(--text);
+              border: 1px solid var(--border);
+              padding: 10px 36px 10px 16px;
+              border-radius: 8px;
+              font-family: var(--font-body);
+              font-size: 14px;
+              outline: none;
+              cursor: pointer;
+              appearance: none;
+              background-image: url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%238899aa' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E&quot;);
+              background-repeat: no-repeat;
+              background-position: right 12px center;
+            "
+          >
+            <option value="date-asc" style="background: var(--card)">
+              Date (Upcoming)
+            </option>
+            <option value="date-desc" style="background: var(--card)">
+              Date (Latest)
+            </option>
+            <option value="price-asc" style="background: var(--card)">
+              Price (Low to High)
+            </option>
+            <option value="price-desc" style="background: var(--card)">
+              Price (High to Low)
+            </option>
           </select>
         </div>
       </div>
@@ -134,56 +177,97 @@
     </section>
 
     <!-- FOOTER -->
-  <footer>
-    <div class="footer-grid">
-      <div class="footer-brand">
-        <span class="logo">TICKET<span>ZONE</span></span>
-        <p>
-          Your one-stop platform for booking tickets to sports, entertainment,
-          dining, and unforgettable experiences across Egypt.
-        </p>
-      </div>
-      <div class="footer-col">
-        <h4>Company</h4>
-        <a href="about.html">About Us</a>
-        <a href="#">Partner With Us</a>
-        <a href="#">Careers</a>
-        <a href="#">Support</a>
-      </div>
-      <div class="footer-col">
-        <h4>Follow Us</h4>
-        <div class="social-links">
-          <a href="#" class="social-icon" aria-label="Twitter / X">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L2.245 2.25H8.08l4.262 5.633 5.902-5.633zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-            <span>X (Twitter)</span>
-          </a>
-          <a href="#" class="social-icon" aria-label="Instagram">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-            <span>Instagram</span>
-          </a>
-          <a href="#" class="social-icon" aria-label="Facebook">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-            <span>Facebook</span>
-          </a>
-          <a href="#" class="social-icon" aria-label="TikTok">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
-            <span>TikTok</span>
-          </a>
+    <footer>
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <span class="logo">TICKET<span>ZONE</span></span>
+          <p>
+            Your one-stop platform for booking tickets to sports, entertainment,
+            dining, and unforgettable experiences across Egypt.
+          </p>
+        </div>
+        <div class="footer-col">
+          <h4>Company</h4>
+          <a href="about.html">About Us</a>
+          <a href="#">Partner With Us</a>
+          <a href="#">Careers</a>
+          <a href="#">Support</a>
+        </div>
+        <div class="footer-col">
+          <h4>Follow Us</h4>
+          <div class="social-links">
+            <a href="#" class="social-icon" aria-label="Twitter / X">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                width="22"
+                height="22"
+                fill="currentColor"
+              >
+                <path
+                  d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L2.245 2.25H8.08l4.262 5.633 5.902-5.633zm-1.161 17.52h1.833L7.084 4.126H5.117z"
+                />
+              </svg>
+              <span>X (Twitter)</span>
+            </a>
+            <a href="#" class="social-icon" aria-label="Instagram">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                width="22"
+                height="22"
+                fill="currentColor"
+              >
+                <path
+                  d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"
+                />
+              </svg>
+              <span>Instagram</span>
+            </a>
+            <a href="#" class="social-icon" aria-label="Facebook">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                width="22"
+                height="22"
+                fill="currentColor"
+              >
+                <path
+                  d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"
+                />
+              </svg>
+              <span>Facebook</span>
+            </a>
+            <a href="#" class="social-icon" aria-label="TikTok">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                width="22"
+                height="22"
+                fill="currentColor"
+              >
+                <path
+                  d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"
+                />
+              </svg>
+              <span>TikTok</span>
+            </a>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="footer-bottom">
-      <div>© 2025 TicketZone. All rights reserved.</div>
-    </div>
-  </footer>
-
+      <div class="footer-bottom">
+        <div>© 2025 TicketZone. All rights reserved.</div>
+      </div>
+    </footer>
 
     <!-- MODAL -->
     <div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
       <div class="modal" id="modal">
         <button class="modal-close" onclick="closeModal()">×</button>
         <div class="modal-title" id="modalTitle">Book Tickets</div>
-        <div class="modal-subtitle" id="modalSubtitle">Select your ticket type and quantity</div>
+        <div class="modal-subtitle" id="modalSubtitle">
+          Select your ticket type and quantity
+        </div>
         <div class="ticket-options" id="ticketOptions"></div>
         <div class="qty-control">
           <span class="qty-label">Number of Tickets</span>
@@ -195,19 +279,19 @@
           <div class="payment-title">Payment Method</div>
           <div class="payment-methods" id="paymentMethods">
             <label class="pay-method">
-              <input type="radio" name="paymentMethod" value="card" checked>
+              <input type="radio" name="paymentMethod" value="card" checked />
               <span>Card</span>
             </label>
             <label class="pay-method">
-              <input type="radio" name="paymentMethod" value="vodafone">
+              <input type="radio" name="paymentMethod" value="vodafone" />
               <span>Vodafone Cash</span>
             </label>
             <label class="pay-method">
-              <input type="radio" name="paymentMethod" value="fawry">
+              <input type="radio" name="paymentMethod" value="fawry" />
               <span>Fawry</span>
             </label>
             <label class="pay-method">
-              <input type="radio" name="paymentMethod" value="cash">
+              <input type="radio" name="paymentMethod" value="cash" />
               <span>Cash</span>
             </label>
           </div>
@@ -217,7 +301,9 @@
           <span class="total-label">Total Amount</span>
           <span class="total-amount" id="totalAmount">EGP 0</span>
         </div>
-        <button class="book-btn" onclick="confirmBooking()">Confirm Booking →</button>
+        <button class="book-btn" onclick="confirmBooking()">
+          Confirm Booking →
+        </button>
       </div>
     </div>
 
@@ -360,7 +446,11 @@
           type: "outdoor",
           tickets: [
             { type: "Early Bird", perks: "General Area", price: 450 },
-            { type: "VIP Camping", perks: "Private Tent + Breakfast", price: 1200 },
+            {
+              type: "VIP Camping",
+              perks: "Private Tent + Breakfast",
+              price: 1200,
+            },
           ],
         },
         {
@@ -376,7 +466,11 @@
           hot: false,
           type: "concert",
           tickets: [
-            { type: "General Admission", perks: "Standing + 1 Drink", price: 150 },
+            {
+              type: "General Admission",
+              perks: "Standing + 1 Drink",
+              price: 150,
+            },
           ],
         },
         {
@@ -501,7 +595,7 @@
 
       /* --- FILTER & SORT --- */
 
-      let currentFilter = 'all';
+      let currentFilter = "all";
 
       function filterEvt(type, btn) {
         if (btn) {
@@ -515,14 +609,21 @@
       }
 
       function applySort() {
-        const sortVal = document.getElementById("sortEvents")?.value || "date-asc";
-        let list = currentFilter === "all" ? [...eventsData] : eventsData.filter((e) => e.type === currentFilter);
-        
+        const sortVal =
+          document.getElementById("sortEvents")?.value || "date-asc";
+        let list =
+          currentFilter === "all"
+            ? [...eventsData]
+            : eventsData.filter((e) => e.type === currentFilter);
+
         if (currentDateFilter) {
-           list = list.filter(e => {
-              const d1 = new Date(e.date);
-              return d1.getDate() === currentDateFilter.getDate() && d1.getMonth() === currentDateFilter.getMonth();
-           });
+          list = list.filter((e) => {
+            const d1 = new Date(e.date);
+            return (
+              d1.getDate() === currentDateFilter.getDate() &&
+              d1.getMonth() === currentDateFilter.getMonth()
+            );
+          });
         }
 
         list.sort((a, b) => {
@@ -536,7 +637,7 @@
             return b.price - a.price;
           }
         });
-        
+
         renderCards(list);
       }
 
@@ -547,18 +648,21 @@
         const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
         const strip = document.getElementById("calStrip");
         const hasDot = [0, 2, 5, 9, 13];
-        
+
         const allEl = document.createElement("div");
         allEl.className = "cal-day active";
         allEl.innerHTML = `<div class="cal-day-name" style="color:var(--accent);">ALL</div><div class="cal-day-num" style="font-size: 20px; line-height: 30px;">∞</div>`;
         allEl.onclick = () => {
-          document.querySelectorAll(".cal-day").forEach((c) => c.classList.remove("active"));
+          document
+            .querySelectorAll(".cal-day")
+            .forEach((c) => c.classList.remove("active"));
           allEl.classList.add("active");
           currentDateFilter = null;
           applySort();
-          const filterRow = document.querySelector('.filter-tabs');
-          const gridPos = filterRow.getBoundingClientRect().top + window.scrollY;
-          window.scrollTo({ top: gridPos - 100, behavior: 'smooth' });
+          const filterRow = document.querySelector(".filter-tabs");
+          const gridPos =
+            filterRow.getBoundingClientRect().top + window.scrollY;
+          window.scrollTo({ top: gridPos - 100, behavior: "smooth" });
         };
         strip.appendChild(allEl);
 
@@ -577,9 +681,10 @@
             el.classList.add("active");
             currentDateFilter = d;
             applySort();
-            const filterRow = document.querySelector('.filter-tabs');
-            const gridPos = filterRow.getBoundingClientRect().top + window.scrollY;
-            window.scrollTo({ top: gridPos - 100, behavior: 'smooth' });
+            const filterRow = document.querySelector(".filter-tabs");
+            const gridPos =
+              filterRow.getBoundingClientRect().top + window.scrollY;
+            window.scrollTo({ top: gridPos - 100, behavior: "smooth" });
           };
           strip.appendChild(el);
         }
@@ -588,20 +693,23 @@
       /* --- MODAL --- */
 
       // Payment method change listener
-      document.getElementById('paymentMethods')?.addEventListener('change', (e) => {
-        if (e.target && e.target.name === 'paymentMethod') setPaymentDetails(e.target.value);
-      });
+      document
+        .getElementById("paymentMethods")
+        ?.addEventListener("change", (e) => {
+          if (e.target && e.target.name === "paymentMethod")
+            setPaymentDetails(e.target.value);
+        });
 
       let currentEvent = null;
       let selectedTicketIdx = 0;
       let qty = 1;
-      let paymentMethod = 'card';
+      let paymentMethod = "card";
 
       function setPaymentDetails(method) {
         paymentMethod = method;
-        const wrap = document.getElementById('paymentDetails');
+        const wrap = document.getElementById("paymentDetails");
         if (!wrap) return;
-        if (method === 'card') {
+        if (method === "card") {
           wrap.innerHTML = `
             <div class="field full">
               <label>Name on card</label>
@@ -620,27 +728,31 @@
               <input type="text" id="cardCvv" inputmode="numeric" placeholder="123" maxlength="3">
             </div>
           `;
-      document.getElementById('cardNumber')?.addEventListener('input', function (e) {
-      let val = this.value.replace(/\D/g, '');
-      val = val.substring(0, 16);
-      let parts = [];
-      for (let i = 0; i < val.length; i += 4) {
-        parts.push(val.substring(i, i + 4));
-      }
-      this.value = parts.join(' ');
-    });
-    document.getElementById('cardExpiry')?.addEventListener('input', function (e) {
-      let val = this.value.replace(/\D/g, '');
-      val = val.substring(0, 4);
-      if (val.length >= 3) {
-        this.value = val.substring(0, 2) + '/' + val.substring(2);
-      } else {
-        this.value = val;
-      }
-    });
-    return;
+          document
+            .getElementById("cardNumber")
+            ?.addEventListener("input", function (e) {
+              let val = this.value.replace(/\D/g, "");
+              val = val.substring(0, 16);
+              let parts = [];
+              for (let i = 0; i < val.length; i += 4) {
+                parts.push(val.substring(i, i + 4));
+              }
+              this.value = parts.join(" ");
+            });
+          document
+            .getElementById("cardExpiry")
+            ?.addEventListener("input", function (e) {
+              let val = this.value.replace(/\D/g, "");
+              val = val.substring(0, 4);
+              if (val.length >= 3) {
+                this.value = val.substring(0, 2) + "/" + val.substring(2);
+              } else {
+                this.value = val;
+              }
+            });
+          return;
         }
-        if (method === 'vodafone') {
+        if (method === "vodafone") {
           wrap.innerHTML = `
             <div class="field full">
               <label>Vodafone Cash number</label>
@@ -650,7 +762,7 @@
           `;
           return;
         }
-        if (method === 'fawry') {
+        if (method === "fawry") {
           wrap.innerHTML = `
             <div class="field full">
               <label>Mobile number (for receipt)</label>
@@ -667,11 +779,14 @@
         currentEvent = item;
         selectedTicketIdx = 0;
         qty = 1;
-        document.getElementById('modalTitle').textContent = item.name;
-        document.getElementById('modalSubtitle').textContent = item.date + ' · ' + (item.location || '');
-        const opts = document.getElementById('ticketOptions');
-        opts.innerHTML = (item.tickets || []).map((t, i) => `
-          <div class="ticket-option ${i === 0 ? 'selected' : ''}" onclick="selectTicket(${i})">
+        document.getElementById("modalTitle").textContent = item.name;
+        document.getElementById("modalSubtitle").textContent =
+          item.date + " · " + (item.location || "");
+        const opts = document.getElementById("ticketOptions");
+        opts.innerHTML = (item.tickets || [])
+          .map(
+            (t, i) => `
+          <div class="ticket-option ${i === 0 ? "selected" : ""}" onclick="selectTicket(${i})">
             <div>
               <div class="ticket-type">${t.type}</div>
               <div class="ticket-perks">${t.perks}</div>
@@ -680,12 +795,16 @@
               <div class="ticket-price-tag">EGP ${t.price}</div>
             </div>
           </div>
-        `).join('');
-        document.getElementById('qtyNum').textContent = qty;
+        `,
+          )
+          .join("");
+        document.getElementById("qtyNum").textContent = qty;
         updateTotal();
-        const selected = document.querySelector('input[name="paymentMethod"]:checked');
-        setPaymentDetails(selected ? selected.value : 'card');
-        document.getElementById('modalOverlay').classList.add('open');
+        const selected = document.querySelector(
+          'input[name="paymentMethod"]:checked',
+        );
+        setPaymentDetails(selected ? selected.value : "card");
+        document.getElementById("modalOverlay").classList.add("open");
       }
 
       function selectTicket(idx) {
@@ -705,7 +824,8 @@
       function updateTotal() {
         if (!currentEvent) return;
         const price = currentEvent.tickets[selectedTicketIdx].price * qty;
-        document.getElementById("totalAmount").textContent = "EGP " + price.toLocaleString();
+        document.getElementById("totalAmount").textContent =
+          "EGP " + price.toLocaleString();
       }
 
       function closeModal(e) {
@@ -715,26 +835,37 @@
       }
 
       function confirmBooking() {
-        if (!currentEvent || !currentEvent.tickets || !currentEvent.tickets.length) {
-          alert('This item is not bookable right now.');
+        if (
+          !currentEvent ||
+          !currentEvent.tickets ||
+          !currentEvent.tickets.length
+        ) {
+          alert("This item is not bookable right now.");
           return;
         }
         const t = currentEvent.tickets[selectedTicketIdx];
         const total = (t.price * qty).toLocaleString();
 
         // Basic validation check
-        if (paymentMethod === 'card') {
-          const cn = document.getElementById('cardNumber')?.value.replace(/\\s/g, '');
-          if (!cn || cn.length < 15) return alert('Please enter a valid card number.');
-        } else if (paymentMethod === 'vodafone') {
-          const vf = document.getElementById('vfNumber')?.value;
-          if (!vf || vf.length < 11) return alert('Please enter a valid Vodafone Cash number.');
-        } else if (paymentMethod === 'fawry') {
-          const fw = document.getElementById('fawryMobile')?.value;
-          if (!fw || fw.length < 11) return alert('Please enter a valid mobile number for Fawry.');
+        if (paymentMethod === "card") {
+          const cn = document
+            .getElementById("cardNumber")
+            ?.value.replace(/\\s/g, "");
+          if (!cn || cn.length < 15)
+            return alert("Please enter a valid card number.");
+        } else if (paymentMethod === "vodafone") {
+          const vf = document.getElementById("vfNumber")?.value;
+          if (!vf || vf.length < 11)
+            return alert("Please enter a valid Vodafone Cash number.");
+        } else if (paymentMethod === "fawry") {
+          const fw = document.getElementById("fawryMobile")?.value;
+          if (!fw || fw.length < 11)
+            return alert("Please enter a valid mobile number for Fawry.");
         }
 
-        alert(`✅ Booking Confirmed for ${currentEvent.name}!\\n\\n${t.type} × ${qty}\\nTotal: EGP ${total}\\nPaid via: ${paymentMethod.toUpperCase()}\\n\\nYour e-tickets have been sent to your email.`);
+        alert(
+          `✅ Booking Confirmed for ${currentEvent.name}!\\n\\n${t.type} × ${qty}\\nTotal: EGP ${total}\\nPaid via: ${paymentMethod.toUpperCase()}\\n\\nYour e-tickets have been sent to your email.`,
+        );
         closeModal();
       }
 
@@ -744,15 +875,19 @@
       applySort();
 
       // Nav: smooth fade-out on navigation
-      document.querySelectorAll('.nav-links a, .logo').forEach(a => {
-        a.addEventListener('click', function(e) {
-          const href = this.getAttribute('href');
-          if (!href || href.startsWith('#') || href.startsWith('javascript')) return;
+      document.querySelectorAll(".nav-links a, .logo").forEach((a) => {
+        a.addEventListener("click", function (e) {
+          const href = this.getAttribute("href");
+          if (!href || href.startsWith("#") || href.startsWith("javascript"))
+            return;
           e.preventDefault();
-          document.body.style.transition = 'opacity 0.22s ease, transform 0.22s ease';
-          document.body.style.opacity = '0';
-          document.body.style.transform = 'translateY(-8px)';
-          setTimeout(() => { location.href = href; }, 230);
+          document.body.style.transition =
+            "opacity 0.22s ease, transform 0.22s ease";
+          document.body.style.opacity = "0";
+          document.body.style.transform = "translateY(-8px)";
+          setTimeout(() => {
+            location.href = href;
+          }, 230);
         });
       });
     </script>
