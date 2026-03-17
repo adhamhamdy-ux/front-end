@@ -918,6 +918,54 @@
           }, 230);
         });
       });
+
+      // Profile and Sign In State Management
+      document.addEventListener("DOMContentLoaded", () => {
+        const isSignedIn = localStorage.getItem("signedIn") === "true";
+        const signInLink = document.getElementById("signInLink");
+        const profileDropdownBtn = document.getElementById("profileDropdownBtn");
+        const myTicketsLink = document.getElementById("myTicketsLink");
+
+        if (isSignedIn) {
+          if (signInLink) signInLink.style.display = "none";
+          if (profileDropdownBtn) profileDropdownBtn.style.display = "block";
+          if (myTicketsLink) {
+            myTicketsLink.href = "#";
+            myTicketsLink.querySelector("button")?.removeAttribute("onclick");
+            myTicketsLink.querySelector("button").onclick = () =>
+              alert("Redirecting to My Tickets...");
+          }
+        } else {
+          if (signInLink) signInLink.style.display = "block";
+          if (profileDropdownBtn) profileDropdownBtn.style.display = "none";
+        }
+
+        // Close dropdown when clicking outside
+        document.addEventListener("click", (e) => {
+          const popup = document.getElementById("profilePopup");
+          const profileBtn = document.getElementById("profileDropdownBtn");
+          if (
+            popup &&
+            popup.classList.contains("active") &&
+            profileBtn &&
+            !profileBtn.contains(e.target)
+          ) {
+            popup.classList.remove("active");
+          }
+        });
+      });
+
+      function toggleProfilePopup(e) {
+        e.stopPropagation();
+        const popup = document.getElementById("profilePopup");
+        if (popup) popup.classList.toggle("active");
+      }
+
+      function signOut(e) {
+        e.preventDefault();
+        localStorage.removeItem("signedIn");
+        window.location.reload();
+      }
     </script>
   </body>
 </html>
