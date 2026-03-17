@@ -636,16 +636,27 @@ footer {
 }
 .social-links {
   display: flex;
-  gap: 16px;
+  flex-direction: column;
+  gap: 12px;
 }
-.social-links a {
+.social-icon {
+  display: flex;
+  align-items: center;
+  gap: 10px;
   color: var(--muted);
   text-decoration: none;
-  font-size: 12px;
+  font-size: 14px;
   transition: color 0.2s;
 }
-.social-links a:hover {
+.social-icon svg {
+  flex-shrink: 0;
+  transition: transform 0.2s;
+}
+.social-icon:hover {
   color: var(--text);
+}
+.social-icon:hover svg {
+  transform: scale(1.15);
 }
 
 @keyframes fadeUp {
