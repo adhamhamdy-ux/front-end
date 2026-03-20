@@ -111,7 +111,6 @@ nav {
   to   { transform: scaleX(1); }
 }
 
-/* Page transition on nav click */
 .page-fade-out {
   animation: fadeOut 0.25s ease forwards;
 }

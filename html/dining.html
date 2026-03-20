@@ -1,327 +1,405 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dining — TicketZone</title>
-<link rel="stylesheet" href="../css/dinnig.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dining — TicketZone</title>
+    <link rel="stylesheet" href="../css/dinnig.css" />
+  </head>
 
-</head>
+  <body>
+    <nav>
+      <a href="index.html" class="logo">TICKET<span>ZONE</span></a>
+      <ul class="nav-links">
+        <li><a href="sports.html">Sports</a></li>
+        <li><a href="events.html">Events</a></li>
+        <li><a href="dining.html" class="active">Dining</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+      <div class="nav-ctas">
+        <a href="" id="myTicketsLink">
+          <button class="nav-cta" onclick="openModal({ name: 'Sign In' })">
+            My Tickets
+          </button>
+        </a>
+        <a href="sign-in.html" id="signInLink">
+          <button class="nav-sign">Sign In</button>
+        </a>
+      </div>
+    </nav>
 
-<body>
+    <div class="page-hero">
+      <div class="page-hero-bg">
+        <img
+          src=""
+          alt="Dining"
+        />
+      </div>
+      <div class="fade-up page-hero-tag">Restaurant Reservations</div>
+      <h1 class="fade-up">RESERVE<br />YOUR <span>TABLE</span></h1>
+      <p class="fade-up">
+        Discover Cairo's finest restaurants and book your table in seconds. From
+        intimate dinners to grand celebrations.
+      </p>
+      <div class="hero-btns fade-up">
+        <a href="#restaurants" class="btn-primary">Find a Table</a>
+        <a href="#" class="btn-outline">Special Occasions</a>
+      </div>
+    </div>
 
-<!-- NAV -->
-<nav>
-  <a href="index.html" class="logo">TICKET<span>ZONE</span></a>
-  <ul class="nav-links">
-    <li><a href="sports.html">Sports</a></li>
-    <li><a href="events.html">Events</a></li>
-    <li><a href="dining.html" class="active">Dining</a></li>
-    <li><a href="about.html">About</a></li>
-  </ul>
-  <div class="nav-ctas">
-      <a href="" id="myTicketsLink">
-        <button class="nav-cta" onclick="openModal({ name: 'Sign In' })">
-          My Tickets
-        </button>
-      </a>
-      <a href="sign-in.html" id="signInLink">
-        <button class="nav-sign">
-          Sign In
-        </button>
-      </a>
+    <!-- MAIN -->
+    <section class="section">
+      <!-- STATS -->
+      <div class="stat-cards">
+        <div class="stat-card">
+          <div class="stat-card-num">86<span>+</span></div>
+          <div class="stat-card-label">Partner Restaurants</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card-num">15<span>+</span></div>
+          <div class="stat-card-label">Cuisines</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card-num">4.8<span>★</span></div>
+          <div class="stat-card-label">Average Rating</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card-num">2<span>min</span></div>
+          <div class="stat-card-label">Avg Booking Time</div>
+        </div>
+      </div>
 
-      <!-- Profile Dropdown (Hidden initially) -->
-      <div class="profile-dropdown-container" id="profileDropdownBtn" style="display: none; position: relative;">
-        <button class="nav-profile" onclick="toggleProfilePopup(event)">
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-        </button>
-        <div class="profile-popup" id="profilePopup">
-          <div class="profile-header">
-            <div class="profile-name">Frontend Team</div>
-            <div class="profile-email">frontend@example.com</div>
+      <!-- CUISINE FILTER -->
+      <div class="section-header" style="margin-bottom: 20px">
+        <div>
+          <div class="section-title">
+            CHOOSE <span class="accent">CUISINE</span>
           </div>
-          <div class="profile-menu">
-            <a href="#" class="profile-item">
-              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
-              My Tickets
+          <div class="section-sub">Filter by your preference</div>
+        </div>
+      </div>
+      <div class="cuisine-pills">
+        <button
+          class="cuisine-pill active"
+          onclick="filterCuisine('all', this)"
+        >
+          🍽️ All
+        </button>
+        <button class="cuisine-pill" onclick="filterCuisine('egyptian', this)">
+          🇪🇬 Egyptian
+        </button>
+        <button class="cuisine-pill" onclick="filterCuisine('italian', this)">
+          🍝 Italian
+        </button>
+        <button class="cuisine-pill" onclick="filterCuisine('japanese', this)">
+          🍣 Japanese
+        </button>
+        <button
+          class="cuisine-pill"
+          onclick="filterCuisine('steakhouse', this)"
+        >
+          🥩 Steakhouse
+        </button>
+        <button class="cuisine-pill" onclick="filterCuisine('seafood', this)">
+          🦞 Seafood
+        </button>
+        <button class="cuisine-pill" onclick="filterCuisine('lebanese', this)">
+          🧆 Lebanese
+        </button>
+      </div>
+
+      <!-- RESTAURANTS -->
+      <div id="restaurants" class="section-header">
+        <div>
+          <div class="section-title">
+            TOP <span class="accent">RESTAURANTS</span>
+          </div>
+          <div class="section-sub">Cairo & Alexandria</div>
+        </div>
+        <a href="#" class="view-all">View all →</a>
+      </div>
+      <div class="cards-grid" id="diningGrid"></div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <span class="logo">TICKET<span>ZONE</span></span>
+          <p>
+            Your one-stop platform for booking tickets to sports, entertainment,
+            dining, and unforgettable experiences across Egypt.
+          </p>
+        </div>
+        <div class="footer-col">
+          <h4>Company</h4>
+          <a href="about.html">About Us</a>
+          <a href="#">Partner With Us</a>
+          <a href="#">Careers</a>
+          <a href="#">Support</a>
+        </div>
+        <div class="footer-col">
+          <h4>Follow Us</h4>
+          <div class="social-links">
+            <a href="#" class="social-icon" aria-label="Twitter / X">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                width="22"
+                height="22"
+                fill="currentColor"
+              >
+                <path
+                  d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L2.245 2.25H8.08l4.262 5.633 5.902-5.633zm-1.161 17.52h1.833L7.084 4.126H5.117z"
+                />
+              </svg>
+              <span>X (Twitter)</span>
             </a>
-            <a href="#" class="profile-item">
-              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"></path><circle cx="12" cy="12" r="3"></circle></svg>
-              Settings
+            <a href="#" class="social-icon" aria-label="Instagram">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                width="22"
+                height="22"
+                fill="currentColor"
+              >
+                <path
+                  d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"
+                />
+              </svg>
+              <span>Instagram</span>
             </a>
-            <div class="profile-divider"></div>
-            <a href="#" class="profile-item" onclick="signOut(event)">
-              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
-              Sign Out
+            <a href="#" class="social-icon" aria-label="Facebook">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                width="22"
+                height="22"
+                fill="currentColor"
+              >
+                <path
+                  d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"
+                />
+              </svg>
+              <span>Facebook</span>
+            </a>
+            <a href="#" class="social-icon" aria-label="TikTok">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                width="22"
+                height="22"
+                fill="currentColor"
+              >
+                <path
+                  d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"
+                />
+              </svg>
+              <span>TikTok</span>
             </a>
           </div>
         </div>
       </div>
-    </div>
-</nav>
-
-<!-- HERO -->
-<div class="page-hero">
-  <div class="page-hero-bg">
-    <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1200&q=80" alt="Dining">
-  </div>
-  <div class="fade-up page-hero-tag">Restaurant Reservations</div>
-  <h1 class="fade-up">RESERVE<br>YOUR <span>TABLE</span></h1>
-  <p class="fade-up">Discover Cairo's finest restaurants and book your table in seconds. From intimate dinners to grand celebrations.</p>
-  <div class="hero-btns fade-up">
-    <a href="#restaurants" class="btn-primary">Find a Table</a>
-    <a href="#" class="btn-outline">Special Occasions</a>
-  </div>
-</div>
-
-<!-- MAIN -->
-<section class="section">
-
-  <!-- STATS -->
-  <div class="stat-cards">
-    <div class="stat-card">
-      <div class="stat-card-num">86<span>+</span></div>
-      <div class="stat-card-label">Partner Restaurants</div>
-    </div>
-    <div class="stat-card">
-      <div class="stat-card-num">15<span>+</span></div>
-      <div class="stat-card-label">Cuisines</div>
-    </div>
-    <div class="stat-card">
-      <div class="stat-card-num">4.8<span>★</span></div>
-      <div class="stat-card-label">Average Rating</div>
-    </div>
-    <div class="stat-card">
-      <div class="stat-card-num">2<span>min</span></div>
-      <div class="stat-card-label">Avg Booking Time</div>
-    </div>
-  </div>
-
-  <!-- CUISINE FILTER -->
-  <div class="section-header" style="margin-bottom:20px;">
-    <div>
-      <div class="section-title">CHOOSE <span class="accent">CUISINE</span></div>
-      <div class="section-sub">Filter by your preference</div>
-    </div>
-  </div>
-  <div class="cuisine-pills">
-    <button class="cuisine-pill active" onclick="filterCuisine('all',this)">🍽️ All</button>
-    <button class="cuisine-pill" onclick="filterCuisine('egyptian',this)">🇪🇬 Egyptian</button>
-    <button class="cuisine-pill" onclick="filterCuisine('italian',this)">🍝 Italian</button>
-    <button class="cuisine-pill" onclick="filterCuisine('japanese',this)">🍣 Japanese</button>
-    <button class="cuisine-pill" onclick="filterCuisine('steakhouse',this)">🥩 Steakhouse</button>
-    <button class="cuisine-pill" onclick="filterCuisine('seafood',this)">🦞 Seafood</button>
-    <button class="cuisine-pill" onclick="filterCuisine('lebanese',this)">🧆 Lebanese</button>
-  </div>
-
-  <!-- RESTAURANTS -->
-  <div id="restaurants" class="section-header">
-    <div>
-      <div class="section-title">TOP <span class="accent">RESTAURANTS</span></div>
-      <div class="section-sub">Cairo & Alexandria</div>
-    </div>
-    <a href="#" class="view-all">View all →</a>
-  </div>
-  <div class="cards-grid" id="diningGrid"></div>
-
-</section>
-
-<!-- FOOTER -->
-  <footer>
-    <div class="footer-grid">
-      <div class="footer-brand">
-        <span class="logo">TICKET<span>ZONE</span></span>
-        <p>
-          Your one-stop platform for booking tickets to sports, entertainment,
-          dining, and unforgettable experiences across Egypt.
-        </p>
+      <div class="footer-bottom">
+        <div>&copy; 2025 TicketZone. All rights reserved.</div>
       </div>
-      <div class="footer-col">
-        <h4>Company</h4>
-        <a href="about.html">About Us</a>
-        <a href="#">Partner With Us</a>
-        <a href="#">Careers</a>
-        <a href="#">Support</a>
-      </div>
-      <div class="footer-col">
-        <h4>Follow Us</h4>
-        <div class="social-links">
-          <a href="#" class="social-icon" aria-label="Twitter / X">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L2.245 2.25H8.08l4.262 5.633 5.902-5.633zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-            <span>X (Twitter)</span>
-          </a>
-          <a href="#" class="social-icon" aria-label="Instagram">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-            <span>Instagram</span>
-          </a>
-          <a href="#" class="social-icon" aria-label="Facebook">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-            <span>Facebook</span>
-          </a>
-          <a href="#" class="social-icon" aria-label="TikTok">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
-            <span>TikTok</span>
-          </a>
+    </footer>
+
+    <!-- MODAL -->
+    <div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
+      <div class="modal" id="modal">
+        <button class="modal-close" onclick="closeModal()">×</button>
+        <div class="modal-title" id="modalTitle">Book Tickets</div>
+        <div class="modal-subtitle" id="modalSubtitle">
+          Select your ticket type and quantity
         </div>
+        <div class="ticket-options" id="ticketOptions"></div>
+        <div class="qty-control">
+          <span class="qty-label">Number of Tickets</span>
+          <button class="qty-btn" onclick="changeQty(-1)">−</button>
+          <div class="qty-num" id="qtyNum">1</div>
+          <button class="qty-btn" onclick="changeQty(1)">+</button>
+        </div>
+        <div class="payment-section">
+          <div class="payment-title">Payment Method</div>
+          <div class="payment-methods" id="paymentMethods">
+            <label class="pay-method">
+              <input type="radio" name="paymentMethod" value="card" checked />
+              <span>Card</span>
+            </label>
+            <label class="pay-method">
+              <input type="radio" name="paymentMethod" value="vodafone" />
+              <span>Vodafone Cash</span>
+            </label>
+            <label class="pay-method">
+              <input type="radio" name="paymentMethod" value="fawry" />
+              <span>Fawry</span>
+            </label>
+            <label class="pay-method">
+              <input type="radio" name="paymentMethod" value="cash" />
+              <span>Cash</span>
+            </label>
+          </div>
+          <div class="payment-details" id="paymentDetails"></div>
+        </div>
+        <div class="modal-total">
+          <span class="total-label">Total Amount</span>
+          <span class="total-amount" id="totalAmount">EGP 0</span>
+        </div>
+        <button class="book-btn" onclick="confirmBooking()">
+          Confirm Booking →
+        </button>
       </div>
     </div>
-    <div class="footer-bottom">
-      <div>&copy; 2025 TicketZone. All rights reserved.</div>
-    </div>
-  </footer>
 
-
-<!-- MODAL -->
-<div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
-  <div class="modal" id="modal">
-    <button class="modal-close" onclick="closeModal()">×</button>
-    <div class="modal-title" id="modalTitle">Book Tickets</div>
-    <div class="modal-subtitle" id="modalSubtitle">Select your ticket type and quantity</div>
-    <div class="ticket-options" id="ticketOptions"></div>
-    <div class="qty-control">
-      <span class="qty-label">Number of Tickets</span>
-      <button class="qty-btn" onclick="changeQty(-1)">−</button>
-      <div class="qty-num" id="qtyNum">1</div>
-      <button class="qty-btn" onclick="changeQty(1)">+</button>
-    </div>
-    <div class="payment-section">
-      <div class="payment-title">Payment Method</div>
-      <div class="payment-methods" id="paymentMethods">
-        <label class="pay-method">
-          <input type="radio" name="paymentMethod" value="card" checked>
-          <span>Card</span>
-        </label>
-        <label class="pay-method">
-          <input type="radio" name="paymentMethod" value="vodafone">
-          <span>Vodafone Cash</span>
-        </label>
-        <label class="pay-method">
-          <input type="radio" name="paymentMethod" value="fawry">
-          <span>Fawry</span>
-        </label>
-        <label class="pay-method">
-          <input type="radio" name="paymentMethod" value="cash">
-          <span>Cash</span>
-        </label>
-      </div>
-      <div class="payment-details" id="paymentDetails"></div>
-    </div>
-    <div class="modal-total">
-      <span class="total-label">Total Amount</span>
-      <span class="total-amount" id="totalAmount">EGP 0</span>
-    </div>
-    <button class="book-btn" onclick="confirmBooking()">Confirm Booking →</button>
-  </div>
-</div>
-
-<!-- ============================================================
+    <!-- ============================================================
      JS SECTION
      ============================================================ -->
-<script>
+    <script>
+      /* --- DATA --- */
 
-/* --- DATA --- */
+      const restaurants = [
+        {
+          name: "Nusr-Et Cairo",
+          label: "Steakhouse",
+          badgeClass: "badge-red",
+          location: "Citystars Mall",
+          cuisine: "steakhouse",
+          rating: 4.9,
+          priceLevel: 4,
+          img: "https://images.unsplash.com/photo-1424847651672-bf20a4b0982b?w=600&q=80",
+          desc: "Cairo's iconic steakhouse. Premium wagyu, theatrical presentation, and unforgettable flavors.",
+          price: 800,
+          hot: true,
+          slots: ["7:00 PM", "7:30 PM", "9:00 PM"],
+          tickets: [
+            { type: "Table for 2", perks: "Window seat", price: 800 },
+            { type: "Table for 4", perks: "Private area", price: 1500 },
+            { type: "VIP Room", perks: "Private dining room", price: 4000 },
+          ],
+        },
+        {
+          name: "Abou El Sid",
+          label: "Egyptian",
+          badgeClass: "badge-gold",
+          location: "Zamalek, Cairo",
+          cuisine: "egyptian",
+          rating: 4.7,
+          priceLevel: 2,
+          img: "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=600&q=80",
+          desc: "Authentic Egyptian cuisine in an atmospheric old Cairo setting. A true culinary journey.",
+          price: 350,
+          hot: false,
+          slots: ["6:30 PM", "8:00 PM", "8:30 PM"],
+          tickets: [
+            { type: "Table for 2", perks: "Indoor seating", price: 350 },
+            { type: "Table for 4", perks: "Garden seating", price: 650 },
+          ],
+        },
+        {
+          name: "Nobu Cairo",
+          label: "Japanese",
+          badgeClass: "badge-cyan",
+          location: "Four Seasons Nile Plaza",
+          cuisine: "japanese",
+          rating: 4.8,
+          priceLevel: 4,
+          img: "https://images.unsplash.com/photo-1579871494447-9811cf80d66c?w=600&q=80",
+          desc: "World-famous Japanese fusion by Nobu Matsuhisa. Black cod miso and new-style sashimi.",
+          price: 1200,
+          hot: true,
+          slots: ["7:00 PM", "9:30 PM"],
+          tickets: [
+            { type: "À La Carte", perks: "Full menu access", price: 1200 },
+            { type: "Omakase", perks: "Chef's menu 8 courses", price: 2500 },
+          ],
+        },
+        {
+          name: "La Piazza",
+          label: "Italian",
+          badgeClass: "badge-pink",
+          location: "Four Seasons First Residence",
+          cuisine: "italian",
+          rating: 4.6,
+          priceLevel: 3,
+          img: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600&q=80",
+          desc: "Authentic Italian flavors with Nile views. Fresh pasta, wood-fired pizzas, and fine wines.",
+          price: 600,
+          hot: false,
+          slots: ["7:00 PM", "7:30 PM", "8:00 PM", "9:00 PM"],
+          tickets: [
+            { type: "Table for 2", perks: "Standard seating", price: 600 },
+            { type: "Terrace Table", perks: "Nile view terrace", price: 900 },
+          ],
+        },
+        {
+          name: "The Fish Market",
+          label: "Seafood",
+          badgeClass: "badge-green",
+          location: "Abu Qir, Alexandria",
+          cuisine: "seafood",
+          rating: 4.7,
+          priceLevel: 3,
+          img: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=600&q=80",
+          desc: "Fresh-catch seafood right on the Mediterranean coast. Choose your fish, choose your style.",
+          price: 500,
+          hot: false,
+          slots: ["1:00 PM", "2:00 PM", "7:00 PM", "8:00 PM"],
+          tickets: [
+            { type: "Table for 2", perks: "Sea view", price: 500 },
+            {
+              type: "Private Terrace",
+              perks: "Exclusive terrace",
+              price: 1200,
+            },
+          ],
+        },
+        {
+          name: "Koshary El Tahrir",
+          label: "Egyptian",
+          badgeClass: "badge-gold",
+          location: "Tahrir Square, Cairo",
+          cuisine: "egyptian",
+          rating: 4.9,
+          priceLevel: 1,
+          img: "https://images.unsplash.com/photo-1552566626-52f8b828add9?w=600&q=80",
+          desc: "Cairo's most beloved koshary institution. An Egyptian culinary landmark since 1950.",
+          price: 80,
+          hot: false,
+          slots: ["12:00 PM", "1:00 PM", "6:00 PM", "7:00 PM"],
+          tickets: [
+            { type: "Table for 2", perks: "Classic experience", price: 80 },
+            { type: "Table for 4", perks: "Group table", price: 150 },
+          ],
+        },
+      ];
 
-const restaurants = [
-  {
-    name: 'Nusr-Et Cairo', label: 'Steakhouse', badgeClass: 'badge-red',
-    location: 'Citystars Mall', cuisine: 'steakhouse', rating: 4.9, priceLevel: 4,
-    img: 'https://images.unsplash.com/photo-1424847651672-bf20a4b0982b?w=600&q=80',
-    desc: "Cairo's iconic steakhouse. Premium wagyu, theatrical presentation, and unforgettable flavors.",
-    price: 800, hot: true,
-    slots: ['7:00 PM', '7:30 PM', '9:00 PM'],
-    tickets: [
-      { type: 'Table for 2', perks: 'Window seat',          price: 800  },
-      { type: 'Table for 4', perks: 'Private area',         price: 1500 },
-      { type: 'VIP Room',    perks: 'Private dining room',  price: 4000 }
-    ]
-  },
-  {
-    name: 'Abou El Sid', label: 'Egyptian', badgeClass: 'badge-gold',
-    location: 'Zamalek, Cairo', cuisine: 'egyptian', rating: 4.7, priceLevel: 2,
-    img: 'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=600&q=80',
-    desc: 'Authentic Egyptian cuisine in an atmospheric old Cairo setting. A true culinary journey.',
-    price: 350, hot: false,
-    slots: ['6:30 PM', '8:00 PM', '8:30 PM'],
-    tickets: [
-      { type: 'Table for 2', perks: 'Indoor seating',   price: 350 },
-      { type: 'Table for 4', perks: 'Garden seating',   price: 650 }
-    ]
-  },
-  {
-    name: 'Nobu Cairo', label: 'Japanese', badgeClass: 'badge-cyan',
-    location: 'Four Seasons Nile Plaza', cuisine: 'japanese', rating: 4.8, priceLevel: 4,
-    img: 'https://images.unsplash.com/photo-1579871494447-9811cf80d66c?w=600&q=80',
-    desc: 'World-famous Japanese fusion by Nobu Matsuhisa. Black cod miso and new-style sashimi.',
-    price: 1200, hot: true,
-    slots: ['7:00 PM', '9:30 PM'],
-    tickets: [
-      { type: 'À La Carte', perks: 'Full menu access',      price: 1200 },
-      { type: 'Omakase',    perks: "Chef's menu 8 courses", price: 2500 }
-    ]
-  },
-  {
-    name: 'La Piazza', label: 'Italian', badgeClass: 'badge-pink',
-    location: 'Four Seasons First Residence', cuisine: 'italian', rating: 4.6, priceLevel: 3,
-    img: 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600&q=80',
-    desc: 'Authentic Italian flavors with Nile views. Fresh pasta, wood-fired pizzas, and fine wines.',
-    price: 600, hot: false,
-    slots: ['7:00 PM', '7:30 PM', '8:00 PM', '9:00 PM'],
-    tickets: [
-      { type: 'Table for 2',    perks: 'Standard seating',   price: 600 },
-      { type: 'Terrace Table',  perks: 'Nile view terrace',  price: 900 }
-    ]
-  },
-  {
-    name: 'The Fish Market', label: 'Seafood', badgeClass: 'badge-green',
-    location: 'Abu Qir, Alexandria', cuisine: 'seafood', rating: 4.7, priceLevel: 3,
-    img: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=600&q=80',
-    desc: 'Fresh-catch seafood right on the Mediterranean coast. Choose your fish, choose your style.',
-    price: 500, hot: false,
-    slots: ['1:00 PM', '2:00 PM', '7:00 PM', '8:00 PM'],
-    tickets: [
-      { type: 'Table for 2',       perks: 'Sea view',         price: 500  },
-      { type: 'Private Terrace',   perks: 'Exclusive terrace', price: 1200 }
-    ]
-  },
-  {
-    name: 'Koshary El Tahrir', label: 'Egyptian', badgeClass: 'badge-gold',
-    location: 'Tahrir Square, Cairo', cuisine: 'egyptian', rating: 4.9, priceLevel: 1,
-    img: 'https://images.unsplash.com/photo-1552566626-52f8b828add9?w=600&q=80',
-    desc: "Cairo's most beloved koshary institution. An Egyptian culinary landmark since 1950.",
-    price: 80, hot: false,
-    slots: ['12:00 PM', '1:00 PM', '6:00 PM', '7:00 PM'],
-    tickets: [
-      { type: 'Table for 2', perks: 'Classic experience', price: 80  },
-      { type: 'Table for 4', perks: 'Group table',        price: 150 }
-    ]
-  }
-];
+      /* --- HELPERS --- */
 
-/* --- HELPERS --- */
+      function esc(obj) {
+        return JSON.stringify(obj).replace(/"/g, "&quot;");
+      }
 
-function esc(obj) {
-  return JSON.stringify(obj).replace(/"/g, '&quot;');
-}
+      function priceSymbols(level) {
+        return "$".repeat(level);
+      }
 
-function priceSymbols(level) {
-  return '$'.repeat(level);
-}
+      /* --- RENDER RESTAURANTS --- */
 
-/* --- RENDER RESTAURANTS --- */
-
-function renderRestaurants(list) {
-  document.getElementById('diningGrid').innerHTML = list.map(r => `
+      function renderRestaurants(list) {
+        document.getElementById("diningGrid").innerHTML = list
+          .map(
+            (r) => `
     <div class="card" onclick="openModal(${esc(r)})">
       <div class="card-img">
         <span class="card-badge ${r.badgeClass}">${r.label}</span>
-        ${r.hot ? '<span class="card-hot">🔥 Popular</span>' : ''}
+        ${r.hot ? '<span class="card-hot">🔥 Popular</span>' : ""}
         <img src="${r.img}" alt="${r.name}" loading="lazy">
       </div>
       <div class="card-body">
         <div class="card-name">${r.name}</div>
         <div class="card-meta-row">
-          <span class="stars">${'★'.repeat(Math.floor(r.rating))}${'☆'.repeat(5 - Math.floor(r.rating))}</span>
+          <span class="stars">${"★".repeat(Math.floor(r.rating))}${"☆".repeat(5 - Math.floor(r.rating))}</span>
           <span style="color:var(--text)">${r.rating}</span>
           <span>📍 ${r.location}</span>
           <span class="price-range">${priceSymbols(r.priceLevel)}</span>
@@ -329,7 +407,7 @@ function renderRestaurants(list) {
         <div class="card-desc">${r.desc}</div>
         <div class="slots-label">Available Times</div>
         <div class="slots-row">
-          ${r.slots.map(s => `<div class="slot" onclick="event.stopPropagation();openModal(${esc(r)})">${s}</div>`).join('')}
+          ${r.slots.map((s) => `<div class="slot" onclick="event.stopPropagation();openModal(${esc(r)})">${s}</div>`).join("")}
         </div>
         <div class="card-footer">
           <div>
@@ -339,35 +417,46 @@ function renderRestaurants(list) {
           <button class="card-btn" onclick="event.stopPropagation();openModal(${esc(r)})">Reserve Table</button>
         </div>
       </div>
-    </div>`).join('');
-}
+    </div>`,
+          )
+          .join("");
+      }
 
-/* --- FILTER --- */
+      /* --- FILTER --- */
 
-function filterCuisine(type, btn) {
-  document.querySelectorAll('.cuisine-pill').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-  renderRestaurants(type === 'all' ? restaurants : restaurants.filter(r => r.cuisine === type));
-}
+      function filterCuisine(type, btn) {
+        document
+          .querySelectorAll(".cuisine-pill")
+          .forEach((b) => b.classList.remove("active"));
+        btn.classList.add("active");
+        renderRestaurants(
+          type === "all"
+            ? restaurants
+            : restaurants.filter((r) => r.cuisine === type),
+        );
+      }
 
-/* --- MODAL --- */
+      /* --- MODAL --- */
 
-// Payment method change listener
-document.getElementById('paymentMethods')?.addEventListener('change', (e) => {
-  if (e.target && e.target.name === 'paymentMethod') setPaymentDetails(e.target.value);
-});
+      // Payment method change listener
+      document
+        .getElementById("paymentMethods")
+        ?.addEventListener("change", (e) => {
+          if (e.target && e.target.name === "paymentMethod")
+            setPaymentDetails(e.target.value);
+        });
 
-let currentEvent = null;
-let selectedTicketIdx = 0;
-let qty = 1;
-let paymentMethod = 'card';
+      let currentEvent = null;
+      let selectedTicketIdx = 0;
+      let qty = 1;
+      let paymentMethod = "card";
 
-function setPaymentDetails(method) {
-  paymentMethod = method;
-  const wrap = document.getElementById('paymentDetails');
-  if (!wrap) return;
-  if (method === 'card') {
-    wrap.innerHTML = `
+      function setPaymentDetails(method) {
+        paymentMethod = method;
+        const wrap = document.getElementById("paymentDetails");
+        if (!wrap) return;
+        if (method === "card") {
+          wrap.innerHTML = `
       <div class="field full">
         <label>Name on card</label>
         <input type="text" id="cardName" placeholder="Full name">
@@ -385,58 +474,65 @@ function setPaymentDetails(method) {
         <input type="text" id="cardCvv" inputmode="numeric" placeholder="123" maxlength="3">
       </div>
     `;
-    document.getElementById('cardNumber')?.addEventListener('input', function (e) {
-      let val = this.value.replace(/\D/g, '');
-      val = val.substring(0, 16);
-      let parts = [];
-      for (let i = 0; i < val.length; i += 4) {
-        parts.push(val.substring(i, i + 4));
-      }
-      this.value = parts.join(' ');
-    });
-    document.getElementById('cardExpiry')?.addEventListener('input', function (e) {
-      let val = this.value.replace(/\D/g, '');
-      val = val.substring(0, 4);
-      if (val.length >= 3) {
-        this.value = val.substring(0, 2) + '/' + val.substring(2);
-      } else {
-        this.value = val;
-      }
-    });
-    return;
-  }
-  if (method === 'vodafone') {
-    wrap.innerHTML = `
+          document
+            .getElementById("cardNumber")
+            ?.addEventListener("input", function (e) {
+              let val = this.value.replace(/\D/g, "");
+              val = val.substring(0, 16);
+              let parts = [];
+              for (let i = 0; i < val.length; i += 4) {
+                parts.push(val.substring(i, i + 4));
+              }
+              this.value = parts.join(" ");
+            });
+          document
+            .getElementById("cardExpiry")
+            ?.addEventListener("input", function (e) {
+              let val = this.value.replace(/\D/g, "");
+              val = val.substring(0, 4);
+              if (val.length >= 3) {
+                this.value = val.substring(0, 2) + "/" + val.substring(2);
+              } else {
+                this.value = val;
+              }
+            });
+          return;
+        }
+        if (method === "vodafone") {
+          wrap.innerHTML = `
       <div class="field full">
         <label>Vodafone Cash number</label>
         <input type="tel" id="vfNumber" placeholder="01xxxxxxxxx" maxlength="11">
       </div>
       <div class="payment-note">You will receive a payment request after confirming.</div>
     `;
-    return;
-  }
-  if (method === 'fawry') {
-    wrap.innerHTML = `
+          return;
+        }
+        if (method === "fawry") {
+          wrap.innerHTML = `
       <div class="field full">
         <label>Mobile number (for receipt)</label>
         <input type="tel" id="fawryMobile" placeholder="01xxxxxxxxx" maxlength="11">
       </div>
       <div class="payment-note">A Fawry reference code will be generated after confirming.</div>
     `;
-    return;
-  }
-  wrap.innerHTML = `<div class="payment-note">Pay at the venue before entry. Keep your booking confirmation.</div>`;
-}
+          return;
+        }
+        wrap.innerHTML = `<div class="payment-note">Pay at the venue before entry. Keep your booking confirmation.</div>`;
+      }
 
-function openModal(item) {
-  currentEvent = item;
-  selectedTicketIdx = 0;
-  qty = 1;
-  document.getElementById('modalTitle').textContent = item.name;
-  document.getElementById('modalSubtitle').textContent = (item.date ? item.date + ' · ' : '') + (item.location || '');
-  const opts = document.getElementById('ticketOptions');
-  opts.innerHTML = (item.tickets || []).map((t, i) => `
-    <div class="ticket-option ${i === 0 ? 'selected' : ''}" onclick="selectTicket(${i})">
+      function openModal(item) {
+        currentEvent = item;
+        selectedTicketIdx = 0;
+        qty = 1;
+        document.getElementById("modalTitle").textContent = item.name;
+        document.getElementById("modalSubtitle").textContent =
+          (item.date ? item.date + " · " : "") + (item.location || "");
+        const opts = document.getElementById("ticketOptions");
+        opts.innerHTML = (item.tickets || [])
+          .map(
+            (t, i) => `
+    <div class="ticket-option ${i === 0 ? "selected" : ""}" onclick="selectTicket(${i})">
       <div>
         <div class="ticket-type">${t.type}</div>
         <div class="ticket-perks">${t.perks}</div>
@@ -445,124 +541,150 @@ function openModal(item) {
         <div class="ticket-price-tag">EGP ${t.price}</div>
       </div>
     </div>
-  `).join('');
-  document.getElementById('qtyNum').textContent = qty;
-  updateTotal();
-  const selected = document.querySelector('input[name="paymentMethod"]:checked');
-  setPaymentDetails(selected ? selected.value : 'card');
-  document.getElementById('modalOverlay').classList.add('open');
-}
+  `,
+          )
+          .join("");
+        document.getElementById("qtyNum").textContent = qty;
+        updateTotal();
+        const selected = document.querySelector(
+          'input[name="paymentMethod"]:checked',
+        );
+        setPaymentDetails(selected ? selected.value : "card");
+        document.getElementById("modalOverlay").classList.add("open");
+      }
 
-function selectTicket(idx) {
-  selectedTicketIdx = idx;
-  document.querySelectorAll(".ticket-option").forEach((el, i) => {
-    el.classList.toggle("selected", i === idx);
-  });
-  updateTotal();
-}
+      function selectTicket(idx) {
+        selectedTicketIdx = idx;
+        document.querySelectorAll(".ticket-option").forEach((el, i) => {
+          el.classList.toggle("selected", i === idx);
+        });
+        updateTotal();
+      }
 
-function changeQty(delta) {
-  qty = Math.max(1, Math.min(10, qty + delta));
-  document.getElementById("qtyNum").textContent = qty;
-  updateTotal();
-}
+      function changeQty(delta) {
+        qty = Math.max(1, Math.min(10, qty + delta));
+        document.getElementById("qtyNum").textContent = qty;
+        updateTotal();
+      }
 
-function updateTotal() {
-  if (!currentEvent) return;
-  const price = currentEvent.tickets[selectedTicketIdx].price * qty;
-  document.getElementById("totalAmount").textContent = "EGP " + price.toLocaleString();
-}
+      function updateTotal() {
+        if (!currentEvent) return;
+        const price = currentEvent.tickets[selectedTicketIdx].price * qty;
+        document.getElementById("totalAmount").textContent =
+          "EGP " + price.toLocaleString();
+      }
 
-function closeModal(e) {
-  if (!e || e.target === document.getElementById("modalOverlay")) {
-    document.getElementById("modalOverlay").classList.remove("open");
-  }
-}
+      function closeModal(e) {
+        if (!e || e.target === document.getElementById("modalOverlay")) {
+          document.getElementById("modalOverlay").classList.remove("open");
+        }
+      }
 
-function confirmBooking() {
-  if (!currentEvent || !currentEvent.tickets || !currentEvent.tickets.length) {
-    alert('This item is not bookable right now.');
-    return;
-  }
-  const t = currentEvent.tickets[selectedTicketIdx];
-  const total = (t.price * qty).toLocaleString();
+      function confirmBooking() {
+        if (
+          !currentEvent ||
+          !currentEvent.tickets ||
+          !currentEvent.tickets.length
+        ) {
+          alert("This item is not bookable right now.");
+          return;
+        }
+        const t = currentEvent.tickets[selectedTicketIdx];
+        const total = (t.price * qty).toLocaleString();
 
-  // Basic validation check
-  if (paymentMethod === 'card') {
-    const cn = document.getElementById('cardNumber')?.value.replace(/\\s/g, '');
-    if (!cn || cn.length < 15) return alert('Please enter a valid card number.');
-  } else if (paymentMethod === 'vodafone') {
-    const vf = document.getElementById('vfNumber')?.value;
-    if (!vf || vf.length < 11) return alert('Please enter a valid Vodafone Cash number.');
-  } else if (paymentMethod === 'fawry') {
-    const fw = document.getElementById('fawryMobile')?.value;
-    if (!fw || fw.length < 11) return alert('Please enter a valid mobile number for Fawry.');
-  }
+        // Basic validation check
+        if (paymentMethod === "card") {
+          const cn = document
+            .getElementById("cardNumber")
+            ?.value.replace(/\\s/g, "");
+          if (!cn || cn.length < 15)
+            return alert("Please enter a valid card number.");
+        } else if (paymentMethod === "vodafone") {
+          const vf = document.getElementById("vfNumber")?.value;
+          if (!vf || vf.length < 11)
+            return alert("Please enter a valid Vodafone Cash number.");
+        } else if (paymentMethod === "fawry") {
+          const fw = document.getElementById("fawryMobile")?.value;
+          if (!fw || fw.length < 11)
+            return alert("Please enter a valid mobile number for Fawry.");
+        }
 
-  alert(`✅ Booking Confirmed for ${currentEvent.name}!\\n\\n${t.type} × ${qty} guests\\nTotal: EGP ${total}\\nPaid via: ${paymentMethod.toUpperCase()}\\n\\nYour reservation details have been sent to your email.`);
-  closeModal();
-}
+        alert(
+          `✅ Booking Confirmed for ${currentEvent.name}!\\n\\n${t.type} × ${qty} guests\\nTotal: EGP ${total}\\nPaid via: ${paymentMethod.toUpperCase()}\\n\\nYour reservation details have been sent to your email.`,
+        );
+        closeModal();
+      }
 
-/* --- INIT --- */
-renderRestaurants(restaurants);
+      /* --- INIT --- */
+      renderRestaurants(restaurants);
 
-// Nav: smooth fade-out on navigation
-document.querySelectorAll('.nav-links a, .logo').forEach(a => {
-  a.addEventListener('click', function(e) {
-    const href = this.getAttribute('href');
-    if (!href || href.startsWith('#') || href.startsWith('javascript')) return;
-    e.preventDefault();
-    document.body.style.transition = 'opacity 0.22s ease, transform 0.22s ease';
-    document.body.style.opacity = '0';
-    document.body.style.transform = 'translateY(-8px)';
-    setTimeout(() => { location.href = href; }, 230);
-  });
-});
+      // Nav: smooth fade-out on navigation
+      document.querySelectorAll(".nav-links a, .logo").forEach((a) => {
+        a.addEventListener("click", function (e) {
+          const href = this.getAttribute("href");
+          if (!href || href.startsWith("#") || href.startsWith("javascript"))
+            return;
+          e.preventDefault();
+          document.body.style.transition =
+            "opacity 0.22s ease, transform 0.22s ease";
+          document.body.style.opacity = "0";
+          document.body.style.transform = "translateY(-8px)";
+          setTimeout(() => {
+            location.href = href;
+          }, 230);
+        });
+      });
 
-// Profile and Sign In State Management
-document.addEventListener("DOMContentLoaded", () => {
-  const isSignedIn = localStorage.getItem('signedIn') === 'true';
-  const signInLink = document.getElementById('signInLink');
-  const profileDropdownBtn = document.getElementById('profileDropdownBtn');
-  const myTicketsLink = document.getElementById('myTicketsLink');
+      // Profile and Sign In State Management
+      document.addEventListener("DOMContentLoaded", () => {
+        const isSignedIn = localStorage.getItem("signedIn") === "true";
+        const signInLink = document.getElementById("signInLink");
+        const profileDropdownBtn =
+          document.getElementById("profileDropdownBtn");
+        const myTicketsLink = document.getElementById("myTicketsLink");
 
-  if (isSignedIn) {
-    if (signInLink) signInLink.style.display = 'none';
-    if (profileDropdownBtn) profileDropdownBtn.style.display = 'block';
-    if (myTicketsLink) {
-      myTicketsLink.href = '#';
-      myTicketsLink.querySelector('button').removeAttribute('onclick');
-      myTicketsLink.querySelector('button').onclick = () => alert("Redirecting to My Tickets...");
-    }
-  } else {
-    if (signInLink) signInLink.style.display = 'block';
-    if (profileDropdownBtn) profileDropdownBtn.style.display = 'none';
-  }
+        if (isSignedIn) {
+          if (signInLink) signInLink.style.display = "none";
+          if (profileDropdownBtn) profileDropdownBtn.style.display = "block";
+          if (myTicketsLink) {
+            myTicketsLink.href = "#";
+            myTicketsLink.querySelector("button").removeAttribute("onclick");
+            myTicketsLink.querySelector("button").onclick = () =>
+              alert("Redirecting to My Tickets...");
+          }
+        } else {
+          if (signInLink) signInLink.style.display = "block";
+          if (profileDropdownBtn) profileDropdownBtn.style.display = "none";
+        }
 
-  // Close dropdown when clicking outside
-  document.addEventListener('click', (e) => {
-    const popup = document.getElementById('profilePopup');
-    const profileBtn = document.getElementById('profileDropdownBtn');
-    if (popup && popup.classList.contains('active') && profileBtn && !profileBtn.contains(e.target)) {
-      popup.classList.remove('active');
-    }
-  });
-});
+        // Close dropdown when clicking outside
+        document.addEventListener("click", (e) => {
+          const popup = document.getElementById("profilePopup");
+          const profileBtn = document.getElementById("profileDropdownBtn");
+          if (
+            popup &&
+            popup.classList.contains("active") &&
+            profileBtn &&
+            !profileBtn.contains(e.target)
+          ) {
+            popup.classList.remove("active");
+          }
+        });
+      });
 
-function toggleProfilePopup(e) {
-  e.stopPropagation();
-  const popup = document.getElementById('profilePopup');
-  if (popup) {
-    popup.classList.toggle('active');
-  }
-}
+      function toggleProfilePopup(e) {
+        e.stopPropagation();
+        const popup = document.getElementById("profilePopup");
+        if (popup) {
+          popup.classList.toggle("active");
+        }
+      }
 
-function signOut(e) {
-  e.preventDefault();
-  localStorage.removeItem('signedIn');
-  window.location.reload();
-}
-
-</script>
-</body>
+      function signOut(e) {
+        e.preventDefault();
+        localStorage.removeItem("signedIn");
+        window.location.reload();
+      }
+    </script>
+  </body>
 </html>
