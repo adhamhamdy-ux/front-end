@@ -12,14 +12,12 @@
   </head>
   <body>
     <nav>
-      <a href="index.html"
-        ><div class="logo">TICKET<span>ZONE</span></div></a
-      >
+      <a href="index.html" class="logo">TICKET<span>ZONE</span></a>
       <ul class="nav-links">
         <li><a href="sports.html">Sports</a></li>
-        <li><a href="events.html">Events</a></li>
+        <li><a href="events.html" >Events</a></li>
         <li><a href="dining.html">Dining</a></li>
-        <li><a href="about.html">About</a></li>
+        <li><a href="about.html" class="active">About</a></li>
       </ul>
       <div class="nav-ctas">
         <a href="" id="myTicketsLink">
@@ -28,12 +26,8 @@
           </button>
         </a>
         <a href="sign-in.html" id="signInLink">
-          <button class="nav-sign">
-            Sign In
-          </button>
+          <button class="nav-sign">Sign In</button>
         </a>
-
-       
       </div>
     </nav>
 
@@ -1016,35 +1010,31 @@
         });
       });
 
-      // Profile and Sign In State Management
-      document.addEventListener("DOMContentLoaded", () => {
-        const isSignedIn = localStorage.getItem('signedIn') === 'true';
-        const signInLink = document.getElementById('signInLink');
-        const profileDropdownBtn = document.getElementById('profileDropdownBtn');
-        const myTicketsLink = document.getElementById('myTicketsLink');
+      (function syncAuthNav() {
+        const isSignedIn = localStorage.getItem("signedIn") === "true";
+        const signInLink = document.getElementById("signInLink");
+        const myTicketsLink = document.getElementById("myTicketsLink");
 
-        if (isSignedIn) {
-          if (signInLink) signInLink.style.display = 'none';
-          if (profileDropdownBtn) profileDropdownBtn.style.display = 'block';
-          if (myTicketsLink) {
-            myTicketsLink.href = '#';
-            myTicketsLink.querySelector('button').removeAttribute('onclick');
-            myTicketsLink.querySelector('button').onclick = () => alert("Redirecting to My Tickets...");
-          }
-        } else {
-          if (signInLink) signInLink.style.display = 'block';
-          if (profileDropdownBtn) profileDropdownBtn.style.display = 'none';
+        if (signInLink) {
+          signInLink.style.display = isSignedIn ? "none" : "inline-block";
         }
 
-        // Close dropdown when clicking outside
-        document.addEventListener('click', (e) => {
-          const popup = document.getElementById('profilePopup');
-          const profileBtn = document.getElementById('profileDropdownBtn');
-          if (popup && popup.classList.contains('active') && profileBtn && !profileBtn.contains(e.target)) {
-            popup.classList.remove('active');
+        if (myTicketsLink) {
+          if (isSignedIn) {
+            myTicketsLink.href = "#";
+            myTicketsLink.onclick = (e) => {
+              e.preventDefault();
+              alert("Redirecting to My Tickets...");
+            };
+          } else {
+            myTicketsLink.href = "#";
+            myTicketsLink.onclick = (e) => {
+              e.preventDefault();
+              openModal({ name: "Sign In" });
+            };
           }
-        });
-      });
+        }
+      })();
 
       function toggleProfilePopup(e) {
         e.stopPropagation();

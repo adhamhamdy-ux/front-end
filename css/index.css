@@ -131,6 +131,10 @@ nav {
   letter-spacing: 0.5px;
   cursor: pointer;
   transition: all 0.2s;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .nav-sign {
@@ -145,6 +149,10 @@ nav {
   letter-spacing: 0.5px;
   cursor: pointer;
   transition: all 0.2s;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .nav-ctas {
@@ -1393,7 +1401,9 @@ footer {
   border-color: var(--accent);
   color: white;
 }
-
+#signInLink {
+  display: none;
+}
 .profile-popup {
   position: absolute;
   top: 120%;
@@ -1403,7 +1413,7 @@ footer {
   border: 1px solid var(--border);
   border-radius: 12px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-  display: none;
+  
   flex-direction: column;
   z-index: 1000;
   overflow: hidden;
