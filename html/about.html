@@ -449,7 +449,9 @@
       ];
 
       function renderTeam() {
-        document.getElementById("teamGrid").innerHTML = teamMembers
+        const grid = document.getElementById("teamGrid");
+        if (!grid || typeof teamMembers === "undefined") return;
+        grid.innerHTML = teamMembers
           .map(
             (m) => `
     <div class="team-card">
@@ -465,8 +467,9 @@
       }
 
       function renderTimeline() {
-        if (typeof timelineData === "undefined") return;
-        document.getElementById("timeline").innerHTML = timelineData
+        const timeline = document.getElementById("timeline");
+        if (!timeline || typeof timelineData === "undefined") return;
+        timeline.innerHTML = timelineData
           .map(
             (t) => `
     <div class="tl-item">
@@ -480,8 +483,9 @@
       }
 
       function renderPartners() {
-        if (typeof partnerNames === "undefined") return;
-        document.getElementById("partnersRow").innerHTML = partnerNames
+        const row = document.getElementById("partnersRow");
+        if (!row || typeof partnerNames === "undefined") return;
+        row.innerHTML = partnerNames
           .map(
             (p) => `
     <div class="partner-logo">${p}</div>`,
