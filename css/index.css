@@ -56,10 +56,12 @@ nav {
 }
 
 .logo {
-  font-family: var(--font-display);
+  font-family: var(--font-displa);
   font-size: 28px;
   letter-spacing: 3px;
   color: var(--text);
+  text-decoration: none;
+  font-style: bold;
 }
 
 .logo span {
