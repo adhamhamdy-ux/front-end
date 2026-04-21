@@ -110,8 +110,12 @@ nav {
 }
 
 @keyframes navUnderline {
-  from { transform: scaleX(0); }
-  to   { transform: scaleX(1); }
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
 }
 
 .page-fade-out {
@@ -119,7 +123,10 @@ nav {
 }
 
 @keyframes fadeOut {
-  to { opacity: 0; transform: translateY(-8px); }
+  to {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
 }
 
 .nav-cta {
@@ -172,11 +179,7 @@ nav {
   content: "";
   position: absolute;
   inset: 0;
-  background: radial-gradient(
-    
-    black,
-   
-  );
+  background: radial-gradient(black);
   pointer-events: none;
 }
 .page-hero-bg {
@@ -1130,13 +1133,15 @@ footer {
   border: 1px solid var(--border);
   border-radius: 12px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-  
+
   flex-direction: column;
   z-index: 1000;
   overflow: hidden;
   opacity: 0;
   transform: translateY(-10px);
-  transition: opacity 0.2s, transform 0.2s;
+  transition:
+    opacity 0.2s,
+    transform 0.2s;
 }
 
 .profile-popup.active {
