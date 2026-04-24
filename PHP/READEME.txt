@@ -1,0 +1,18 @@
+# 🎫 Ticketing System - Backend
+
+## 🚀 About the Project
+A full-stack ticketing system for football matches, restaurants, and events. Developed as part of a university Software Engineering project.
+
+## 🛠️ Tech Stack
+- **Language:** PHP 8.x
+- **Database:** MySQL (XAMPP)
+- **Security:** Password Hashing (bcrypt), PDO for SQL Injection prevention.
+
+## 📂 Project Structure
+- `/config`: Database connection.
+- `/auth`: Registration and Login logic.
+
+## ⚙️ Setup
+1. Clone the repo into your `htdocs` folder.
+2. Import `Ticketsystem.sql` into phpMyAdmin.
+3. Update `config/db.php` with your database credentials.
