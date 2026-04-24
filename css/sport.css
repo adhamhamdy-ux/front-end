@@ -179,7 +179,7 @@ nav {
   content: "";
   position: absolute;
   inset: 0;
-  background: radial-gradient(black);
+  background: linear-gradient(90deg, var(--bg) 0%, transparent 60%);
   pointer-events: none;
 }
 .page-hero-bg {
